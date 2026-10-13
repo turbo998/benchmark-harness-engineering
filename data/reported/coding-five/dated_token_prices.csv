@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,输入,缓存读,缓存写,输出
+coding-five,anonymized_reported,false,Claude Haiku 4.5,$1.00,$0.10,$1.25,$5.00
+coding-five,anonymized_reported,false,Claude Sonnet 5,$2.00,$0.20,$2.50,$10.00
+coding-five,anonymized_reported,false,Claude Opus 5,$5.00,$0.50,$6.25,$25.00
+coding-five,anonymized_reported,false,Claude Fable 5.1,$10.00,$0.25,$12.50,$50.00
+coding-five,anonymized_reported,false,GPT-6 Astra,$10.00,$1.00,$12.50,$50.00

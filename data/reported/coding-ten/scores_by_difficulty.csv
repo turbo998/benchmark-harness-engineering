@@ -1,0 +1,11 @@
+report_id,provenance,independently_reproduced,模型,原子均分,中等均分,复杂均分,总平均,隐藏断言
+coding-ten,anonymized_reported,false,Claude Haiku 4.5,97.25,94.39,89.64,93.96,1239 / 1310
+coding-ten,anonymized_reported,false,Claude Sonnet 5,98.40,99.12,98.84,98.69,1309 / 1310
+coding-ten,anonymized_reported,false,Claude Opus 5,99.80,99.50,99.34,99.58,1309 / 1310
+coding-ten,anonymized_reported,false,Claude Fable 5.1,100.00,99.50,99.59,99.76,1309 / 1310
+coding-ten,anonymized_reported,false,GPT-6 Astra,98.00,99.00,99.71,98.80,1309 / 1310
+coding-ten,anonymized_reported,false,Kimi K3,98.40,99.12,98.77,98.67,1304 / 1310
+coding-ten,anonymized_reported,false,Gemini 3.8 Flash,98.75,98.12,96.97,97.99,1275 / 1310
+coding-ten,anonymized_reported,false,MAI-Code-1.1-Flash,98.20,98.62,96.57,97.69,1283 / 1310
+coding-ten,anonymized_reported,false,Grok 4.6,98.40,100.00,98.02,98.55,1304 / 1310
+coding-ten,anonymized_reported,false,GPT-5.6 Luna,98.40,99.50,96.31,97.84,1290 / 1310

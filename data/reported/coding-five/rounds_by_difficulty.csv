@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,原子均轮次,中等均轮次,复杂均轮次,复杂 ÷ 原子
+coding-five,anonymized_reported,false,Claude Haiku 4.5,13.8,22.0,57.0,4.1 倍
+coding-five,anonymized_reported,false,Claude Sonnet 5,5.0,12.5,35.0,7.0 倍
+coding-five,anonymized_reported,false,Claude Opus 5,5.0,12.5,34.5,6.9 倍
+coding-five,anonymized_reported,false,Claude Fable 5.1,4.2,13.0,23.8,5.7 倍
+coding-five,anonymized_reported,false,GPT-6 Astra,4.0,5.5,7.8,1.9 倍

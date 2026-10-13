@@ -60,6 +60,13 @@ uv run --frozen benchmark-harness demo --output .runs\demo
 要跑真实模型，仍需绑定模型/价表/预算并批准付费 smoke；当前 CLI 的 live 路径保持
 阻塞，不能把导出的 engine config、源码适配存在或 mock 分数冒充 live readiness。
 
+## 匿名历史报告档案
+
+[7 个主题的匿名整理报告](docs/reports/README.md)覆盖指定资料库的 12 页测试报告，
+中英文版本去重归档，保留编码与路由两条独立轨道的方法、事实表格及限制。
+[JSON/CSV 数据](data/reported/README.md)标记 `anonymized_reported`，不是本 harness
+新测结果；原文、原图、完整题库及附件未转载，作者/内部字段不进入新增档案。
+
 ## 许可与出处
 
 原创代码和文档采用 [MIT](LICENSE)。第三方文章、题库、源码、图片和结果不被本项目

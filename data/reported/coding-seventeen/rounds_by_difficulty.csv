@@ -1,0 +1,18 @@
+report_id,provenance,independently_reproduced,模型,原子均值,中等均值,复杂均值,复杂 ÷ 原子
+coding-seventeen,anonymized_reported,false,Haiku 4.5,13.8,22.0,57.0,4.1
+coding-seventeen,anonymized_reported,false,Sonnet 5,5.0,12.5,35.0,7.0
+coding-seventeen,anonymized_reported,false,Opus 5,5.0,12.5,34.5,6.9
+coding-seventeen,anonymized_reported,false,Fable 5.1,4.2,13.0,23.8,5.7
+coding-seventeen,anonymized_reported,false,GPT-6 Astra,4.0,5.5,7.8,1.9
+coding-seventeen,anonymized_reported,false,Kimi K3,6.6,16.5,19.2,2.9
+coding-seventeen,anonymized_reported,false,Gemini 3.8 Flash,18.0,28.5,32.5,1.8
+coding-seventeen,anonymized_reported,false,MAI-Code-1.1-Flash,6.0,14.0,33.5,5.6
+coding-seventeen,anonymized_reported,false,Grok 4.6,8.0,10.0,19.5,2.4
+coding-seventeen,anonymized_reported,false,GPT-5.6 Luna,9.2,14.0,40.2,4.4
+coding-seventeen,anonymized_reported,false,GPT-6 Luna,4.8,8.0,24.8,5.2
+coding-seventeen,anonymized_reported,false,Grok 4.7,5.0,6.5,26.2,5.2
+coding-seventeen,anonymized_reported,false,HydraFusion,6.2,8.0,9.5,1.5
+coding-seventeen,anonymized_reported,false,DeepSeek-V4-Flash,8.0,22.0,84.0,10.5
+coding-seventeen,anonymized_reported,false,Opus 5.5,4.8,7.5,13.2,2.8
+coding-seventeen,anonymized_reported,false,Sonnet 5.5,2.8,6.5,9.5,3.4
+coding-seventeen,anonymized_reported,false,GPT-6.1 Sol,4.4,5.0,7.0,1.6

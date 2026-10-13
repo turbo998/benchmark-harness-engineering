@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,功能 70 分,规范 15 分,质量 15 分均值,隐藏测试合计
+coding-five,anonymized_reported,false,Claude Haiku 4.5,5/11 项满分,11/11 项满分,11.09,1239 / 1310
+coding-five,anonymized_reported,false,Claude Sonnet 5,10/11 项满分,11/11 项满分,13.66,1309 / 1310
+coding-five,anonymized_reported,false,Claude Opus 5,10/11 项满分,11/11 项满分,14.68,1309 / 1310
+coding-five,anonymized_reported,false,Claude Fable 5.1,10/11 项满分,11/11 项满分,14.71,1309 / 1310
+coding-five,anonymized_reported,false,GPT-6 Astra,10/11 项满分,11/11 项满分,13.94,1309 / 1310

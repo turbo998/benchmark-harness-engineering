@@ -1,0 +1,18 @@
+report_id,provenance,independently_reproduced,模型,原子均分,中等均分,复杂均分,总平均,隐藏断言
+coding-seventeen,anonymized_reported,false,Haiku 4.5,97.25,94.39,89.64,93.96,1239 / 1310
+coding-seventeen,anonymized_reported,false,Sonnet 5,98.40,99.12,98.88,98.70,1310 / 1310
+coding-seventeen,anonymized_reported,false,Opus 5,99.80,99.50,99.38,99.59,1310 / 1310
+coding-seventeen,anonymized_reported,false,Fable 5.1,100.00,99.50,99.62,99.77,1310 / 1310
+coding-seventeen,anonymized_reported,false,GPT-6 Astra,98.00,99.00,99.75,98.82,1310 / 1310
+coding-seventeen,anonymized_reported,false,Kimi K3,98.40,99.12,98.81,98.68,1305 / 1310
+coding-seventeen,anonymized_reported,false,Gemini 3.8 Flash,98.75,98.12,97.00,98.00,1276 / 1310
+coding-seventeen,anonymized_reported,false,MAI-Code-1.1-Flash,98.20,98.62,96.61,97.70,1284 / 1310
+coding-seventeen,anonymized_reported,false,Grok 4.6,98.40,100.00,98.06,98.57,1305 / 1310
+coding-seventeen,anonymized_reported,false,GPT-5.6 Luna,98.40,99.50,96.42,97.88,1293 / 1310
+coding-seventeen,anonymized_reported,false,GPT-6 Luna,98.80,99.12,96.88,98.16,1279 / 1310
+coding-seventeen,anonymized_reported,false,Grok 4.7,99.00,99.50,99.33,99.21,1299 / 1310
+coding-seventeen,anonymized_reported,false,HydraFusion,98.40,98.00,98.75,98.45,1310 / 1310
+coding-seventeen,anonymized_reported,false,DeepSeek-V4-Flash,97.30,88.00,95.91,95.10,1250 / 1310
+coding-seventeen,anonymized_reported,false,Opus 5.5,99.80,99.50,99.62,99.68,1310 / 1310
+coding-seventeen,anonymized_reported,false,Sonnet 5.5,98.80,99.12,99.19,99.00,1310 / 1310
+coding-seventeen,anonymized_reported,false,GPT-6.1 Sol,98.40,99.00,99.38,98.86,1310 / 1310

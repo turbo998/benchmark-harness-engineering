@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "report_families": 7,
+  "source_pages": 12,
+  "publication_mode": "original anonymous factual summaries, not full-text republication",
+  "rights_and_exclusions": "Full-text, complete task-bank, original-image and attachment republication rights were not verified; these materials are excluded.",
+  "privacy_boundary": "Do not publish author names, roles, contacts, employer-team identifiers, internal slides or URLs, private Notion URLs/IDs, usernames, keys, endpoints, original screenshots, raw traces or source attachments. Vendor/model names, public technical versions and generic test-environment specifications are retained only as historical reported facts.",
+  "report_date_is_null_when_unconfirmed": true,
+  "original_source_links_omitted": true,
+  "source_languages_are_not_independent_runs": true,
+  "reports": [
+    {
+      "report_id": "coding-five",
+      "track": "coding-agent",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/coding-five.md",
+      "json": "coding-five/report.json",
+      "csv_files": [
+        "coding-five/task_scores_and_difficulty.csv",
+        "coding-five/score_components.csv",
+        "coding-five/usage_totals.csv",
+        "coding-five/task_output_tokens.csv",
+        "coding-five/task_rounds.csv",
+        "coding-five/rounds_by_difficulty.csv",
+        "coding-five/dated_token_prices.csv",
+        "coding-five/task_cost_usd.csv",
+        "coding-five/complex_cost_and_time.csv",
+        "coding-five/efficiency.csv",
+        "coding-five/source_summary.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "coding-ten",
+      "track": "coding-agent",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/coding-ten.md",
+      "json": "coding-ten/report.json",
+      "csv_files": [
+        "coding-ten/scores_by_difficulty.csv",
+        "coding-ten/rounds_by_difficulty.csv",
+        "coding-ten/usage_totals.csv",
+        "coding-ten/task_scores.csv",
+        "coding-ten/task_wall_seconds.csv",
+        "coding-ten/task_inference_seconds.csv",
+        "coding-ten/task_cost_credits.csv",
+        "coding-ten/task_rounds.csv",
+        "coding-ten/task_output_tokens.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "coding-seventeen",
+      "track": "coding-agent",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/coding-seventeen.md",
+      "json": "coding-seventeen/report.json",
+      "csv_files": [
+        "coding-seventeen/scores_by_difficulty.csv",
+        "coding-seventeen/rounds_by_difficulty.csv",
+        "coding-seventeen/usage_totals.csv",
+        "coding-seventeen/task_scores.csv",
+        "coding-seventeen/task_wall_seconds.csv",
+        "coding-seventeen/task_inference_seconds.csv",
+        "coding-seventeen/task_cost_usd.csv",
+        "coding-seventeen/task_rounds.csv",
+        "coding-seventeen/task_output_tokens.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "routing-jev",
+      "track": "routing-decision",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/routing-jev.md",
+      "json": "routing-jev/report.json",
+      "csv_files": [
+        "routing-jev/observations.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "routing-laya",
+      "track": "routing-decision",
+      "source_languages": [
+        "zh"
+      ],
+      "source_page_count": 1,
+      "report_document": "../../docs/reports/routing-laya.md",
+      "json": "routing-laya/report.json",
+      "csv_files": [
+        "routing-laya/summary.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "routing-decision",
+      "track": "routing-decision",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/routing-decision.md",
+      "json": "routing-decision/report.json",
+      "csv_files": [
+        "routing-decision/summary.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "routing-openjev",
+      "track": "routing-decision",
+      "source_languages": [
+        "zh"
+      ],
+      "source_page_count": 1,
+      "report_document": "../../docs/reports/routing-openjev.md",
+      "json": "routing-openjev/report.json",
+      "csv_files": [
+        "routing-openjev/comparison.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    }
+  ]
+}

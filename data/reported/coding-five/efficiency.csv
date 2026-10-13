@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,每分成本（credits）,每分耗时（秒）,单位输出 token 得分
+coding-five,anonymized_reported,false,Claude Haiku 4.5,0.380（最低价）,4.69（最慢）,3.4
+coding-five,anonymized_reported,false,Claude Sonnet 5,0.725,2.94,4.5
+coding-five,anonymized_reported,false,Claude Opus 5,1.590（最高价）,3.47,4.4
+coding-five,anonymized_reported,false,Claude Fable 5.1,1.317,3.06,7.0
+coding-five,anonymized_reported,false,GPT-6 Astra,0.912,1.80（最快）,11.1（最高效）

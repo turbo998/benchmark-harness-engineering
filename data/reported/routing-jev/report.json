@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "report_id": "routing-jev",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "id": "routing-jev",
+    "track": "routing-decision",
+    "source_languages": [
+      "zh",
+      "en"
+    ],
+    "source_pages": 2,
+    "window": null,
+    "router_version": "2.1.1",
+    "method": "Integration observations of rule-first routing, typed-choice fallback and interaction-sticky reuse; not a systematic accuracy benchmark.",
+    "limitations": [
+      "Approximately 300ms is routing decision latency, not TTFT, response generation time or coding completion time.",
+      "A few routing examples do not establish best-model selection or accuracy for a production distribution.",
+      "TypeSafe receives the routing state/request; downstream Azure deployment does not imply all request data stays in Azure.",
+      "Protocol/BYOK behavior is historical reported behavior and does not establish this harness's live or isolated-credential readiness.",
+      "No aggregate accuracy, billed usage or verified cost dataset is present for this integration report."
+    ]
+  },
+  "facts": {
+    "aggregate_accuracy": null,
+    "observations": [
+      {
+        "category": "greeting",
+        "selected_model": "gpt-4.1-mini",
+        "selected_probability": 1.0,
+        "cold_decision_ms_approx": 1400,
+        "warm_decision_ms_approx": 300
+      },
+      {
+        "category": "coding",
+        "selected_model": "gpt-4.1",
+        "selected_probability_range": [
+          0.97,
+          0.98
+        ],
+        "decision_ms_range": [
+          290,
+          330
+        ]
+      },
+      {
+        "category": "reasoning",
+        "selected_model": "gpt-5.4",
+        "selected_probability_range": [
+          0.9,
+          0.91
+        ],
+        "decision_ms_approx": 300
+      },
+      {
+        "category": "translation",
+        "selected_model": "gpt-4o",
+        "selection_mode": "rule",
+        "jev_called": false
+      }
+    ],
+    "sticky_example": {
+      "backend_calls": 5,
+      "routing_decisions": 1,
+      "first_decision_ms": 320,
+      "reused_decision_ms": 0
+    },
+    "llm_decision_ms_reported_range": [
+      2000,
+      4000
+    ]
+  },
+  "csv_files": [
+    "routing-jev/observations.csv"
+  ]
+}

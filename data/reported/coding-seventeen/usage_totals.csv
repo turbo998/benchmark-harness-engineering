@@ -1,0 +1,18 @@
+report_id,provenance,independently_reproduced,模型,输出 token,轮次,总花费,总耗时,其中模型推理
+coding-seventeen,anonymized_reported,false,Haiku 4.5,30.3 万,341,$3.93,80.8 分钟,52.7 分钟
+coding-seventeen,anonymized_reported,false,Sonnet 5,23.9 万,190,$7.87,53.2 分钟,39.9 分钟
+coding-seventeen,anonymized_reported,false,Opus 5,24.9 万,188,$17.41,63.3 分钟,50.7 分钟
+coding-seventeen,anonymized_reported,false,Fable 5.1,15.8 万,142,$14.45,55.9 分钟,36.8 分钟
+coding-seventeen,anonymized_reported,false,GPT-6 Astra,9.8 万,62,$9.91,32.7 分钟,26.9 分钟
+coding-seventeen,anonymized_reported,false,Kimi K3,17.5 万,143,$5.58,150.5 分钟,82.4 分钟
+coding-seventeen,anonymized_reported,false,Gemini 3.8 Flash,12.3 万,277,$2.83,85.4 分钟,62.5 分钟
+coding-seventeen,anonymized_reported,false,MAI-Code-1.1-Flash,23.3 万,192,$0.53,56.5 分钟,40.8 分钟
+coding-seventeen,anonymized_reported,false,Grok 4.6,19.4 万,138,$5.21,69.5 分钟,55.0 分钟
+coding-seventeen,anonymized_reported,false,GPT-5.6 Luna,10.7 万,235,$0.39,51.0 分钟,21.9 分钟
+coding-seventeen,anonymized_reported,false,GPT-6 Luna,14.5 万,139,$0.17,44.6 分钟,35.5 分钟
+coding-seventeen,anonymized_reported,false,Grok 4.7,51.5 万,143,$12.22,181.2 分钟,130.8 分钟
+coding-seventeen,anonymized_reported,false,HydraFusion,8.9 万,85,$3.58,24.1 分钟,17.2 分钟
+coding-seventeen,anonymized_reported,false,DeepSeek-V4-Flash,29.0 万,420,$1.95,179.0 分钟,93.6 分钟
+coding-seventeen,anonymized_reported,false,Opus 5.5,17.6 万,92,$5.84,31.8 分钟,26.2 分钟
+coding-seventeen,anonymized_reported,false,Sonnet 5.5,16.1 万,65,$2.89,21.7 分钟,16.6 分钟
+coding-seventeen,anonymized_reported,false,GPT-6.1 Sol,9.3 万,60,$1.71,27.4 分钟,22.5 分钟

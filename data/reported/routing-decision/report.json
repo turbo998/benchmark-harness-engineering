@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "report_id": "routing-decision",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "id": "routing-decision",
+    "track": "routing-decision",
+    "source_languages": [
+      "zh",
+      "en"
+    ],
+    "source_pages": 2,
+    "window": "2026-10-11",
+    "router_version": "2.3.0",
+    "laya_version": "0.3.20",
+    "jev_version": "jev-latest (mutable alias)",
+    "task_count": 40,
+    "repeats": 3,
+    "engine_count": 4,
+    "total_decisions": 480,
+    "method": "Two sets of 20 requests, half Chinese overall, five fixed candidate model descriptions and one-person expected labels. Router on Apple M4 Pro in Asia; Foundry deployments in East US 2; Laya on the same local GPU. Prices are dated source estimates, not new/current quotes.",
+    "cost_date": "2026-10-11",
+    "price_basis": "Reported usage multiplied by source quoted token prices. Decision/Jev input USD0.042/M, output free; LLM input USD0.40/M and output USD1.60/M. Rounded averages do not reconstruct invoice-exact charges.",
+    "confidence_observation": "Decision-1 had 7 incorrect/113 correct decisions. All 7 incorrect selected-model probabilities were <=0.56; 108 correct were above 0.6. A 0.6 abstention rule is only an in-sample observation, not calibrated out-of-sample safety.",
+    "limitations": [
+      "Accuracy is agreement with subjective route labels, not downstream model answer quality.",
+      "Three repetitions of the same requests are not 120 independent tasks.",
+      "Remote timings include cross-region network RTT; local timings do not.",
+      "Mutable jev-latest and differing hosting/hardware prevent fixed-version parity.",
+      "Self-hosted Laya has no per-call charge but unknown total cost of ownership.",
+      "The source token averages and dollar figures are rounded; retain source values rather than invent precision or silently replace them."
+    ]
+  },
+  "facts": {
+    "tasks": 40,
+    "repeats": 3,
+    "rows": [
+      {
+        "engine": "Microsoft-Decision-1",
+        "correct_decisions": 113,
+        "decisions": 120,
+        "set_a_correct_by_repeat": [
+          19,
+          18,
+          19
+        ],
+        "set_b_correct_by_repeat": [
+          19,
+          19,
+          19
+        ],
+        "consistent_task_selections": 39,
+        "mean_selected_probability": 0.91,
+        "median_decision_ms": 541,
+        "p95_decision_ms": 1250,
+        "average_input_tokens": 205,
+        "average_output_tokens": 1,
+        "reported_usd_per_million_decisions": 8.6,
+        "cost_basis": "dated_token_price_estimate",
+        "hosting": "remote_foundry"
+      },
+      {
+        "engine": "TypeSafe Jev",
+        "correct_decisions": 118,
+        "decisions": 120,
+        "set_a_correct_by_repeat": [
+          20,
+          20,
+          20
+        ],
+        "set_b_correct_by_repeat": [
+          19,
+          19,
+          20
+        ],
+        "consistent_task_selections": 39,
+        "mean_selected_probability": 0.92,
+        "median_decision_ms": 350,
+        "p95_decision_ms": 720,
+        "average_input_tokens": 518,
+        "average_output_tokens": 82,
+        "reported_usd_per_million_decisions": 21.7,
+        "cost_basis": "dated_token_price_estimate",
+        "hosting": "remote_vendor"
+      },
+      {
+        "engine": "Laya self-hosted",
+        "correct_decisions": 60,
+        "decisions": 120,
+        "set_a_correct_by_repeat": [
+          12,
+          12,
+          12
+        ],
+        "set_b_correct_by_repeat": [
+          8,
+          8,
+          8
+        ],
+        "consistent_task_selections": 40,
+        "mean_selected_probability": 0.43,
+        "median_decision_ms": 127,
+        "p95_decision_ms": 143,
+        "average_input_tokens": 213,
+        "average_output_tokens": null,
+        "reported_usd_per_million_decisions": 0,
+        "cost_basis": "no_per_call_fee_hardware_and_operations_excluded",
+        "total_cost_of_ownership_usd": null,
+        "hosting": "local_m4_pro"
+      },
+      {
+        "engine": "LLM gpt-4.1-mini",
+        "correct_decisions": 108,
+        "decisions": 120,
+        "set_a_correct_by_repeat": [
+          18,
+          18,
+          18
+        ],
+        "set_b_correct_by_repeat": [
+          18,
+          18,
+          18
+        ],
+        "consistent_task_selections": 40,
+        "mean_selected_probability": null,
+        "median_decision_ms": 1430,
+        "p95_decision_ms": 2090,
+        "average_input_tokens": 214,
+        "average_output_tokens": 35,
+        "reported_usd_per_million_decisions": 141.8,
+        "cost_basis": "dated_token_price_estimate",
+        "hosting": "remote_foundry"
+      }
+    ]
+  },
+  "csv_files": [
+    "routing-decision/summary.csv"
+  ]
+}

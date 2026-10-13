@@ -1,0 +1,11 @@
+report_id,provenance,independently_reproduced,模型,A1,A2,A3,A4,A5,M1,M2,C1,C2,C3,C4,合计
+coding-ten,anonymized_reported,false,Claude Fable 5.1,100.00,100.00,100.00,100.00,100.00,100.00,99.00,98.50,100.00,99.85,100.00,1097.35
+coding-ten,anonymized_reported,false,Claude Opus 5,100.00,99.00,100.00,100.00,100.00,100.00,99.00,97.50,100.00,99.85,100.00,1095.35
+coding-ten,anonymized_reported,false,GPT-6 Astra,98.00,96.00,97.00,100.00,99.00,100.00,98.00,99.00,100.00,99.85,100.00,1086.85
+coding-ten,anonymized_reported,false,Claude Sonnet 5,100.00,99.00,97.00,100.00,96.00,100.00,98.25,97.50,100.00,97.85,100.00,1085.60
+coding-ten,anonymized_reported,false,Kimi K3,99.00,97.00,97.00,100.00,99.00,100.00,98.25,97.12,99.27,98.69,100.00,1085.33
+coding-ten,anonymized_reported,false,Grok 4.6,99.00,98.00,97.00,100.00,98.00,100.00,100.00,97.12,99.27,99.69,96.00,1084.08
+coding-ten,anonymized_reported,false,Gemini 3.8 Flash,100.00,100.00,95.75,100.00,98.00,100.00,96.25,98.25,99.00,93.62,97.00,1077.87
+coding-ten,anonymized_reported,false,GPT-5.6 Luna,99.00,98.00,97.00,100.00,98.00,100.00,99.00,97.50,97.51,94.23,96.00,1076.24
+coding-ten,anonymized_reported,false,MAI-Code-1.1-Flash,99.00,97.00,99.00,100.00,96.00,100.00,97.25,97.12,97.00,95.56,96.61,1074.54
+coding-ten,anonymized_reported,false,Claude Haiku 4.5,97.75,95.00,95.75,100.00,97.75,93.78,95.00,93.98,94.76,82.81,87.01,1033.59

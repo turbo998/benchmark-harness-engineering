@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,A1,A2,A3,A4,A5,M1,M2,C1,C2,C3,C4,原子均,中等均,复杂均,总均
+coding-five,anonymized_reported,false,Claude Haiku 4.5,97.75,95.00,95.75,100,97.75,93.78,95.00,93.98,94.76,82.81,87.01,97.25,94.39,89.64,93.96
+coding-five,anonymized_reported,false,Claude Sonnet 5,100,99.00,97.00,100,96.00,100,98.25,97.50,100,97.85,100,98.40,99.12,98.84,98.69
+coding-five,anonymized_reported,false,Claude Opus 5,100,99.00,100,100,100,100,99.00,97.50,100,99.85,100,99.80,99.50,99.34,99.58
+coding-five,anonymized_reported,false,Claude Fable 5.1,100,100,100,100,100,100,99.00,98.50,100,99.85,100,100.00,99.50,99.59,99.76
+coding-five,anonymized_reported,false,GPT-6 Astra,98.00,96.00,97.00,100,99.00,100,98.00,99.00,100,99.85,100,98.00,99.00,99.71,98.80

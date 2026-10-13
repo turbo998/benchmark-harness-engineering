@@ -1,0 +1,4 @@
+report_id,provenance,independently_reproduced,engine,correct,english_correct,chinese_correct,median_decision_ms
+routing-laya,anonymized_reported,false,TypeSafe Jev,20,10,10,700
+routing-laya,anonymized_reported,false,Laya self-hosted,12,7,5,54
+routing-laya,anonymized_reported,false,LLM gpt-4.1-mini,18,9,9,2500

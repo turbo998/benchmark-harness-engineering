@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,A1,A2,A3,A4,A5,M1,M2,C1,C2,C3,C4
+coding-five,anonymized_reported,false,Claude Haiku 4.5,"4,603","9,815","23,062","4,943","46,436","13,974","19,420","33,923","39,046","43,878","63,412"
+coding-five,anonymized_reported,false,Claude Sonnet 5,"1,246","3,234","2,024",748,"2,361","12,691","10,291","36,916","32,266","84,887","52,834"
+coding-five,anonymized_reported,false,Claude Opus 5,"2,033","5,090","1,478","3,545","2,147","14,002","19,133","37,764","39,759","65,580","58,738"
+coding-five,anonymized_reported,false,Claude Fable 5.1,"1,185","3,303","1,250","1,028","2,482","11,696","8,650","18,735","20,138","52,835","36,552"
+coding-five,anonymized_reported,false,GPT-6 Astra,885,"1,492","1,310",832,"1,774","8,963","6,342","10,049","15,975","25,792","24,647"

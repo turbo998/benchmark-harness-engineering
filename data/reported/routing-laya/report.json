@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "report_id": "routing-laya",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "id": "routing-laya",
+    "track": "routing-decision",
+    "source_languages": [
+      "zh"
+    ],
+    "source_pages": 1,
+    "window": null,
+    "task_count": 20,
+    "repeats": 1,
+    "engine_count": 3,
+    "method": "Same five candidate models/descriptions, ten English and ten Chinese requests, one run per engine. Local Laya uses English/multilingual checkpoints on an Apple M4 Pro GPU.",
+    "limitations": [
+      "Expected labels were assigned by one person and many requests mirror wording in model descriptions.",
+      "Some requests were previously successful Jev examples; the test is not blind holdout evidence.",
+      "Local Laya median 54ms is a direct-call timing; later 127ms router timing uses a different measurement boundary.",
+      "Self-hosted absence of per-call billing excludes hardware and operations cost.",
+      "Published zero-shot/fine-tuned model-card figures are separate claims and must not be merged with these 20-case results."
+    ]
+  },
+  "facts": {
+    "tasks": 20,
+    "repeats": 1,
+    "rows": [
+      {
+        "engine": "TypeSafe Jev",
+        "correct": 20,
+        "english_correct": 10,
+        "chinese_correct": 10,
+        "median_decision_ms": 700
+      },
+      {
+        "engine": "Laya self-hosted",
+        "correct": 12,
+        "english_correct": 7,
+        "chinese_correct": 5,
+        "median_decision_ms": 54
+      },
+      {
+        "engine": "LLM gpt-4.1-mini",
+        "correct": 18,
+        "english_correct": 9,
+        "chinese_correct": 9,
+        "median_decision_ms": 2500
+      }
+    ],
+    "percentile_95_decision_ms": null,
+    "marginal_fee_dataset": null
+  },
+  "csv_files": [
+    "routing-laya/summary.csv"
+  ]
+}

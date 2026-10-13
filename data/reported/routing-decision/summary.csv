@@ -1,0 +1,5 @@
+report_id,provenance,independently_reproduced,engine,correct_decisions,decisions,set_a_correct_by_repeat,set_b_correct_by_repeat,consistent_task_selections,mean_selected_probability,median_decision_ms,p95_decision_ms,average_input_tokens,average_output_tokens,reported_usd_per_million_decisions,cost_basis,hosting,total_cost_of_ownership_usd
+routing-decision,anonymized_reported,false,Microsoft-Decision-1,113,120,"[19,18,19]","[19,19,19]",39,0.91,541,1250,205,1,8.6,dated_token_price_estimate,remote_foundry,
+routing-decision,anonymized_reported,false,TypeSafe Jev,118,120,"[20,20,20]","[19,19,20]",39,0.92,350,720,518,82,21.7,dated_token_price_estimate,remote_vendor,
+routing-decision,anonymized_reported,false,Laya self-hosted,60,120,"[12,12,12]","[8,8,8]",40,0.43,127,143,213,,0,no_per_call_fee_hardware_and_operations_excluded,local_m4_pro,
+routing-decision,anonymized_reported,false,LLM gpt-4.1-mini,108,120,"[18,18,18]","[18,18,18]",40,,1430,2090,214,35,141.8,dated_token_price_estimate,remote_foundry,

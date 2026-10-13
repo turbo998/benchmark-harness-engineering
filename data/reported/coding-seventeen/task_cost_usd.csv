@@ -1,0 +1,18 @@
+report_id,provenance,independently_reproduced,模型,A1,A2,A3,A4,A5,M1,M2,C1,C2,C3,C4,合计
+coding-seventeen,anonymized_reported,false,GPT-6 Luna,0.0033,0.0040,0.0049,0.0034,0.0032,0.0078,0.0107,0.0103,0.0174,0.0839,0.0223,0.1712
+coding-seventeen,anonymized_reported,false,GPT-5.6 Luna,0.0111,0.0178,0.0104,0.0140,0.0120,0.0191,0.0250,0.0465,0.0509,0.1062,0.0755,0.3884
+coding-seventeen,anonymized_reported,false,MAI-Code-1.1-Flash,0.0095,0.0092,0.0109,0.0053,0.0161,0.0239,0.0312,0.0654,0.0679,0.1409,0.1480,0.5283
+coding-seventeen,anonymized_reported,false,GPT-6.1 Sol,0.05,0.06,0.06,0.06,0.07,0.13,0.12,0.18,0.25,0.38,0.35,1.71
+coding-seventeen,anonymized_reported,false,DeepSeek-V4-Flash,0.01,0.01,0.02,0.02,0.03,0.02,0.08,0.12,0.22,0.82,0.60,1.95
+coding-seventeen,anonymized_reported,false,Gemini 3.8 Flash,0.09,0.16,0.11,0.08,0.21,0.18,0.30,0.33,0.38,0.67,0.32,2.83
+coding-seventeen,anonymized_reported,false,Sonnet 5.5,0.07,0.07,0.05,0.06,0.05,0.18,0.20,0.33,0.39,0.92,0.56,2.89
+coding-seventeen,anonymized_reported,false,HydraFusion,0.14,0.13,0.12,0.13,0.13,0.23,0.26,0.34,0.51,0.97,0.63,3.58
+coding-seventeen,anonymized_reported,false,Haiku 4.5,0.08,0.11,0.22,0.08,0.43,0.18,0.22,0.45,0.59,0.67,0.89,3.93
+coding-seventeen,anonymized_reported,false,Grok 4.6,0.18,0.23,0.22,0.10,0.17,0.30,0.28,0.46,0.52,1.91,0.84,5.21
+coding-seventeen,anonymized_reported,false,Kimi K3,0.12,0.12,0.11,0.11,0.17,0.26,0.41,0.59,0.97,1.81,0.93,5.58
+coding-seventeen,anonymized_reported,false,Opus 5.5,0.15,0.10,0.09,0.13,0.25,0.34,0.44,0.52,0.71,1.82,1.28,5.84
+coding-seventeen,anonymized_reported,false,Sonnet 5,0.10,0.11,0.09,0.07,0.10,0.31,0.24,1.33,1.18,2.81,1.53,7.87
+coding-seventeen,anonymized_reported,false,GPT-6 Astra,0.30,0.35,0.34,0.32,0.37,0.89,0.72,0.99,1.46,2.08,2.09,9.91
+coding-seventeen,anonymized_reported,false,Grok 4.7,0.08,0.20,0.20,0.09,0.28,0.63,0.36,1.48,2.02,5.00,1.88,12.22
+coding-seventeen,anonymized_reported,false,Fable 5.1,0.42,0.43,0.27,0.28,0.35,1.07,0.86,1.54,1.83,4.34,3.06,14.45
+coding-seventeen,anonymized_reported,false,Opus 5,0.28,0.55,0.17,0.46,0.21,0.87,1.41,2.34,2.78,4.65,3.68,17.41

@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,输出 token,缓存读 token,新写入 prompt token,轮次,产出代码行
+coding-five,anonymized_reported,false,Claude Haiku 4.5,"302,512","16,823,450","590,229",341,"8,702"
+coding-five,anonymized_reported,false,Claude Sonnet 5,"239,498","10,617,545","864,529",190,"8,028"
+coding-five,anonymized_reported,false,Claude Opus 5,"249,269","10,282,814","1,089,445",188,"8,793"
+coding-five,anonymized_reported,false,Claude Fable 5.1,"157,854","6,132,603","401,990",142,"7,863"
+coding-five,anonymized_reported,false,GPT-6 Astra,"98,061","1,273,481","298,853",62,"7,516"

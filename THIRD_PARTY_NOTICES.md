@@ -21,3 +21,9 @@ license grant.
 No third-party benchmark scores are included as our evaluation results. No
 third-party task dataset, copyrighted article image or authenticated browser
 snapshot is shipped.
+
+The anonymous historical report archive adds reported factual metric tables, not
+new harness evaluation results. Its original summaries do not redistribute source
+article prose, original figures, complete task prompts, zipped evidence or weights.
+Source-reported model licensing is documented as a historical claim, not a grant
+to distribute models or use noncommercial weights commercially.

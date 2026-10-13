@@ -1,0 +1,18 @@
+report_id,provenance,independently_reproduced,模型,A1,A2,A3,A4,A5,M1,M2,C1,C2,C3,C4,合计
+coding-seventeen,anonymized_reported,false,Fable 5.1,100.00,100.00,100.00,100.00,100.00,100.00,99.00,98.50,100.00,100.00,100.00,1097.50
+coding-seventeen,anonymized_reported,false,Opus 5.5,100.00,99.00,100.00,100.00,100.00,100.00,99.00,98.50,100.00,100.00,100.00,1096.50
+coding-seventeen,anonymized_reported,false,Opus 5,100.00,99.00,100.00,100.00,100.00,100.00,99.00,97.50,100.00,100.00,100.00,1095.50
+coding-seventeen,anonymized_reported,false,Grok 4.7,99.00,100.00,100.00,100.00,96.00,100.00,99.00,98.87,100.00,98.46,100.00,1091.33
+coding-seventeen,anonymized_reported,false,Sonnet 5.5,99.00,99.00,98.00,100.00,98.00,100.00,98.25,97.50,100.00,99.25,100.00,1089.00
+coding-seventeen,anonymized_reported,false,GPT-6.1 Sol,99.00,96.00,97.00,100.00,100.00,100.00,98.00,97.50,100.00,100.00,100.00,1087.50
+coding-seventeen,anonymized_reported,false,GPT-6 Astra,98.00,96.00,97.00,100.00,99.00,100.00,98.00,99.00,100.00,100.00,100.00,1087.00
+coding-seventeen,anonymized_reported,false,Sonnet 5,100.00,99.00,97.00,100.00,96.00,100.00,98.25,97.50,100.00,98.00,100.00,1085.75
+coding-seventeen,anonymized_reported,false,Kimi K3,99.00,97.00,97.00,100.00,99.00,100.00,98.25,97.12,99.27,98.85,100.00,1085.49
+coding-seventeen,anonymized_reported,false,Grok 4.6,99.00,98.00,97.00,100.00,98.00,100.00,100.00,97.12,99.27,99.85,96.00,1084.24
+coding-seventeen,anonymized_reported,false,HydraFusion,96.00,99.00,97.00,100.00,100.00,97.00,99.00,99.00,100.00,98.00,98.00,1083.00
+coding-seventeen,anonymized_reported,false,GPT-6 Luna,99.00,98.00,97.00,100.00,100.00,100.00,98.25,97.12,100.00,92.38,98.00,1079.75
+coding-seventeen,anonymized_reported,false,Gemini 3.8 Flash,100.00,100.00,95.75,100.00,98.00,100.00,96.25,98.25,99.00,93.77,97.00,1078.02
+coding-seventeen,anonymized_reported,false,GPT-5.6 Luna,99.00,98.00,97.00,100.00,98.00,100.00,99.00,97.50,97.51,94.69,96.00,1076.70
+coding-seventeen,anonymized_reported,false,MAI-Code-1.1-Flash,99.00,97.00,99.00,100.00,96.00,100.00,97.25,97.12,97.00,95.71,96.61,1074.69
+coding-seventeen,anonymized_reported,false,DeepSeek-V4-Flash,99.00,97.00,95.75,100.00,94.75,100.00,76.00,94.32,97.32,97.08,94.90,1046.12
+coding-seventeen,anonymized_reported,false,Haiku 4.5,97.75,95.00,95.75,100.00,97.75,93.78,95.00,93.98,94.76,82.81,87.01,1033.59

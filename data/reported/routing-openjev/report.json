@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "report_id": "routing-openjev",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "id": "routing-openjev",
+    "track": "routing-decision",
+    "source_languages": [
+      "zh"
+    ],
+    "source_pages": 1,
+    "window": "2026-10-12",
+    "task_count": 40,
+    "repeats": 3,
+    "new_decisions": 120,
+    "method": "Adds OpenJev MLX 4-bit, 27B, on a 48GB Apple M4 Pro to routing-decision. Other four engines reuse the earlier report's measurements; there were not 600 new same-day decisions.",
+    "reported_load_seconds": 12,
+    "reported_model_input_tokens": 237,
+    "confidence_observation": "OpenJev made 9 errors on three requests repeated three times. A 0.6 selected-probability threshold catches only three errors; six have probabilities about 0.70/0.72. Correct-decision coverage is unavailable.",
+    "licensing": "Source reports weights CC BY-NC 4.0 with commercial use requiring separate permission; helper/scripts Apache 2.0. No weights, helper code, original tasks or publisher contacts are redistributed.",
+    "limitations": [
+      "MLX 4-bit laptop results are not BF16/FP8 server results.",
+      "Three repeated identical decisions are not independent tasks; all 40 selections were stable in this run.",
+      "Source-reported H100 FP8 about 80ms and separate model-card accuracy 84.0%/85.4% were not verified in this run and must not replace these figures.",
+      "Self-hosted per-call fee zero excludes hardware, energy, operation and possible commercial-licence costs.",
+      "Comparison reuses four engines from routing-decision; do not count the same evidence twice.",
+      "Labels were assigned by one person; no optimal downstream-task quality proof is available."
+    ]
+  },
+  "facts": {
+    "tasks": 40,
+    "repeats": 3,
+    "new_measurement": {
+      "engine": "OpenJev MLX 4-bit",
+      "correct_decisions": 111,
+      "decisions": 120,
+      "set_a_correct_by_repeat": [
+        19,
+        19,
+        19
+      ],
+      "set_b_correct_by_repeat": [
+        18,
+        18,
+        18
+      ],
+      "english_correct_per_repeat": 18,
+      "chinese_correct_per_repeat": 19,
+      "consistent_task_selections": 40,
+      "median_decision_ms": 2570,
+      "p95_decision_ms": 3030,
+      "average_input_tokens": 237,
+      "average_output_tokens": null,
+      "reported_usd_per_million_decisions": 0,
+      "cost_basis": "no_per_call_fee_hardware_operations_and_commercial_permission_excluded",
+      "total_cost_of_ownership_usd": null,
+      "hosting": "local_m4_pro_48gb"
+    },
+    "reused_comparison_report_id": "routing-decision",
+    "confidence_errors": {
+      "errors": 9,
+      "errors_below_0_6": 3,
+      "errors_not_caught": 6
+    }
+  },
+  "comparison_rows": [
+    {
+      "measurement_report_id": "routing-openjev",
+      "evidence_relation": "new",
+      "engine": "OpenJev MLX 4-bit",
+      "correct_decisions": 111,
+      "decisions": 120,
+      "set_a_correct_by_repeat": [
+        19,
+        19,
+        19
+      ],
+      "set_b_correct_by_repeat": [
+        18,
+        18,
+        18
+      ],
+      "english_correct_per_repeat": 18,
+      "chinese_correct_per_repeat": 19,
+      "consistent_task_selections": 40,
+      "median_decision_ms": 2570,
+      "p95_decision_ms": 3030,
+      "average_input_tokens": 237,
+      "average_output_tokens": null,
+      "reported_usd_per_million_decisions": 0,
+      "cost_basis": "no_per_call_fee_hardware_operations_and_commercial_permission_excluded",
+      "total_cost_of_ownership_usd": null,
+      "hosting": "local_m4_pro_48gb"
+    },
+    {
+      "measurement_report_id": "routing-decision",
+      "evidence_relation": "reused",
+      "engine": "Microsoft-Decision-1",
+      "correct_decisions": 113,
+      "decisions": 120,
+      "set_a_correct_by_repeat": [
+        19,
+        18,
+        19
+      ],
+      "set_b_correct_by_repeat": [
+        19,
+        19,
+        19
+      ],
+      "consistent_task_selections": 39,
+      "mean_selected_probability": 0.91,
+      "median_decision_ms": 541,
+      "p95_decision_ms": 1250,
+      "average_input_tokens": 205,
+      "average_output_tokens": 1,
+      "reported_usd_per_million_decisions": 8.6,
+      "cost_basis": "dated_token_price_estimate",
+      "hosting": "remote_foundry"
+    },
+    {
+      "measurement_report_id": "routing-decision",
+      "evidence_relation": "reused",
+      "engine": "TypeSafe Jev",
+      "correct_decisions": 118,
+      "decisions": 120,
+      "set_a_correct_by_repeat": [
+        20,
+        20,
+        20
+      ],
+      "set_b_correct_by_repeat": [
+        19,
+        19,
+        20
+      ],
+      "consistent_task_selections": 39,
+      "mean_selected_probability": 0.92,
+      "median_decision_ms": 350,
+      "p95_decision_ms": 720,
+      "average_input_tokens": 518,
+      "average_output_tokens": 82,
+      "reported_usd_per_million_decisions": 21.7,
+      "cost_basis": "dated_token_price_estimate",
+      "hosting": "remote_vendor"
+    },
+    {
+      "measurement_report_id": "routing-decision",
+      "evidence_relation": "reused",
+      "engine": "Laya self-hosted",
+      "correct_decisions": 60,
+      "decisions": 120,
+      "set_a_correct_by_repeat": [
+        12,
+        12,
+        12
+      ],
+      "set_b_correct_by_repeat": [
+        8,
+        8,
+        8
+      ],
+      "consistent_task_selections": 40,
+      "mean_selected_probability": 0.43,
+      "median_decision_ms": 127,
+      "p95_decision_ms": 143,
+      "average_input_tokens": 213,
+      "average_output_tokens": null,
+      "reported_usd_per_million_decisions": 0,
+      "cost_basis": "no_per_call_fee_hardware_and_operations_excluded",
+      "total_cost_of_ownership_usd": null,
+      "hosting": "local_m4_pro"
+    },
+    {
+      "measurement_report_id": "routing-decision",
+      "evidence_relation": "reused",
+      "engine": "LLM gpt-4.1-mini",
+      "correct_decisions": 108,
+      "decisions": 120,
+      "set_a_correct_by_repeat": [
+        18,
+        18,
+        18
+      ],
+      "set_b_correct_by_repeat": [
+        18,
+        18,
+        18
+      ],
+      "consistent_task_selections": 40,
+      "mean_selected_probability": null,
+      "median_decision_ms": 1430,
+      "p95_decision_ms": 2090,
+      "average_input_tokens": 214,
+      "average_output_tokens": 35,
+      "reported_usd_per_million_decisions": 141.8,
+      "cost_basis": "dated_token_price_estimate",
+      "hosting": "remote_foundry"
+    }
+  ],
+  "csv_files": [
+    "routing-openjev/comparison.csv"
+  ]
+}

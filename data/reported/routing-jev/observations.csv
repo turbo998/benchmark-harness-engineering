@@ -1,0 +1,5 @@
+report_id,provenance,independently_reproduced,category,selected_model,selected_probability,cold_decision_ms_approx,warm_decision_ms_approx,selected_probability_range,decision_ms_range,decision_ms_approx,selection_mode,jev_called
+routing-jev,anonymized_reported,false,greeting,gpt-4.1-mini,1.0,1400,300,,,,,
+routing-jev,anonymized_reported,false,coding,gpt-4.1,,,,"[0.97,0.98]","[290,330]",,,
+routing-jev,anonymized_reported,false,reasoning,gpt-5.4,,,,"[0.9,0.91]",,300,,
+routing-jev,anonymized_reported,false,translation,gpt-4o,,,,,,,rule,false

@@ -1,0 +1,800 @@
+{
+  "schema_version": 1,
+  "report_id": "coding-five",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "id": "coding-five",
+    "track": "coding-agent",
+    "source_languages": [
+      "zh",
+      "en"
+    ],
+    "source_pages": 2,
+    "window": "2026-09-09 to 2026-09-11",
+    "cli_version": "1.0.84-3",
+    "task_count": 11,
+    "model_count": 5,
+    "scored_runs": 55,
+    "method": "Python standard-library tasks, five atomic/two medium/four complex. Same SHA256-checked instructions; one independent delivery per model/task; serial execution. Historical CLI mode disabled MCP/custom instructions and granted broad command permissions; directory separation must not be presented as a verified sandbox.",
+    "rubric": {
+      "functional": 70,
+      "specification": 15,
+      "quality": 15
+    },
+    "functional_subweights": {
+      "atomic": {
+        "hidden": 70
+      },
+      "medium": {
+        "hidden": 55,
+        "self_tests": 15
+      },
+      "complex": {
+        "hidden": 58,
+        "self_tests": 12
+      }
+    },
+    "hidden_assertions_per_model": 1310,
+    "effort": "medium except Haiku, whose effort option was unavailable",
+    "cost_basis": "Source reports CLI AI credits converted at USD 0.01 per credit. This archive has not inspected an invoice and must not relabel it invoice-verified cost.",
+    "limitations": [
+      "One scored sample per model/task is not a reliable statistical ranking.",
+      "Historical source observed one repeat with wall time 230 versus 821 seconds and roughly stable inference time; wall time includes local tools and networking.",
+      "Quality combines deterministic checks and subjective evidence-based review.",
+      "Source ranking mixes score, cost and speed preferences; numerical score is not that recommendation order.",
+      "Subsequent reports revised historical hidden-assertion and quality scores; retain this snapshot instead of overwriting it."
+    ]
+  },
+  "tables": [
+    {
+      "name": "task_scores_and_difficulty",
+      "columns": [
+        "模型",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "M1",
+        "M2",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "原子均",
+        "中等均",
+        "复杂均",
+        "总均"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "97.75",
+          "95.00",
+          "95.75",
+          "100",
+          "97.75",
+          "93.78",
+          "95.00",
+          "93.98",
+          "94.76",
+          "82.81",
+          "87.01",
+          "97.25",
+          "94.39",
+          "89.64",
+          "93.96"
+        ],
+        [
+          "Claude Sonnet 5",
+          "100",
+          "99.00",
+          "97.00",
+          "100",
+          "96.00",
+          "100",
+          "98.25",
+          "97.50",
+          "100",
+          "97.85",
+          "100",
+          "98.40",
+          "99.12",
+          "98.84",
+          "98.69"
+        ],
+        [
+          "Claude Opus 5",
+          "100",
+          "99.00",
+          "100",
+          "100",
+          "100",
+          "100",
+          "99.00",
+          "97.50",
+          "100",
+          "99.85",
+          "100",
+          "99.80",
+          "99.50",
+          "99.34",
+          "99.58"
+        ],
+        [
+          "Claude Fable 5.1",
+          "100",
+          "100",
+          "100",
+          "100",
+          "100",
+          "100",
+          "99.00",
+          "98.50",
+          "100",
+          "99.85",
+          "100",
+          "100.00",
+          "99.50",
+          "99.59",
+          "99.76"
+        ],
+        [
+          "GPT-6 Astra",
+          "98.00",
+          "96.00",
+          "97.00",
+          "100",
+          "99.00",
+          "100",
+          "98.00",
+          "99.00",
+          "100",
+          "99.85",
+          "100",
+          "98.00",
+          "99.00",
+          "99.71",
+          "98.80"
+        ]
+      ],
+      "unit": "task_and_difficulty_mean_score_points_0_to_100"
+    },
+    {
+      "name": "score_components",
+      "columns": [
+        "模型",
+        "功能 70 分",
+        "规范 15 分",
+        "质量 15 分均值",
+        "隐藏测试合计"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "5/11 项满分",
+          "11/11 项满分",
+          "11.09",
+          "1239 / 1310"
+        ],
+        [
+          "Claude Sonnet 5",
+          "10/11 项满分",
+          "11/11 项满分",
+          "13.66",
+          "1309 / 1310"
+        ],
+        [
+          "Claude Opus 5",
+          "10/11 项满分",
+          "11/11 项满分",
+          "14.68",
+          "1309 / 1310"
+        ],
+        [
+          "Claude Fable 5.1",
+          "10/11 项满分",
+          "11/11 项满分",
+          "14.71",
+          "1309 / 1310"
+        ],
+        [
+          "GPT-6 Astra",
+          "10/11 项满分",
+          "11/11 项满分",
+          "13.94",
+          "1309 / 1310"
+        ]
+      ],
+      "unit": "source_displayed_component_coverage_and_quality_points"
+    },
+    {
+      "name": "usage_totals",
+      "columns": [
+        "模型",
+        "输出 token",
+        "缓存读 token",
+        "新写入 prompt token",
+        "轮次",
+        "产出代码行"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "302,512",
+          "16,823,450",
+          "590,229",
+          "341",
+          "8,702"
+        ],
+        [
+          "Claude Sonnet 5",
+          "239,498",
+          "10,617,545",
+          "864,529",
+          "190",
+          "8,028"
+        ],
+        [
+          "Claude Opus 5",
+          "249,269",
+          "10,282,814",
+          "1,089,445",
+          "188",
+          "8,793"
+        ],
+        [
+          "Claude Fable 5.1",
+          "157,854",
+          "6,132,603",
+          "401,990",
+          "142",
+          "7,863"
+        ],
+        [
+          "GPT-6 Astra",
+          "98,061",
+          "1,273,481",
+          "298,853",
+          "62",
+          "7,516"
+        ]
+      ],
+      "unit": "source_displayed_units_and_rounding_preserved_in_column_names_and_cells"
+    },
+    {
+      "name": "task_output_tokens",
+      "columns": [
+        "模型",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "M1",
+        "M2",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "4,603",
+          "9,815",
+          "23,062",
+          "4,943",
+          "46,436",
+          "13,974",
+          "19,420",
+          "33,923",
+          "39,046",
+          "43,878",
+          "63,412"
+        ],
+        [
+          "Claude Sonnet 5",
+          "1,246",
+          "3,234",
+          "2,024",
+          "748",
+          "2,361",
+          "12,691",
+          "10,291",
+          "36,916",
+          "32,266",
+          "84,887",
+          "52,834"
+        ],
+        [
+          "Claude Opus 5",
+          "2,033",
+          "5,090",
+          "1,478",
+          "3,545",
+          "2,147",
+          "14,002",
+          "19,133",
+          "37,764",
+          "39,759",
+          "65,580",
+          "58,738"
+        ],
+        [
+          "Claude Fable 5.1",
+          "1,185",
+          "3,303",
+          "1,250",
+          "1,028",
+          "2,482",
+          "11,696",
+          "8,650",
+          "18,735",
+          "20,138",
+          "52,835",
+          "36,552"
+        ],
+        [
+          "GPT-6 Astra",
+          "885",
+          "1,492",
+          "1,310",
+          "832",
+          "1,774",
+          "8,963",
+          "6,342",
+          "10,049",
+          "15,975",
+          "25,792",
+          "24,647"
+        ]
+      ],
+      "unit": "output_tokens"
+    },
+    {
+      "name": "task_rounds",
+      "columns": [
+        "模型",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "M1",
+        "M2",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "合计"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "10",
+          "14",
+          "12",
+          "13",
+          "20",
+          "22",
+          "22",
+          "43",
+          "59",
+          "60",
+          "66",
+          "341"
+        ],
+        [
+          "Claude Sonnet 5",
+          "3",
+          "6",
+          "5",
+          "4",
+          "7",
+          "15",
+          "10",
+          "36",
+          "31",
+          "34",
+          "39",
+          "190"
+        ],
+        [
+          "Claude Opus 5",
+          "4",
+          "8",
+          "3",
+          "6",
+          "4",
+          "11",
+          "14",
+          "23",
+          "33",
+          "47",
+          "35",
+          "188"
+        ],
+        [
+          "Claude Fable 5.1",
+          "3",
+          "7",
+          "3",
+          "4",
+          "4",
+          "16",
+          "10",
+          "15",
+          "17",
+          "35",
+          "28",
+          "142"
+        ],
+        [
+          "GPT-6 Astra",
+          "4",
+          "4",
+          "4",
+          "4",
+          "4",
+          "6",
+          "5",
+          "6",
+          "8",
+          "8",
+          "9",
+          "62"
+        ]
+      ],
+      "unit": "model_API_requests"
+    },
+    {
+      "name": "rounds_by_difficulty",
+      "columns": [
+        "模型",
+        "原子均轮次",
+        "中等均轮次",
+        "复杂均轮次",
+        "复杂 ÷ 原子"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "13.8",
+          "22.0",
+          "57.0",
+          "4.1 倍"
+        ],
+        [
+          "Claude Sonnet 5",
+          "5.0",
+          "12.5",
+          "35.0",
+          "7.0 倍"
+        ],
+        [
+          "Claude Opus 5",
+          "5.0",
+          "12.5",
+          "34.5",
+          "6.9 倍"
+        ],
+        [
+          "Claude Fable 5.1",
+          "4.2",
+          "13.0",
+          "23.8",
+          "5.7 倍"
+        ],
+        [
+          "GPT-6 Astra",
+          "4.0",
+          "5.5",
+          "7.8",
+          "1.9 倍"
+        ]
+      ],
+      "unit": "mean_model_API_requests; last_column_is_ratio"
+    },
+    {
+      "name": "dated_token_prices",
+      "columns": [
+        "模型",
+        "输入",
+        "缓存读",
+        "缓存写",
+        "输出"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "$1.00",
+          "$0.10",
+          "$1.25",
+          "$5.00"
+        ],
+        [
+          "Claude Sonnet 5",
+          "$2.00",
+          "$0.20",
+          "$2.50",
+          "$10.00"
+        ],
+        [
+          "Claude Opus 5",
+          "$5.00",
+          "$0.50",
+          "$6.25",
+          "$25.00"
+        ],
+        [
+          "Claude Fable 5.1",
+          "$10.00",
+          "$0.25",
+          "$12.50",
+          "$50.00"
+        ],
+        [
+          "GPT-6 Astra",
+          "$10.00",
+          "$1.00",
+          "$12.50",
+          "$50.00"
+        ]
+      ],
+      "unit": "source_reported_USD_per_million_tokens"
+    },
+    {
+      "name": "task_cost_usd",
+      "columns": [
+        "模型",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "M1",
+        "M2",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "合计"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "$0.08",
+          "$0.11",
+          "$0.22",
+          "$0.08",
+          "$0.43",
+          "$0.18",
+          "$0.22",
+          "$0.45",
+          "$0.59",
+          "$0.67",
+          "$0.89",
+          "$3.93"
+        ],
+        [
+          "Claude Sonnet 5",
+          "$0.10",
+          "$0.11",
+          "$0.09",
+          "$0.07",
+          "$0.10",
+          "$0.31",
+          "$0.24",
+          "$1.34",
+          "$1.18",
+          "$2.81",
+          "$1.53",
+          "$7.87"
+        ],
+        [
+          "Claude Opus 5",
+          "$0.28",
+          "$0.55",
+          "$0.17",
+          "$0.46",
+          "$0.21",
+          "$0.87",
+          "$1.41",
+          "$2.34",
+          "$2.79",
+          "$4.65",
+          "$3.68",
+          "$17.41"
+        ],
+        [
+          "Claude Fable 5.1",
+          "$0.42",
+          "$0.43",
+          "$0.27",
+          "$0.28",
+          "$0.35",
+          "$1.07",
+          "$0.86",
+          "$1.54",
+          "$1.83",
+          "$4.34",
+          "$3.06",
+          "$14.45"
+        ],
+        [
+          "GPT-6 Astra",
+          "$0.30",
+          "$0.35",
+          "$0.34",
+          "$0.33",
+          "$0.37",
+          "$0.89",
+          "$0.72",
+          "$0.99",
+          "$1.46",
+          "$2.08",
+          "$2.09",
+          "$9.91"
+        ]
+      ],
+      "unit": "USD"
+    },
+    {
+      "name": "complex_cost_and_time",
+      "columns": [
+        "模型",
+        "复杂层得分",
+        "复杂任务花费",
+        "复杂任务耗时",
+        "相对 Astra 的花费"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "89.64",
+          "$2.60",
+          "50 分钟",
+          "0.39 倍（但得分低 10 分）"
+        ],
+        [
+          "Claude Sonnet 5",
+          "98.84",
+          "$6.85",
+          "43 分钟",
+          "1.03 倍"
+        ],
+        [
+          "Claude Opus 5",
+          "99.34",
+          "$13.46",
+          "48 分钟",
+          "2.03 倍"
+        ],
+        [
+          "Claude Fable 5.1",
+          "99.59",
+          "$10.78",
+          "38 分钟",
+          "1.63 倍"
+        ],
+        [
+          "GPT-6 Astra",
+          "99.71",
+          "$6.62",
+          "23 分钟",
+          "1.00 倍"
+        ]
+      ],
+      "unit": "source_displayed_complex_score_cost_and_wall_units"
+    },
+    {
+      "name": "efficiency",
+      "columns": [
+        "模型",
+        "每分成本（credits）",
+        "每分耗时（秒）",
+        "单位输出 token 得分"
+      ],
+      "rows": [
+        [
+          "Claude Haiku 4.5",
+          "0.380（最低价）",
+          "4.69（最慢）",
+          "3.4"
+        ],
+        [
+          "Claude Sonnet 5",
+          "0.725",
+          "2.94",
+          "4.5"
+        ],
+        [
+          "Claude Opus 5",
+          "1.590（最高价）",
+          "3.47",
+          "4.4"
+        ],
+        [
+          "Claude Fable 5.1",
+          "1.317",
+          "3.06",
+          "7.0"
+        ],
+        [
+          "GPT-6 Astra",
+          "0.912",
+          "1.80（最快）",
+          "11.1（最高效）"
+        ]
+      ],
+      "unit": "source_displayed_credit_per_score_seconds_per_score_and_output_density"
+    }
+  ],
+  "source_summary": {
+    "columns": [
+      "名次",
+      "模型",
+      "总均分",
+      "复杂层",
+      "总花费",
+      "总耗时"
+    ],
+    "rows": [
+      [
+        "5",
+        "Claude Haiku 4.5",
+        "93.96",
+        "89.64",
+        "$3.93",
+        "81 分钟"
+      ],
+      [
+        "4",
+        "Claude Sonnet 5",
+        "98.69",
+        "98.84",
+        "$7.87",
+        "53 分钟"
+      ],
+      [
+        "2",
+        "Claude Opus 5",
+        "99.58",
+        "99.34",
+        "$17.41",
+        "63 分钟"
+      ],
+      [
+        "1",
+        "Claude Fable 5.1",
+        "99.76",
+        "99.59",
+        "$14.45",
+        "56 分钟"
+      ],
+      [
+        "3",
+        "GPT-6 Astra",
+        "98.80",
+        "99.71",
+        "$9.91",
+        "33 分钟"
+      ]
+    ]
+  },
+  "csv_files": [
+    "coding-five/task_scores_and_difficulty.csv",
+    "coding-five/score_components.csv",
+    "coding-five/usage_totals.csv",
+    "coding-five/task_output_tokens.csv",
+    "coding-five/task_rounds.csv",
+    "coding-five/rounds_by_difficulty.csv",
+    "coding-five/dated_token_prices.csv",
+    "coding-five/task_cost_usd.csv",
+    "coding-five/complex_cost_and_time.csv",
+    "coding-five/efficiency.csv",
+    "coding-five/source_summary.csv"
+  ]
+}

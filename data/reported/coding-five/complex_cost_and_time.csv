@@ -1,0 +1,6 @@
+report_id,provenance,independently_reproduced,模型,复杂层得分,复杂任务花费,复杂任务耗时,相对 Astra 的花费
+coding-five,anonymized_reported,false,Claude Haiku 4.5,89.64,$2.60,50 分钟,0.39 倍（但得分低 10 分）
+coding-five,anonymized_reported,false,Claude Sonnet 5,98.84,$6.85,43 分钟,1.03 倍
+coding-five,anonymized_reported,false,Claude Opus 5,99.34,$13.46,48 分钟,2.03 倍
+coding-five,anonymized_reported,false,Claude Fable 5.1,99.59,$10.78,38 分钟,1.63 倍
+coding-five,anonymized_reported,false,GPT-6 Astra,99.71,$6.62,23 分钟,1.00 倍
