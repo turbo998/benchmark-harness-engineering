@@ -1,0 +1,17 @@
+{
+  "accepted": [
+    "case-9a731fd32d68c9f024735bc2b5104f415cfcb7920fe3b0c9f1ad1544f164fdfe",
+    "case-548df8bc0083667b189f17faa80f8c1a4d7996100cdd06e8f67a8d912d13e489",
+    "case-7f928fe30d633ac01c6382644975212fab254d242cd073ad5cc580028241b560",
+    "case-fc94167aaa5a60090e4aa2ae4d8b43f30104b369f57227278a2335147302a162",
+    "case-ec9f364e3f3823199db50d869af44b1fb91a89d8e3f75a0ec8abfa17af2bfe71",
+    "case-dd425e97fd980fb2685ef29ef3975ce32d8265f32b7b84b86fafd8469e5f8e47",
+    "case-c820ef24e5bbd39f64ba3e2a4c510cbf6e85667dfc69964f8b8c3ce4d73e5f38",
+    "case-abec21c38c3efd47faa6d0fdc28d87aad45488046bb4dd7a5c169c6799a8400b",
+    "case-65607233dcc3b6371ebd578d4de1675bb2240eb6c5cba3a60b21c9f3a23ee1f4"
+  ],
+  "rejected": [],
+  "fixture_tier": "trusted-host-check",
+  "sandbox_tier": "unvalidated",
+  "statistical_scope": "engineering fixtures, not a ranking"
+}

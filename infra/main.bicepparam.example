@@ -1,0 +1,32 @@
+using './main.bicep'
+
+param location = readEnvironmentVariable('BH_AZURE_LOCATION')
+param runId = readEnvironmentVariable('BH_RUN_ID')
+param lifecycleOwner = readEnvironmentVariable('BH_LIFECYCLE_OWNER')
+param vmSize = readEnvironmentVariable('BH_VM_SIZE')
+param sshPublicKey = readEnvironmentVariable('BH_SSH_PUBLIC_KEY')
+param linuxImage = {
+  publisher: 'Canonical'
+  offer: '0001-com-ubuntu-server-jammy'
+  sku: '22_04-lts-gen2'
+  version: readEnvironmentVariable('BH_IMAGE_VERSION')
+}
+param existingSubnetId = readEnvironmentVariable('BH_SUBNET_ID')
+param enableOutboundPublicIp = false
+param brokerImage = readEnvironmentVariable('BH_BROKER_IMAGE_DIGEST')
+param brokerSigningSecret = readEnvironmentVariable('BH_BROKER_SIGNING_SECRET')
+param modelEndpoint = readEnvironmentVariable('BH_MODEL_ENDPOINT')
+param modelDeployment = readEnvironmentVariable('BH_MODEL_DEPLOYMENT')
+param modelApiVersion = readEnvironmentVariable('BH_MODEL_API_VERSION')
+param modelVersion = readEnvironmentVariable('BH_MODEL_VERSION')
+param modelName = readEnvironmentVariable('BH_MODEL_NAME')
+param inputPricePerMillion = readEnvironmentVariable('BH_INPUT_PRICE')
+param outputPricePerMillion = readEnvironmentVariable('BH_OUTPUT_PRICE')
+param cachedInputPricePerMillion = readEnvironmentVariable('BH_CACHED_INPUT_PRICE')
+param priceDate = readEnvironmentVariable('BH_PRICE_DATE')
+param priceSource = readEnvironmentVariable('BH_PRICE_SOURCE')
+param modelInputTokenLimit = int(readEnvironmentVariable('BH_MODEL_INPUT_LIMIT'))
+param modelContextBoundVerified = bool(readEnvironmentVariable('BH_MODEL_CONTEXT_BOUND_VERIFIED'))
+param modelContextBoundSource = readEnvironmentVariable('BH_MODEL_CONTEXT_BOUND_SOURCE')
+param modelOutputTokenLimit = int(readEnvironmentVariable('BH_MODEL_OUTPUT_LIMIT'))
+param assignModelRole = false

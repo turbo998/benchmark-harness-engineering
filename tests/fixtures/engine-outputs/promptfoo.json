@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "fixture_kind": "hand-authored release-field contract, not a live measurement",
+  "results": {
+    "results": [
+      {
+        "id": "original-success",
+        "success": true,
+        "score": 1,
+        "latencyMs": 12,
+        "response": {"output": "42", "cost": 0, "tokenUsage": {"prompt": 10, "completion": 2, "cached": 3}}
+      },
+      {
+        "id": "original-wrong",
+        "success": false,
+        "response": {"output": "41"}
+      },
+      {
+        "id": "original-auth",
+        "error": "401 Unauthorized",
+        "response": {"error": "401 Unauthorized"}
+      }
+    ]
+  }
+}

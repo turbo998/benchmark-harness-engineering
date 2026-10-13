@@ -1,0 +1,1 @@
+"def slug(text):\n    return text.lower().replace(' ', '-')\n"

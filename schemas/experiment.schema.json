@@ -1,0 +1,277 @@
+{
+  "$defs": {
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9._-]+$",
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "provider": {
+          "minLength": 1,
+          "title": "Provider",
+          "type": "string"
+        },
+        "model": {
+          "minLength": 1,
+          "title": "Model",
+          "type": "string"
+        },
+        "resolved_version": {
+          "minLength": 1,
+          "title": "Resolved Version",
+          "type": "string"
+        },
+        "deployment": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deployment"
+        },
+        "prompt_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Prompt Hash",
+          "type": "string"
+        },
+        "scaffold_version": {
+          "title": "Scaffold Version",
+          "type": "string"
+        },
+        "agent_version": {
+          "title": "Agent Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "provider",
+        "model",
+        "resolved_version",
+        "prompt_hash",
+        "scaffold_version",
+        "agent_version"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    },
+    "Environment": {
+      "additionalProperties": false,
+      "properties": {
+        "profile": {
+          "enum": [
+            "local",
+            "azure"
+          ],
+          "title": "Profile",
+          "type": "string"
+        },
+        "os": {
+          "minLength": 1,
+          "title": "Os",
+          "type": "string"
+        },
+        "region": {
+          "minLength": 1,
+          "title": "Region",
+          "type": "string"
+        },
+        "image_digest": {
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "title": "Image Digest",
+          "type": "string"
+        },
+        "cache_policy": {
+          "enum": [
+            "disabled",
+            "provider_only",
+            "replay"
+          ],
+          "title": "Cache Policy",
+          "type": "string"
+        },
+        "warmup": {
+          "enum": [
+            "cold",
+            "warm",
+            "synthetic"
+          ],
+          "title": "Warmup",
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile",
+        "os",
+        "region",
+        "image_digest",
+        "cache_policy",
+        "warmup"
+      ],
+      "title": "Environment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "experiment_id": {
+      "pattern": "^exp-[a-f0-9]{64}$",
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "dataset_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Dataset Hash",
+      "type": "string"
+    },
+    "dataset_revision": {
+      "title": "Dataset Revision",
+      "type": "string"
+    },
+    "case_ids": {
+      "items": {
+        "pattern": "^case-[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Case Ids",
+      "type": "array"
+    },
+    "split": {
+      "enum": [
+        "fixture",
+        "pilot",
+        "holdout"
+      ],
+      "title": "Split",
+      "type": "string"
+    },
+    "generator_version": {
+      "title": "Generator Version",
+      "type": "string"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/Candidate"
+      },
+      "minItems": 1,
+      "title": "Candidates",
+      "type": "array"
+    },
+    "environment": {
+      "$ref": "#/$defs/Environment"
+    },
+    "engine_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Engine Versions",
+      "type": "object"
+    },
+    "scorer_version": {
+      "title": "Scorer Version",
+      "type": "string"
+    },
+    "score_profile": {
+      "enum": [
+        "deterministic-v1",
+        "author-style-70-15-15-v1"
+      ],
+      "title": "Score Profile",
+      "type": "string"
+    },
+    "repeats": {
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Repeats",
+      "type": "integer"
+    },
+    "order_seed": {
+      "minimum": 0,
+      "title": "Order Seed",
+      "type": "integer"
+    },
+    "mode": {
+      "enum": [
+        "mock",
+        "live"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "retry_owner": {
+      "const": "harness",
+      "default": "harness",
+      "title": "Retry Owner",
+      "type": "string"
+    },
+    "max_attempts": {
+      "maximum": 10,
+      "minimum": 1,
+      "title": "Max Attempts",
+      "type": "integer"
+    },
+    "budget_usd": {
+      "title": "Budget Usd",
+      "type": "string"
+    },
+    "approval_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approval Id"
+    },
+    "price_table_hash": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Price Table Hash"
+    }
+  },
+  "required": [
+    "experiment_id",
+    "dataset_hash",
+    "dataset_revision",
+    "case_ids",
+    "split",
+    "generator_version",
+    "candidates",
+    "environment",
+    "engine_versions",
+    "scorer_version",
+    "score_profile",
+    "repeats",
+    "order_seed",
+    "mode",
+    "max_attempts",
+    "budget_usd"
+  ],
+  "title": "Experiment",
+  "type": "object"
+}

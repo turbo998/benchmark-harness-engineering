@@ -1,0 +1,1 @@
+Implement merge(intervals) in solution.py for pairs of integer closed endpoints. Return sorted disjoint [start,end] lists, merging overlaps including equal endpoints, but NOT adjacent disjoint integers. Empty input gives []; reversed endpoints raise ValueError.

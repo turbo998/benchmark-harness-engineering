@@ -17,6 +17,10 @@ build/
 .coverage
 htmlcov/
 runs/
+.runs/
+.engine-probes/
+.harness-cache/
+.ci-demo/
 artifacts/
 *.secret.*
 *.pem

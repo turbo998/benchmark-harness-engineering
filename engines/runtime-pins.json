@@ -1,0 +1,9 @@
+{
+  "purpose": "Optional isolated Windows x64 portable runtime for ARM-host offline promptfoo probes; no global runtime changes",
+  "packages": [
+    {"name":"node-win-x64","version":"24.13.1","integrity":"sha512-XfEChYOVLsSwugcOisyeWUlK78g94tl/ytWGEoYBgAFzdI3gQ0LoqU9uIDcdQE1zks9nahVlE5G5I/ia0KwdUA=="},
+    {"name":"@libsql/win32-x64-msvc","version":"0.5.29","integrity":"sha512-4/0CvEdhi6+KjMxMaVbFM2n2Z44escBRoEYpR+gZg64DdetzGnYm8mcNLcoySaDJZNaBd6wz5DNdgRmcI4hXcg=="}
+  ],
+  "published_binaries": false,
+  "live_inference_validated": false
+}

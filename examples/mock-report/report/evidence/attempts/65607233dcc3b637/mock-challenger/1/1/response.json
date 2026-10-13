@@ -1,0 +1,1 @@
+"def route(edges, start, target):\n    for u, v, w in edges:\n        if u == start and v == target:\n            return {'distance': w, 'path': [start, target]}\n    return {'distance': None, 'path': []}\n"

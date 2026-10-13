@@ -27,9 +27,38 @@ broker 不执行被测代码；删除实验存储前必须校验独立导出的�
 
 ## 当前状态
 
-原创研究已发布；工具正在实施。**尚未验证真实 engine、Docker sandbox、云部署或付费
-模型实验。** 上游数字标记为 `third_party_reported`；未来 mock 演示标记为 `synthetic`。
-只有实际完成的检查才会提升对应 readiness，模板存在不等于部署成功。
+**0.1.0 是离线验证的工程原型，不是十七模型实测榜或可直接启用的付费 runner。**
+原创研究、样例生成/验收、冻结计划、mock 执行/恢复、预算证据和报告重建已实现。
+示例包含 9 个原创 API/coding fixtures、2 个 mock candidates、2 次重复：
+36 个 trial、41 个保留 attempt；图中的费用/速度明确标为 `synthetic`。
+
+promptfoo 0.124.0 的真实本地无网络 provider smoke 已通过；Harbor 0.24.0 的原生
+`copilot-cli` 适配由发布 wheel 源码确认，**Docker/Harbor execution、Copilot BYOK、
+Azure 部署与付费模型实验尚未验证**。Azure Bicep 已本地编译，broker 预算、lease、
+封存和导出门禁已离线验证；这些都不等于云数据面或 sandbox 已跑通。
+上游数字保留 `third_party_reported` 来源，缺失费用/待复核质量不填零。
+
+## 免费闭环
+
+从自己的 clone/隔离 worktree 执行：
+
+```powershell
+uv sync --frozen --dev
+uv run --frozen benchmark-harness demo --output .runs\demo
+```
+
+打开 `.runs\demo\report\index.html`。生成器使用确定性原创模板，不调用 AI 或模型；
+报告从保存的 evidence 重建，输出自包含 HTML、JSON/CSV 和 PNG/SVG。
+真实模型、AI 生成/评分与云 apply 默认拒绝，不会因运行 demo 产生这些费用。
+
+- [本地命令与 engine readiness](docs/quickstart-local.md)
+- [样例生成与独立验收](docs/sample-generation.md)
+- [统计与计量口径](docs/metrics.md) · [实验方法](docs/methodology.md)
+- [Azure profile 与生命周期](docs/azure.md) · [可信推理 broker](docs/broker.md)
+- [保存的合成演示](examples/mock-report/report/index.html)（下载后离线打开）
+
+要跑真实模型，仍需绑定模型/价表/预算并批准付费 smoke；当前 CLI 的 live 路径保持
+阻塞，不能把导出的 engine config、源码适配存在或 mock 分数冒充 live readiness。
 
 ## 许可与出处
 

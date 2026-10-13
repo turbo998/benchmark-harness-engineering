@@ -1,0 +1,5 @@
+candidate_id,track,cohort,planned,attempted_trials,total_attempts,successes,success_rate_planned,macro_functional,quality,quality_coverage,comparative_quality,micro_assertion_rate,micro_weighted_assertion_rate,review_pending,quality_missing_trials,latency_ms,latency_metric,cost_usd,known_cost_usd,missing_cost_attempts,p95_ms
+mock-reference,api,local:464064f8e6d7e2f3,12,12,12,12,1.0,1.0,1.0,complete planned quality population,1.0,1.0,1.0,0,0,136.33333333333334,api_ms,0.0064,0.0064,0,
+mock-reference,coding,local:464064f8e6d7e2f3,6,6,6,6,1.0,1.0,1.0,complete planned quality population,1.0,1.0,1.0,0,0,123.33333333333333,agent_ms,0.0026,0.0026,0,
+mock-challenger,api,local:464064f8e6d7e2f3,12,12,16,6,0.5,0.5,0.5,complete planned quality population,0.5,0.625,0.5625,0,0,136.33333333333334,api_ms,,0.0068,2,
+mock-challenger,coding,local:464064f8e6d7e2f3,6,6,7,2,0.3333333333333333,0.3333333333333333,0.3333333333333333,complete planned quality population,0.3333333333333333,0.3333333333333333,0.3333333333333333,0,0,123.33333333333333,agent_ms,,0.0021,2,

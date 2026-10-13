@@ -1,0 +1,1 @@
+"def merge(intervals):\n    return sorted([list(row) for row in intervals])\n"

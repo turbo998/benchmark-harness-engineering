@@ -1,0 +1,33 @@
+name: Offline core
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    env:
+      MPLCONFIGDIR: ${{ github.workspace }}/.harness-cache/matplotlib
+      PROMPTFOO_DISABLE_TELEMETRY: "1"
+      PROMPTFOO_DISABLE_UPDATE: "1"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+        with:
+          version: "0.10.6"
+          python-version: "3.12"
+          enable-cache: true
+      - run: uv sync --frozen --dev --extra azure
+      - run: uv run --frozen --extra azure pytest
+      - run: uv run --frozen --extra azure ruff check src/benchmark_harness tests
+      - run: uv run --frozen --extra azure ruff format --check src/benchmark_harness tests
+      - run: uv run --frozen --extra azure mypy src/benchmark_harness
+      - run: uv run --frozen --extra azure benchmark-harness demo --output .ci-demo
+      - run: uv run --frozen --extra azure benchmark-harness score .ci-demo/run --output .ci-demo/scores.json
+      - run: uv run --frozen --extra azure benchmark-harness report .ci-demo/run --output .ci-demo/regenerated
+      - run: uv run --frozen --extra azure benchmark-harness report examples/mock-report/run --output .ci-demo/published-rebuilt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: synthetic-offline-report
+          path: .ci-demo/report

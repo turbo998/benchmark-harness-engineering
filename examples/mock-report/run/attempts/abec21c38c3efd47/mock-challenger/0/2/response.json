@@ -1,0 +1,1 @@
+"def merge(intervals):\n    rows = sorted((int(a), int(b)) for a, b in intervals)\n    if any(a > b for a, b in rows):\n        raise ValueError('reversed interval')\n    result = []\n    for a, b in rows:\n        if result and a <= result[-1][1]:\n            result[-1][1] = max(result[-1][1], b)\n        else:\n            result.append([a, b])\n    return result\n"

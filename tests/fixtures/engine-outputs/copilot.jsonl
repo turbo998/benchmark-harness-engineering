@@ -1,0 +1,5 @@
+{"type":"message","role":"assistant","content":"Original synthetic answer"}
+{"type":"usage","input_tokens":12,"output_tokens":4}
+{"type":"tool_use","id":"test-tool","name":"synthetic-tool","input":{}}
+original diagnostic line, not JSON
+{"type":"result","data":{"exitCode":0}}

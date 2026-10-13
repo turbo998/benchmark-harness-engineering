@@ -1,0 +1,227 @@
+{
+  "$defs": {
+    "Assertion": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "exact",
+            "json_equal",
+            "json_keys",
+            "contains",
+            "regex"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "expected": {
+          "title": "Expected"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "title": "Weight",
+          "type": "number"
+        },
+        "category": {
+          "default": "functional",
+          "enum": [
+            "functional",
+            "compliance"
+          ],
+          "title": "Category",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "expected",
+        "weight"
+      ],
+      "title": "Assertion",
+      "type": "object"
+    },
+    "CodingSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "entrypoint": {
+          "const": "solution.py",
+          "default": "solution.py",
+          "title": "Entrypoint",
+          "type": "string"
+        },
+        "instruction": {
+          "minLength": 1,
+          "title": "Instruction",
+          "type": "string"
+        },
+        "reference": {
+          "title": "Reference",
+          "type": "string"
+        },
+        "negatives": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Negatives",
+          "type": "array"
+        },
+        "verifier": {
+          "title": "Verifier",
+          "type": "string"
+        },
+        "seed_files": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Seed Files",
+          "type": "object"
+        },
+        "verifier_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Verifier Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "instruction",
+        "reference",
+        "negatives",
+        "verifier",
+        "seed_files",
+        "verifier_hash"
+      ],
+      "title": "CodingSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "case_id": {
+      "pattern": "^case-[a-f0-9]{64}$",
+      "title": "Case Id",
+      "type": "string"
+    },
+    "track": {
+      "enum": [
+        "api",
+        "coding"
+      ],
+      "title": "Track",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "language": {
+      "enum": [
+        "en",
+        "zh"
+      ],
+      "title": "Language",
+      "type": "string"
+    },
+    "difficulty": {
+      "enum": [
+        "atomic",
+        "medium",
+        "complex"
+      ],
+      "title": "Difficulty",
+      "type": "string"
+    },
+    "prompt": {
+      "minLength": 1,
+      "title": "Prompt",
+      "type": "string"
+    },
+    "normalization": {
+      "default": "strip",
+      "enum": [
+        "none",
+        "strip",
+        "casefold"
+      ],
+      "title": "Normalization",
+      "type": "string"
+    },
+    "assertions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Assertion"
+      },
+      "title": "Assertions",
+      "type": "array"
+    },
+    "accepted": {
+      "default": [],
+      "items": {},
+      "title": "Accepted",
+      "type": "array"
+    },
+    "rejected": {
+      "default": [],
+      "items": {},
+      "title": "Rejected",
+      "type": "array"
+    },
+    "coding": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CodingSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "seed": {
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "recipe_version": {
+      "default": "original-template-v1",
+      "title": "Recipe Version",
+      "type": "string"
+    },
+    "rubric_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rubric Version"
+    }
+  },
+  "required": [
+    "case_id",
+    "track",
+    "title",
+    "language",
+    "difficulty",
+    "prompt",
+    "seed"
+  ],
+  "title": "Case",
+  "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "prefix": "bh",
+  "subscription_id": "",
+  "resource_group": "",
+  "location": "",
+  "run_id": "",
+  "lifecycle_owner": "",
+  "vm_size": "",
+  "vm_image": {"publisher": "Canonical", "offer": "0001-com-ubuntu-server-jammy", "sku": "22_04-lts-gen2", "version": ""},
+  "egress": {"mode": "unbound", "approved": false, "subnet_id": ""},
+  "model": {
+    "resource_group": "",
+    "account_name": "",
+    "deployment": "",
+    "name": "",
+    "endpoint": "",
+    "version": "",
+    "api_version": "",
+    "protocol": "azure_openai_chat",
+    "input_token_limit": 0,
+    "context_bound_verified": false,
+    "context_bound_source": "",
+    "output_token_limit": 0,
+    "output_limit_verified": false
+  },
+  "prices": {"currency": "USD", "input_per_million": null, "cache_read_per_million": null, "output_per_million": null, "effective_date": "", "source": ""},
+  "limits": {"model_budget_usd": null, "max_requests": 0, "max_concurrency": 0, "deadline_utc": "", "vm_lifetime_minutes": 0},
+  "approvals": {"paid_inference": false, "cloud_apply": false, "role_assignment": false, "destructive_cleanup": false, "data": "synthetic"},
+  "operator": {"external_watchdog_verified": false},
+  "storage": {"account": "", "artifacts_container": "artifacts", "ledger_container": "ledger"},
+  "evidence": {"trusted_producers_quiesced": false, "frozen_manifest_sha256": "", "required_paths": []}
+}

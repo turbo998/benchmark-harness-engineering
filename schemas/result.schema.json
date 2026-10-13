@@ -1,0 +1,645 @@
+{
+  "$defs": {
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "size"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "AssertionOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "functional",
+            "compliance"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "title": "Weight",
+          "type": "number"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "category",
+        "weight",
+        "passed"
+      ],
+      "title": "AssertionOutcome",
+      "type": "object"
+    },
+    "Cost": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "currency": {
+          "const": "USD",
+          "default": "USD",
+          "title": "Currency",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "measured",
+            "estimated",
+            "missing",
+            "synthetic",
+            "no_charge"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "price_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Date"
+        },
+        "price_table_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Table Hash"
+        },
+        "scope": {
+          "default": "candidate",
+          "enum": [
+            "candidate",
+            "generator",
+            "grader",
+            "infrastructure",
+            "total"
+          ],
+          "title": "Scope",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance"
+      ],
+      "title": "Cost",
+      "type": "object"
+    },
+    "PhaseTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "setup_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Setup Ms"
+        },
+        "api_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Api Ms"
+        },
+        "ttft_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ttft Ms"
+        },
+        "routing_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Routing Ms"
+        },
+        "agent_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent Ms"
+        },
+        "verification_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verification Ms"
+        },
+        "teardown_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Teardown Ms"
+        },
+        "wall_ms": {
+          "minimum": 0,
+          "title": "Wall Ms",
+          "type": "number"
+        },
+        "started_at": {
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "finished_at": {
+          "format": "date-time",
+          "title": "Finished At",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "measured",
+            "synthetic"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "missing_reason": {
+          "title": "Missing Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "wall_ms",
+        "started_at",
+        "finished_at",
+        "provenance",
+        "missing_reason"
+      ],
+      "title": "PhaseTiming",
+      "type": "object"
+    },
+    "Score": {
+      "additionalProperties": false,
+      "properties": {
+        "functional": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Functional"
+        },
+        "compliance": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Compliance"
+        },
+        "rubric": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rubric"
+        },
+        "composite": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Composite"
+        },
+        "profile": {
+          "enum": [
+            "deterministic-v1",
+            "author-style-70-15-15-v1"
+          ],
+          "title": "Profile",
+          "type": "string"
+        },
+        "review": {
+          "enum": [
+            "not_required",
+            "pending",
+            "machine_reviewed",
+            "human_reviewed"
+          ],
+          "title": "Review",
+          "type": "string"
+        },
+        "reviewer_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer Version"
+        },
+        "missing_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Missing Reason"
+        },
+        "assertions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AssertionOutcome"
+          },
+          "title": "Assertions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "profile",
+        "review"
+      ],
+      "title": "Score",
+      "type": "object"
+    },
+    "Status": {
+      "enum": [
+        "passed",
+        "failed",
+        "timeout",
+        "infrastructure_error",
+        "provider_error",
+        "quota_error",
+        "auth_error",
+        "cancelled",
+        "invalid_case",
+        "review_pending"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "Usage": {
+      "additionalProperties": false,
+      "properties": {
+        "input_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Input Tokens"
+        },
+        "cache_read_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cache Read Tokens"
+        },
+        "cache_write_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cache Write Tokens"
+        },
+        "output_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output Tokens"
+        },
+        "reasoning_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reasoning Tokens"
+        },
+        "provenance": {
+          "enum": [
+            "provider_reported",
+            "engine_reported",
+            "estimated",
+            "missing",
+            "synthetic"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "provenance"
+      ],
+      "title": "Usage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "experiment_id": {
+      "pattern": "^exp-[a-f0-9]{64}$",
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "manifest_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Manifest Hash",
+      "type": "string"
+    },
+    "case_id": {
+      "pattern": "^case-[a-f0-9]{64}$",
+      "title": "Case Id",
+      "type": "string"
+    },
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "cohort": {
+      "title": "Cohort",
+      "type": "string"
+    },
+    "track": {
+      "enum": [
+        "api",
+        "coding"
+      ],
+      "title": "Track",
+      "type": "string"
+    },
+    "difficulty": {
+      "enum": [
+        "atomic",
+        "medium",
+        "complex"
+      ],
+      "title": "Difficulty",
+      "type": "string"
+    },
+    "repeat": {
+      "minimum": 0,
+      "title": "Repeat",
+      "type": "integer"
+    },
+    "attempt": {
+      "minimum": 1,
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "trace_id": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/Status"
+    },
+    "error_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error Reason"
+    },
+    "data_status": {
+      "enum": [
+        "synthetic",
+        "measured_by_this_project",
+        "third_party_reported"
+      ],
+      "title": "Data Status",
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/$defs/Usage"
+    },
+    "cost": {
+      "$ref": "#/$defs/Cost"
+    },
+    "timing": {
+      "$ref": "#/$defs/PhaseTiming"
+    },
+    "score": {
+      "$ref": "#/$defs/Score"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "minItems": 1,
+      "title": "Artifacts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "experiment_id",
+    "manifest_hash",
+    "case_id",
+    "candidate_id",
+    "cohort",
+    "track",
+    "difficulty",
+    "repeat",
+    "attempt",
+    "trace_id",
+    "status",
+    "data_status",
+    "usage",
+    "cost",
+    "timing",
+    "score",
+    "artifacts"
+  ],
+  "title": "Result",
+  "type": "object"
+}

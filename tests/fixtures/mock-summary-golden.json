@@ -1,0 +1,11 @@
+{
+  "planned_trials": 36,
+  "attempted_trials": 36,
+  "total_attempts": 41,
+  "points": [
+    {"candidate_id":"mock-reference","track":"api","planned":12,"total_attempts":12,"successes":12,"macro_functional":1.0,"quality":1.0,"micro_assertion_rate":1.0,"cost_usd":"0.0064","known_cost_usd":"0.0064","missing_cost_attempts":0},
+    {"candidate_id":"mock-reference","track":"coding","planned":6,"total_attempts":6,"successes":6,"macro_functional":1.0,"quality":1.0,"micro_assertion_rate":1.0,"cost_usd":"0.0026","known_cost_usd":"0.0026","missing_cost_attempts":0},
+    {"candidate_id":"mock-challenger","track":"api","planned":12,"total_attempts":16,"successes":6,"macro_functional":0.5,"quality":0.5,"micro_assertion_rate":0.625,"cost_usd":null,"known_cost_usd":"0.0068","missing_cost_attempts":2},
+    {"candidate_id":"mock-challenger","track":"coding","planned":6,"total_attempts":7,"successes":2,"macro_functional":0.3333333333333333,"quality":0.3333333333333333,"micro_assertion_rate":0.3333333333333333,"cost_usd":null,"known_cost_usd":"0.0021","missing_cost_attempts":2}
+  ]
+}

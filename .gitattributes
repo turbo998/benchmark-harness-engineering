@@ -1,3 +1,7 @@
 * text=auto eol=lf
 *.png binary
 *.ico binary
+# Preserve frozen evidence and reproducible report bytes, including receipt hashes.
+examples/mock-report/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Matplotlib emits line-end spaces in generated SVG path coordinates.
+examples/mock-report/report/*.svg whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

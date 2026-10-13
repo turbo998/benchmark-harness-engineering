@@ -1,0 +1,8 @@
+{
+  "name": "benchmark-harness-engines",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pinned API engine; no inference at installation",
+  "engines": {"node": ">=22.22.0"},
+  "dependencies": {"promptfoo": "0.124.0"}
+}
