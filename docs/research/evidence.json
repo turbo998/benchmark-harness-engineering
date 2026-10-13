@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "research_date": "2026-10-12",
+  "authorship": "original synthesis; external source links only",
+  "measurement_provenance": "third_party_reported; not measured_by_this_project",
+  "sources": [
+    {
+      "id": "author-comparison-article",
+      "url": "https://app.notion.com/p/4-Sonnet-5-5-GPT-6-1-Sol-8c183d40bd6d82318a82012485e7ef5c",
+      "kind": "article",
+      "supports": ["three difficulty levels", "claimed chart pipeline", "single-sample caveat"]
+    },
+    {
+      "id": "author-router-article",
+      "url": "https://app.notion.com/p/300-Jev-GitHub-Copilot-0b683d40bd6d82c990b601cb14b56840",
+      "kind": "article",
+      "supports": ["routing rather than task latency", "cold connection and task stickiness"]
+    },
+    {
+      "id": "benchmark-tree",
+      "url": "https://github.com/satomic/copilot-benchmark/tree/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark",
+      "commit": "aa1e0dc31661ff6343433f06fe3bea1e015b8525",
+      "kind": "public_code_evidence",
+      "observation": {"tasks": 11, "non_reference_run_bundles": 187, "reference_bundles": 11},
+      "limitations": ["tree inspection, not execution", "not all scores recomputed"]
+    },
+    {
+      "id": "a2-grading",
+      "url": "https://github.com/satomic/copilot-benchmark/blob/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark/tasks/A2-env-parser/grading.md",
+      "kind": "public_code_evidence",
+      "supports": ["hidden verifier", "functional 70, compliance 15, quality 15"],
+      "lines": [1, 36]
+    },
+    {
+      "id": "a2-run",
+      "url": "https://github.com/satomic/copilot-benchmark/blob/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark/reports/gpt-6.1-sol__A2-env-parser/run.json",
+      "kind": "third_party_reported",
+      "observation": {"cli": "1.0.90-5", "effort": "medium", "repeat": 1, "wall_seconds": 49.79, "api_seconds": 34.39, "model_requests": 4, "ai_credits": 6.201, "cold_cache": false}
+    },
+    {
+      "id": "a2-usage",
+      "url": "https://github.com/satomic/copilot-benchmark/blob/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark/reports/gpt-6.1-sol__A2-env-parser/usage.json",
+      "kind": "public_code_evidence",
+      "supports": ["ordinary input, cache read/write and output must be distinct", "native credit accounting differs from Azure prices"]
+    },
+    {
+      "id": "a2-score",
+      "url": "https://github.com/satomic/copilot-benchmark/blob/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark/reports/gpt-6.1-sol__A2-env-parser/score.json",
+      "kind": "third_party_reported",
+      "observation": {"hidden_passed": 38, "hidden_total": 38, "functional": 70, "compliance": 15, "quality": 11, "total": 96}
+    },
+    {
+      "id": "a2-session",
+      "url": "https://github.com/satomic/copilot-benchmark/blob/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark/reports/gpt-6.1-sol__A2-env-parser/session.md",
+      "kind": "public_code_evidence",
+      "supports": ["tested agent writes and self-tests code"],
+      "does_not_support": ["creator used AI for tasks, judge, charts or article"]
+    },
+    {
+      "id": "c3-reference",
+      "url": "https://github.com/satomic/copilot-benchmark/blob/aa1e0dc31661ff6343433f06fe3bea1e015b8525/benchmark/reports/_reference__C3-microdb/score.json",
+      "kind": "third_party_reported",
+      "supports": ["pending quality review is not functional failure"]
+    },
+    {
+      "id": "router-timing",
+      "url": "https://github.com/satomic/model-router/blob/d189bcd681a285a4af0a25d54166346eea2ae7a0/server-go/internal/routing/routing.go#L196-L246",
+      "commit": "d189bcd681a285a4af0a25d54166346eea2ae7a0",
+      "version": "v2.1.1",
+      "kind": "public_code_evidence",
+      "supports": ["decision latency includes network call", "Choice does not guarantee optimal selection"]
+    },
+    {
+      "id": "router-sticky",
+      "url": "https://github.com/satomic/model-router/blob/d189bcd681a285a4af0a25d54166346eea2ae7a0/server-go/internal/server/chat.go#L79-L98",
+      "kind": "public_code_evidence",
+      "supports": ["BYOK interaction derivation and task stickiness"]
+    },
+    {
+      "id": "aca-limitations",
+      "url": "https://learn.microsoft.com/en-us/azure/container-apps/containers#limitations",
+      "kind": "official_documentation",
+      "supports": ["no host-level privileged task/controller in ordinary ACA container"]
+    },
+    {
+      "id": "vm-identity-boundary",
+      "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/managed-identities-faq#limitations",
+      "kind": "official_documentation",
+      "supports": ["VM identity accessible to VM code; worker and broker separate"]
+    },
+    {
+      "id": "azure-quota",
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/quotas",
+      "kind": "official_documentation",
+      "supports": ["regional and family quota checks; quota is not capacity"]
+    },
+    {
+      "id": "azure-budget",
+      "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "kind": "official_documentation",
+      "supports": ["budget alerts do not stop spending"]
+    },
+    {
+      "id": "run-command",
+      "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/run-command-managed",
+      "kind": "official_documentation",
+      "supports": ["Guest Agent minimum 2.4.0.2", "InstanceView last 4KB only", "execution and provisioning states differ"]
+    }
+  ],
+  "unknowns": [
+    "Author's creation prompts and AI model/session choices",
+    "Unpublished runner, aggregator and make_charts implementation",
+    "Copilot/Harbor compatibility until current-version probe",
+    "Actual Azure context, quota, prices and deployment readiness"
+  ]
+}
