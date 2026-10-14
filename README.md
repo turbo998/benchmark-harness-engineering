@@ -9,6 +9,7 @@
 - [框架比较与选择](docs/research/framework-comparison.md)：promptfoo、Harbor、Inspect AI、SWE-bench。
 - [原创 AI 协作与复现实验 recipe](docs/research/reproduction-recipe.md)：如何设计、生成、验收、执行和写报告。
 - [7 页视觉卡片报告规范（4:5 Carousel Deck）](docs/research/visual-report-card-format.md)：针对路由/决策模型、API 模型与 Coding Agent 的高密度卡片报告版式与渲染规范。
+- [模型 Benchmark 报告 System Prompt 规范](docs/research/benchmark-report-system-prompt.md) · [仓库 Copilot 指令](.github/copilot-instructions.md)：供后续所有模型 Benchmark 测试报告复用的系统提示词模板与 Deck JSON 契约。
 - [机器可读来源](docs/research/evidence.json)：固定 commit、文件、来源类型和证据边界。
 
 研究结论：**被测代码由 AI agent 生成有证据；作者制作题库、评分器、图表与文章的创作

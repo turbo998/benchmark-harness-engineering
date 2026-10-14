@@ -75,7 +75,8 @@
 ## 5. 自动化渲染与合规护栏
 
 1. **代码工具支持**：仓库提供 `src/benchmark_harness/cards.py` 与 CLI 子命令 `benchmark-harness cards`，可将结构化 7 页卡片 JSON 或评测 `run` 目录直接渲染为自包含、零外部依赖、支持打印导出的 `cards.html`。
-2. **禁止篡改或冒充实测**：
+2. **System Prompt 规范沉淀**：可直接复用的系统提示词模板与 `deck.json` 契约见 [benchmark-report-system-prompt.md](benchmark-report-system-prompt.md) 及仓库级指令 [/.github/copilot-instructions.md](../../.github/copilot-instructions.md)。
+3. **禁止篡改或冒充实测**：
    - 合成演示生成的卡片必须在顶栏/页脚与第 1、7 页显著标明 `SYNTHETIC DEMO`；
    - 外部或历史报告整理的卡片必须标明 `ANONYMIZED REPORTED (independently_reproduced=false)`；
    - 严禁在未核验版权与隐私授权前将含个人署名或内部信息的原始截图直接入库。
