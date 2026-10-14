@@ -9,6 +9,7 @@ from typing import Annotated, Any
 
 import typer
 
+from benchmark_harness.cards import generate_cards
 from benchmark_harness.contracts import Case, Experiment, Result
 from benchmark_harness.doctor import doctor as run_doctor
 from benchmark_harness.engines import harbor, promptfoo
@@ -143,6 +144,16 @@ def report(run_directory: Path, output: OUTPUT) -> None:
             "total_attempts": summary["total_attempts"],
         }
     )
+
+
+@app.command("cards")
+def cards(source: Path, output: OUTPUT) -> None:
+    """Render a 7-card 4:5 visual benchmark report HTML from a saved run or reported JSON."""
+    try:
+        result = generate_cards(source, output)
+    except ValueError as error:
+        _fail(error)
+    _print(result)
 
 
 @app.command("engine-config")

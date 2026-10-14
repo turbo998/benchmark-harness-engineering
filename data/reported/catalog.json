@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "report_families": 7,
-  "source_pages": 12,
+  "report_families": 8,
+  "source_pages": 13,
   "publication_mode": "original anonymous factual summaries, not full-text republication",
   "rights_and_exclusions": "Full-text, complete task-bank, original-image and attachment republication rights were not verified; these materials are excluded.",
   "privacy_boundary": "Do not publish author names, roles, contacts, employer-team identifiers, internal slides or URLs, private Notion URLs/IDs, usernames, keys, endpoints, original screenshots, raw traces or source attachments. Vendor/model names, public technical versions and generic test-environment specifications are retained only as historical reported facts.",
@@ -141,6 +141,23 @@
       "json": "routing-openjev/report.json",
       "csv_files": [
         "routing-openjev/comparison.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "routing-strands-decider",
+      "track": "routing-decision",
+      "source_languages": [
+        "en"
+      ],
+      "source_page_count": 1,
+      "report_document": "../../docs/reports/routing-strands-decider.md",
+      "json": "routing-strands-decider/report.json",
+      "csv_files": [
+        "routing-strands-decider/scenarios.csv",
+        "routing-strands-decider/robustness_reversal.csv",
+        "routing-strands-decider/batch_latency.csv"
       ],
       "provenance": "anonymized_reported",
       "independently_reproduced": false

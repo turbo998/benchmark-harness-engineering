@@ -1,0 +1,7 @@
+report_id,provenance,independently_reproduced,scenario,selected_option,original_pct,reversed_pct,change_pts,answer_held
+routing-strands-decider,anonymized_reported,false,Support ticket routing,billing,97.8,97.8,0.0,true
+routing-strands-decider,anonymized_reported,false,Complaint triage,billing_dispute,93.9,96.4,2.5,true
+routing-strands-decider,anonymized_reported,false,GenBI question routing,finance,95.1,96.2,1.2,true
+routing-strands-decider,anonymized_reported,false,Collections call intent,negotiate,96.3,96.5,0.1,true
+routing-strands-decider,anonymized_reported,false,Prompt-injection screening,data_exfiltration,84.7,90.2,5.5,true
+routing-strands-decider,anonymized_reported,false,Model routing,frontier,90.1,86.9,-3.2,true

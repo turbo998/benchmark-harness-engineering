@@ -8,6 +8,7 @@
 - [作者 benchmark 方法还原](docs/research/author-workflow.md)：公开证据、未知信息、计时与计费口径。
 - [框架比较与选择](docs/research/framework-comparison.md)：promptfoo、Harbor、Inspect AI、SWE-bench。
 - [原创 AI 协作与复现实验 recipe](docs/research/reproduction-recipe.md)：如何设计、生成、验收、执行和写报告。
+- [7 页视觉卡片报告规范（4:5 Carousel Deck）](docs/research/visual-report-card-format.md)：针对路由/决策模型、API 模型与 Coding Agent 的高密度卡片报告版式与渲染规范。
 - [机器可读来源](docs/research/evidence.json)：固定 commit、文件、来源类型和证据边界。
 
 研究结论：**被测代码由 AI agent 生成有证据；作者制作题库、评分器、图表与文章的创作
@@ -55,17 +56,17 @@ uv run --frozen benchmark-harness demo --output .runs\demo
 - [样例生成与独立验收](docs/sample-generation.md)
 - [统计与计量口径](docs/metrics.md) · [实验方法](docs/methodology.md)
 - [Azure profile 与生命周期](docs/azure.md) · [可信推理 broker](docs/broker.md)
-- [保存的合成演示](examples/mock-report/report/index.html)（下载后离线打开）
+- [保存的合成演示](examples/mock-report/report/index.html) · [7 页卡片报告示例](examples/card-report/index.html)（下载后离线打开）
 
 要跑真实模型，仍需绑定模型/价表/预算并批准付费 smoke；当前 CLI 的 live 路径保持
 阻塞，不能把导出的 engine config、源码适配存在或 mock 分数冒充 live readiness。
 
 ## 匿名历史报告档案
 
-[7 个主题的匿名整理报告](docs/reports/README.md)覆盖指定资料库的 12 页测试报告，
-中英文版本去重归档，保留编码与路由两条独立轨道的方法、事实表格及限制。
-[JSON/CSV 数据](data/reported/README.md)标记 `anonymized_reported`，不是本 harness
-新测结果；原文、原图、完整题库及附件未转载，作者/内部字段不进入新增档案。
+[8 个主题的匿名整理报告](docs/reports/README.md)覆盖指定资料库的 12 页测试报告与
+Strands Decider 7 页卡片评测，中英文版本去重归档，保留编码与路由两条独立轨道的
+方法、事实表格及限制。[JSON/CSV 数据](data/reported/README.md)标记 `anonymized_reported`，
+不是本 harness 新测结果；原文、原图、完整题库及附件未转载，作者/内部字段不进入新增档案。
 
 ## 许可与出处
 

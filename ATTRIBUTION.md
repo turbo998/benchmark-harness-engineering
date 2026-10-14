@@ -24,8 +24,8 @@ are authored for this project. Dependency packages retain their own licenses;
 the project's MIT license does not relicense them.
 
 The [anonymous report archive](docs/reports/README.md) contains original factual
-summaries and transcribed metric cells, labelled `anonymized_reported`, from seven
-report families (twelve language pages). It is not a republication of those articles,
+summaries and transcribed metric cells, labelled `anonymized_reported`, from eight
+report families (thirteen language pages / card decks). It is not a republication of those articles,
 their complete task banks, images, attachments or code, and is not our measurement.
 Source identities/private links are deliberately omitted from this new archive;
 earlier research attribution above is retained rather than rewritten or relicensed.

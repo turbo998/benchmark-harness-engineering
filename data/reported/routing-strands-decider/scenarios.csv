@@ -1,0 +1,13 @@
+report_id,provenance,independently_reproduced,scenario,question,decider_answer,reported_probability_pct,pointed_right_way,action
+routing-strands-decider,anonymized_reported,false,Support ticket routing,Which team?,Billing,98,true,Auto
+routing-strands-decider,anonymized_reported,false,Complaint triage,Main request?,Billing dispute,94,true,Auto
+routing-strands-decider,anonymized_reported,false,Complaint triage,Escalate?,Yes,95,true,Auto
+routing-strands-decider,anonymized_reported,false,Agent tool-call gate,Arguments grounded?,Yes,53,false,Confirm
+routing-strands-decider,anonymized_reported,false,Agent tool-call gate,Ask the user first?,Yes,67,true,Confirm
+routing-strands-decider,anonymized_reported,false,GenBI question routing,Which data domain?,Finance,95,true,Auto
+routing-strands-decider,anonymized_reported,false,GenBI question routing,Needs clarification?,No,85,true,Confirm
+routing-strands-decider,anonymized_reported,false,Collections call intent,Repayment intent?,Negotiate a plan,96,true,Auto
+routing-strands-decider,anonymized_reported,false,Collections call intent,Complaint risk?,Yes,78,true,Confirm
+routing-strands-decider,anonymized_reported,false,Prompt-injection screening,Contains an injection?,Yes,78,true,Confirm
+routing-strands-decider,anonymized_reported,false,Prompt-injection screening,Main risk?,Data exfiltration,85,true,Confirm
+routing-strands-decider,anonymized_reported,false,Model routing,Which model tier?,Frontier model,90,true,Confirm

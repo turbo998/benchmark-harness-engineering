@@ -1,8 +1,9 @@
 # 匿名历史测试报告档案
 
-本档案将指定资料库中的 **12 页测试报告归并为 7 个主题**：三个 coding-agent
-主题和四个路由主题。五组中英文版本合并归档，不当成独立实验；其他私人页面未迁移。
-内容为重新撰写的方法、事实数据和限制说明，**不是原文转载，也不是本 harness 新跑出的成绩**。
+本档案将指定资料库中的 12 页测试报告与 Strands Decider 7 页卡片报告归并为 **8 个主题**：
+三个 coding-agent 主题和五个路由/决策模型主题。五组中英文版本合并归档，不当成独立实验；
+其他私人页面未迁移。内容为重新撰写的方法、事实数据和限制说明，
+**不是原文转载，也不是本 harness 新跑出的成绩**。
 
 | 主题 | 来源版本 | 规模与边界 | 整理报告 |
 |---|---|---|---|
@@ -13,6 +14,7 @@
 | Laya / Jev / LLM 对比 | 中 | 20 个请求，每引擎一轮 | [routing-laya](routing-laya.md) |
 | Decision-1 四引擎对比 | 中 / 英 | 40 个请求，三轮，480 次决策 | [routing-decision](routing-decision.md) |
 | OpenJev 补充对比 | 中 | 新测 120 次，另四个引擎复用上一报告 | [routing-openjev](routing-openjev.md) |
+| Strands Decider 2B 决策评测 | 英（7 页卡片） | 7 个场景 12 次决策、6 题逆序鲁棒性与批量延迟 | [routing-strands-decider](routing-strands-decider.md) |
 
 ## 如何读数据
 
@@ -47,5 +49,6 @@ ZIP 附件或原始会话。全文和这些附件的再分发权限尚未核验�
 编码评分、路由标签一致率和路由耗时是不同测量对象。
 为新实验冻结 dataset、模型版本、CLI、环境与计价表，保留所有 attempt 和证据；
 将费用来源、未复核项、跨批次变更、重复/复用样本显式写入 manifest 与报告。
-参考 [实验方法](../methodology.md)、[计量口径](../metrics.md)和
+参考 [实验方法](../methodology.md)、[计量口径](../metrics.md)、
+[7 页视觉卡片版式规范](../research/visual-report-card-format.md)和
 [本地闭环](../quickstart-local.md)。本档案不会自动启用 live 模式。

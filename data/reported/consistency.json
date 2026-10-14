@@ -2082,6 +2082,12 @@
       "model": "OpenJev MLX 4-bit",
       "check": "repeat_counts",
       "status": "exact"
+    },
+    {
+      "report_id": "routing-strands-decider",
+      "model": "strands-decider-2B-qwen3.5-v1-2610",
+      "check": "scenario_and_reversal_counts",
+      "status": "exact"
     }
   ]
 }

@@ -1,0 +1,5 @@
+report_id,provenance,independently_reproduced,question_count,batched_median_ms,one_by_one_estimated_ms,runs
+routing-strands-decider,anonymized_reported,false,1,71,71,7
+routing-strands-decider,anonymized_reported,false,3,152,213,7
+routing-strands-decider,anonymized_reported,false,6,233,426,7
+routing-strands-decider,anonymized_reported,false,10,365,710,7

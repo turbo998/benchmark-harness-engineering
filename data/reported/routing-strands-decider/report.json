@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "report_id": "routing-strands-decider",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "id": "routing-strands-decider",
+    "track": "routing-decision",
+    "source_languages": [
+      "en"
+    ],
+    "source_pages": 1,
+    "source_card_count": 7,
+    "window": null,
+    "model_id": "strands-decider-2B-qwen3.5-v1-2610",
+    "license": "Apache-2.0",
+    "open_source_repository": "github.com/strands-labs/strands-decider",
+    "hardware": "Apple M5 Pro (MPS)",
+    "scenario_count": 7,
+    "decision_count": 12,
+    "method": "Hands-on stress test of a 2B System One decision model across 7 agent scenarios (12 decisions: choice, noul, score), option-order reversal on all 6 choice questions, and 7-run median latency comparisons for 1, 3, 6 and 10 batched questions sharing one state prefix.",
+    "action_bands": {
+      "auto_min_confidence": 0.9,
+      "confirm_min_confidence": 0.5,
+      "human_below_confidence": 0.5,
+      "noul_confidence_definition": "max(p, 1-p)"
+    },
+    "limitations": [
+      "7-scenario hands-on stress test (12 decisions), not a large-scale blind holdout benchmark.",
+      "Action confidence bands (0.9 Auto, 0.5-0.9 Confirm, <0.5 Human) are illustrative and require calibration on production traffic.",
+      "One-by-one latency baseline is computed as question_count * single_question_median_ms (71 ms).",
+      "Bundled demo server has no authentication and is an early research release not recommended for direct production deployment.",
+      "Final security allow/deny decisions must remain in a deterministic policy engine rather than a probabilistic decision model."
+    ]
+  },
+  "facts": {
+    "scenarios_tested": 7,
+    "decisions_tested": 12,
+    "decisions_pointing_right_way": 11,
+    "decisions_auto_eligible": 5,
+    "choice_questions_reversal_stable": 6,
+    "choice_questions_total": 6,
+    "complaint_triage_deep_dive": {
+      "reported_headline_ms_approx": 170,
+      "ui_inference_ms": 217,
+      "ui_round_trip_ms": 219,
+      "ui_input_tokens": 335,
+      "device": "mps",
+      "decisions": [
+        {
+          "field": "intent",
+          "question_type": "choice",
+          "question": "What is this customer's main request?",
+          "selected_answer": "billing_dispute",
+          "confidence": 0.919,
+          "top_probability_pct": 93.9,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "billing_dispute": 93.9,
+            "close_account": 3.9,
+            "tech_issue": 1.4,
+            "inquiry": 0.9
+          }
+        },
+        {
+          "field": "escalate",
+          "question_type": "noul",
+          "question": "Should this be escalated to a support supervisor?",
+          "selected_answer": "Yes",
+          "confidence": 0.947,
+          "top_probability_pct": 94.7,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "true": 94.7,
+            "false": 5.3
+          }
+        },
+        {
+          "field": "urgency",
+          "question_type": "score",
+          "question": "How urgent is this ticket?",
+          "selected_answer": "1.71 / 3",
+          "closest_label": "High: handle within hours",
+          "confidence": 0.377,
+          "action": "Send to a human",
+          "distribution_pct": {
+            "0_low": 16.6,
+            "1_medium": 24.2,
+            "2_high": 30.5,
+            "3_critical": 28.7
+          }
+        }
+      ]
+    },
+    "scenarios": [
+      {
+        "scenario": "Support ticket routing",
+        "question": "Which team?",
+        "decider_answer": "Billing",
+        "reported_probability_pct": 98,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "Complaint triage",
+        "question": "Main request?",
+        "decider_answer": "Billing dispute",
+        "reported_probability_pct": 94,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "Complaint triage",
+        "question": "Escalate?",
+        "decider_answer": "Yes",
+        "reported_probability_pct": 95,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "Agent tool-call gate",
+        "question": "Arguments grounded?",
+        "decider_answer": "Yes",
+        "reported_probability_pct": 53,
+        "pointed_right_way": false,
+        "action": "Confirm"
+      },
+      {
+        "scenario": "Agent tool-call gate",
+        "question": "Ask the user first?",
+        "decider_answer": "Yes",
+        "reported_probability_pct": 67,
+        "pointed_right_way": true,
+        "action": "Confirm"
+      },
+      {
+        "scenario": "GenBI question routing",
+        "question": "Which data domain?",
+        "decider_answer": "Finance",
+        "reported_probability_pct": 95,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "GenBI question routing",
+        "question": "Needs clarification?",
+        "decider_answer": "No",
+        "reported_probability_pct": 85,
+        "pointed_right_way": true,
+        "action": "Confirm"
+      },
+      {
+        "scenario": "Collections call intent",
+        "question": "Repayment intent?",
+        "decider_answer": "Negotiate a plan",
+        "reported_probability_pct": 96,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "Collections call intent",
+        "question": "Complaint risk?",
+        "decider_answer": "Yes",
+        "reported_probability_pct": 78,
+        "pointed_right_way": true,
+        "action": "Confirm"
+      },
+      {
+        "scenario": "Prompt-injection screening",
+        "question": "Contains an injection?",
+        "decider_answer": "Yes",
+        "reported_probability_pct": 78,
+        "pointed_right_way": true,
+        "action": "Confirm"
+      },
+      {
+        "scenario": "Prompt-injection screening",
+        "question": "Main risk?",
+        "decider_answer": "Data exfiltration",
+        "reported_probability_pct": 85,
+        "pointed_right_way": true,
+        "action": "Confirm"
+      },
+      {
+        "scenario": "Model routing",
+        "question": "Which model tier?",
+        "decider_answer": "Frontier model",
+        "reported_probability_pct": 90,
+        "pointed_right_way": true,
+        "action": "Confirm"
+      }
+    ],
+    "robustness_reversal": [
+      {
+        "scenario": "Support ticket routing",
+        "selected_option": "billing",
+        "original_pct": 97.8,
+        "reversed_pct": 97.8,
+        "change_pts": 0.0,
+        "answer_held": true
+      },
+      {
+        "scenario": "Complaint triage",
+        "selected_option": "billing_dispute",
+        "original_pct": 93.9,
+        "reversed_pct": 96.4,
+        "change_pts": 2.5,
+        "answer_held": true
+      },
+      {
+        "scenario": "GenBI question routing",
+        "selected_option": "finance",
+        "original_pct": 95.1,
+        "reversed_pct": 96.2,
+        "change_pts": 1.2,
+        "answer_held": true
+      },
+      {
+        "scenario": "Collections call intent",
+        "selected_option": "negotiate",
+        "original_pct": 96.3,
+        "reversed_pct": 96.5,
+        "change_pts": 0.1,
+        "answer_held": true
+      },
+      {
+        "scenario": "Prompt-injection screening",
+        "selected_option": "data_exfiltration",
+        "original_pct": 84.7,
+        "reversed_pct": 90.2,
+        "change_pts": 5.5,
+        "answer_held": true
+      },
+      {
+        "scenario": "Model routing",
+        "selected_option": "frontier",
+        "original_pct": 90.1,
+        "reversed_pct": 86.9,
+        "change_pts": -3.2,
+        "answer_held": true
+      }
+    ],
+    "batch_latency": [
+      {
+        "question_count": 1,
+        "batched_median_ms": 71,
+        "one_by_one_estimated_ms": 71,
+        "runs": 7
+      },
+      {
+        "question_count": 3,
+        "batched_median_ms": 152,
+        "one_by_one_estimated_ms": 213,
+        "runs": 7
+      },
+      {
+        "question_count": 6,
+        "batched_median_ms": 233,
+        "one_by_one_estimated_ms": 426,
+        "runs": 7
+      },
+      {
+        "question_count": 10,
+        "batched_median_ms": 365,
+        "one_by_one_estimated_ms": 710,
+        "runs": 7
+      }
+    ]
+  },
+  "csv_files": [
+    "routing-strands-decider/scenarios.csv",
+    "routing-strands-decider/robustness_reversal.csv",
+    "routing-strands-decider/batch_latency.csv"
+  ]
+}
