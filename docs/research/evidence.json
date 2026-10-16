@@ -6,13 +6,13 @@
   "sources": [
     {
       "id": "author-comparison-article",
-      "url": "https://app.notion.com/p/4-Sonnet-5-5-GPT-6-1-Sol-8c183d40bd6d82318a82012485e7ef5c",
+      "url": "docs/reports/coding-17-models-supplement.md",
       "kind": "article",
       "supports": ["three difficulty levels", "claimed chart pipeline", "single-sample caveat"]
     },
     {
       "id": "author-router-article",
-      "url": "https://app.notion.com/p/300-Jev-GitHub-Copilot-0b683d40bd6d82c990b601cb14b56840",
+      "url": "docs/reports/routing-copilot-auto.md",
       "kind": "article",
       "supports": ["routing rather than task latency", "cold connection and task stickiness"]
     },
