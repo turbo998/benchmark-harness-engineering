@@ -27,7 +27,7 @@ jobs:
       - run: uv run --frozen --extra azure benchmark-harness score .ci-demo/run --output .ci-demo/scores.json
       - run: uv run --frozen --extra azure benchmark-harness report .ci-demo/run --output .ci-demo/regenerated
       - run: uv run --frozen --extra azure benchmark-harness report examples/mock-report/run --output .ci-demo/published-rebuilt
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: synthetic-offline-report
           path: .ci-demo/report
