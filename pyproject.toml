@@ -17,7 +17,7 @@ dependencies = [
 azure = [
   "azure-identity==1.26.0",
   "azure-storage-blob==12.31.0",
-  "cryptography==46.0.3",
+  "cryptography==50.0.2",
 ]
 
 [project.scripts]
