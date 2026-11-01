@@ -36,3 +36,28 @@ def test_cli_cards_renders_from_saved_demo_run(workdir: Path) -> None:
     assert html_text.count('class="report-card"') == 7
     assert "SYNTHETIC" in html_text
     assert "<script" not in html_text
+
+
+def test_gemini_4_carbon_reported_cards_and_catalog_integrity(workdir: Path) -> None:
+    import json
+
+    root = Path(__file__).resolve().parents[1]
+    source = root / "data" / "reported" / "gemini-4-carbon" / "report.json"
+    out = workdir / "gemini-4-carbon-cards.html"
+    meta = generate_cards(source, out)
+    assert meta["cards"] == 7
+    assert meta["provenance"] == "anonymized_reported"
+    content = out.read_text(encoding="utf-8")
+    assert content.count('class="report-card"') == 7
+    assert "1 / 7" in content and "7 / 7" in content
+    assert "Gemini 4 Carbon" in content
+    assert "SEC-bench Pro" in content
+    assert "0.0%" in content
+    assert "<script" not in content
+
+    catalog = json.loads((root / "data" / "reported" / "catalog.json").read_bytes())
+    assert catalog["report_families"] == 10
+    assert catalog["source_pages"] == 17
+    report_ids = [r["report_id"] for r in catalog["reports"]]
+    assert "coding-nineteen" in report_ids
+    assert "gemini-4-carbon" in report_ids

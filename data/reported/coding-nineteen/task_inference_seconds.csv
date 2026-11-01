@@ -1,0 +1,20 @@
+report_id,provenance,independently_reproduced,模型,A1,A2,A3,A4,A5,M1,M2,C1,C2,C3,C4,合计
+coding-nineteen,anonymized_reported,false,Sonnet 5.5,8,17,12,13,14,57,59,112,122,362,220,995
+coding-nineteen,anonymized_reported,false,HydraFusion,47,29,24,45,27,82,75,97,154,257,198,1034
+coding-nineteen,anonymized_reported,false,GPT-5.6 Luna,35,69,33,41,49,62,95,165,176,339,252,1316
+coding-nineteen,anonymized_reported,false,GPT-6.1 Sol,16,34,24,22,36,104,77,155,201,341,340,1348
+coding-nineteen,anonymized_reported,false,Opus 5.5,17,22,17,29,63,88,106,132,200,546,352,1570
+coding-nineteen,anonymized_reported,false,GPT-6 Astra,19,31,25,19,41,160,100,137,254,443,388,1617
+coding-nineteen,anonymized_reported,false,Haiku 5.5,9,17,13,12,18,60,58,117,207,1089,251,1852
+coding-nineteen,anonymized_reported,false,GPT-6 Luna,31,47,45,30,32,112,118,149,215,1011,341,2129
+coding-nineteen,anonymized_reported,false,Fable 5.1,25,70,27,28,50,197,131,255,255,685,487,2210
+coding-nineteen,anonymized_reported,false,Sonnet 5,18,37,22,14,30,146,99,344,334,803,546,2393
+coding-nineteen,anonymized_reported,false,MAI-Code-1.1-Flash,46,53,81,63,88,131,119,306,328,655,579,2448
+coding-nineteen,anonymized_reported,false,Gemini 4 Argon,32,79,39,26,41,218,122,332,272,984,370,2512
+coding-nineteen,anonymized_reported,false,Opus 5,29,74,22,60,33,173,236,450,475,758,732,3042
+coding-nineteen,anonymized_reported,false,Haiku 4.5,52,101,208,61,427,152,209,391,432,463,667,3163
+coding-nineteen,anonymized_reported,false,Grok 4.6,45,111,88,55,85,179,157,335,452,1179,617,3302
+coding-nineteen,anonymized_reported,false,Gemini 3.8 Flash,98,306,215,123,267,346,421,475,453,572,475,3750
+coding-nineteen,anonymized_reported,false,Kimi K3,57,56,44,37,86,213,318,510,979,1757,885,4944
+coding-nineteen,anonymized_reported,false,DeepSeek-V4-Flash,16,64,55,60,85,137,251,383,986,2278,1302,5618
+coding-nineteen,anonymized_reported,false,Grok 4.7,377,200,145,34,236,518,207,1613,1084,2029,1405,7849

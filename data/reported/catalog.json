@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "report_families": 8,
-  "source_pages": 13,
+  "report_families": 10,
+  "source_pages": 17,
   "publication_mode": "original anonymous factual summaries, not full-text republication",
   "rights_and_exclusions": "Full-text, complete task-bank, original-image and attachment republication rights were not verified; these materials are excluded.",
   "privacy_boundary": "Do not publish author names, roles, contacts, employer-team identifiers, internal slides or URLs, private Notion URLs/IDs, usernames, keys, endpoints, original screenshots, raw traces or source attachments. Vendor/model names, public technical versions and generic test-environment specifications are retained only as historical reported facts.",
@@ -79,6 +79,54 @@
         "coding-seventeen/task_cost_usd.csv",
         "coding-seventeen/task_rounds.csv",
         "coding-seventeen/task_output_tokens.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "coding-nineteen",
+      "track": "coding-agent",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/coding-nineteen.md",
+      "report_document_en": "../../docs/reports/coding-nineteen.en.md",
+      "json": "coding-nineteen/report.json",
+      "csv_files": [
+        "coding-nineteen/scores_by_difficulty.csv",
+        "coding-nineteen/rounds_by_difficulty.csv",
+        "coding-nineteen/usage_totals.csv",
+        "coding-nineteen/task_scores.csv",
+        "coding-nineteen/task_wall_seconds.csv",
+        "coding-nineteen/task_inference_seconds.csv",
+        "coding-nineteen/task_cost_usd.csv",
+        "coding-nineteen/task_rounds.csv",
+        "coding-nineteen/task_output_tokens.csv"
+      ],
+      "provenance": "anonymized_reported",
+      "independently_reproduced": false
+    },
+    {
+      "report_id": "gemini-4-carbon",
+      "track": "frontier-coding-agent-cyber",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/gemini-4-carbon.md",
+      "report_document_en": "../../docs/reports/gemini-4-carbon.en.md",
+      "card_report_html": "../../examples/gemini-4-carbon-card-report/index.html",
+      "json": "gemini-4-carbon/report.json",
+      "csv_files": [
+        "gemini-4-carbon/benchmark_matrix.csv",
+        "gemini-4-carbon/cyber_sec_bench_pro.csv",
+        "gemini-4-carbon/cyber_exploitgym.csv",
+        "gemini-4-carbon/cyber_cwe_bench.csv",
+        "gemini-4-carbon/cyber_gray_swan_ipi.csv",
+        "gemini-4-carbon/alignment_metrics.csv"
       ],
       "provenance": "anonymized_reported",
       "independently_reproduced": false

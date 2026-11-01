@@ -57,14 +57,14 @@ uv run --frozen benchmark-harness demo --output .runs\demo
 - [样例生成与独立验收](docs/sample-generation.md)
 - [统计与计量口径](docs/metrics.md) · [实验方法](docs/methodology.md)
 - [Azure profile 与生命周期](docs/azure.md) · [可信推理 broker](docs/broker.md)
-- [保存的合成演示](examples/mock-report/report/index.html) · [7 页卡片报告示例](examples/card-report/index.html)（下载后离线打开）
+- [保存的合成演示](examples/mock-report/report/index.html) · [7 页卡片报告示例（Strands Decider）](examples/card-report/index.html) · [Gemini 4 Carbon 7 页卡片报告](examples/gemini-4-carbon-card-report/index.html)（下载后离线打开）
 
 要跑真实模型，仍需绑定模型/价表/预算并批准付费 smoke；当前 CLI 的 live 路径保持
 阻塞，不能把导出的 engine config、源码适配存在或 mock 分数冒充 live readiness。
 
 ## 匿名历史报告档案
 
-[8 个主题的匿名整理报告](docs/reports/README.md)覆盖指定资料库的 12 页测试报告与
+[10 个主题的匿名整理报告](docs/reports/README.md)（[English README](README.en.md)）覆盖指定资料库的历史测试报告、十九模型编码增补（[coding-nineteen](docs/reports/coding-nineteen.md)）、Gemini 4 Carbon 十六项前沿与安全评测（[gemini-4-carbon](docs/reports/gemini-4-carbon.md)）与
 Strands Decider 7 页卡片评测，中英文版本去重归档，保留编码与路由两条独立轨道的
 方法、事实表格及限制。[JSON/CSV 数据](data/reported/README.md)标记 `anonymized_reported`，
 不是本 harness 新测结果；原文、原图、完整题库及附件未转载，作者/内部字段不进入新增档案。

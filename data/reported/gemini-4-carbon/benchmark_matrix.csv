@@ -1,0 +1,19 @@
+report_id,provenance,independently_reproduced,benchmark,protocol,gemini_4_carbon,carbon_rank,gemini_4_argon,gpt_6_astra,claude_opus_5_5,claude_fable_5_1
+gemini-4-carbon,anonymized_reported,false,AA Index v5.0,with tools (score),59,1,50,57,58,49
+gemini-4-carbon,anonymized_reported,false,Vals Index v2.2,multimodal suite (%),70.4%,1,69.2%,65.0%,70.2%,
+gemini-4-carbon,anonymized_reported,false,SWE-sweep,mini-swe-agent subtask reward (%),9.6%,1,4.3%,9.5%,3.6%,2.9%
+gemini-4-carbon,anonymized_reported,false,FrontierSWE 2,Proximal public leaderboard (%),61.2%,3,55.0%,65.5%,62.3%,56.3%
+gemini-4-carbon,anonymized_reported,false,Terminal-Bench 4.0 (AA),terminal agent (%),65.2%,1,57.1%,59.1%,59.6%,52.0%
+gemini-4-carbon,anonymized_reported,false,Agents' Last Exam v1.1,"122 tasks, ALE-Claw, 5h window (%)",77.4%,1,69.0%,73.1%,71.6%,
+gemini-4-carbon,anonymized_reported,false,OSWorld-2.1,"82-task offline subset, max@3 (%)",81.5%,2,74.7%,80.9%,87.2%,76.8%
+gemini-4-carbon,anonymized_reported,false,AutomationBench,Zapier private set (%),53.9%,1,51.3%,41.4%,42.5%,31.4%
+gemini-4-carbon,anonymized_reported,false,Vending-Bench 2,Andon Labs Bank balance ($),"$16,484",1,"$13,718","$15,515","$9,235","$5,422"
+gemini-4-carbon,anonymized_reported,false,Chartography,"Surge, no tools (%)",72.5%,1,71.6%,71.0%,66.3%,46.2%
+gemini-4-carbon,anonymized_reported,false,Blueprint-Bench 2,Andon Labs Similarity (%),58.6%,1,54.4%,49.7%,51.2%,41.9%
+gemini-4-carbon,anonymized_reported,false,GraphWalks,"256k to 1M, 200 problems, BFS F1 (%)",96.2%,1,84.2%,71.8%,66.8%,65.0%
+gemini-4-carbon,anonymized_reported,false,RiemannBench,Surge (%),80.0%,1,76.0%,72.0%,69.6%,65.6%
+gemini-4-carbon,anonymized_reported,false,Terminal-Bench-Science 0.1 (AA),scientific terminal (%),64.8%,1,52.9%,63.3%,59.0%,43.3%
+gemini-4-carbon,anonymized_reported,false,CWE-bench,"Collinear Pass@1, ties broken by Pass@4 (%)",71.0%,1,68.0%,68.0%,67.0%,58.0%
+gemini-4-carbon,anonymized_reported,false,ExploitGym,"Causal Pass Rate, Antigravity (10h / 6h)",54.8% (10h) / 53.5% (6h),1,42.0% (10h) / 39.5% (6h),42.4% (no cap),34.5% (6h),
+gemini-4-carbon,anonymized_reported,false,SEC-bench Pro,"183 JS engine tasks, Pass@1 avg 3 trials, Antigravity (%)",88.2%,1,83.4%,85.4%,,
+gemini-4-carbon,anonymized_reported,false,WebDev Arena,Elo score,1768,4,1679,,,

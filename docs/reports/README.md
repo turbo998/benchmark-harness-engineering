@@ -1,7 +1,7 @@
 # 匿名历史测试报告档案
 
-本档案将指定资料库中的 12 页测试报告与 Strands Decider 7 页卡片报告归并为 **8 个主题**：
-三个 coding-agent 主题和五个路由/决策模型主题。五组中英文版本合并归档，不当成独立实验；
+本档案将指定资料库中的历史测试报告与 7 页视觉卡片评测归并为 **10 个主题**：
+四个 coding-agent 主题、一个前沿编程/智能体/网络安全综合评测主题（增补报告六：Gemini 4 Carbon）和五个路由/决策模型主题。中英文版本与视觉卡片合并归档，不当成独立实验；
 其他私人页面未迁移。内容为重新撰写的方法、事实数据和限制说明，
 **不是原文转载，也不是本 harness 新跑出的成绩**。
 
@@ -10,6 +10,8 @@
 | 五模型编码基准 | 中 / 英 | 11 个任务，55 次评分运行 | [coding-five](coding-five.md) |
 | 十模型编码增补 | 中 / 英 | 新增 55 次，累计 110 次；复用旧模型 | [coding-ten](coding-ten.md) |
 | 十七模型编码增补 | 中 / 英 | 新增 22 次，累计 187 次；跨批次且有评分修订 | [coding-seventeen](coding-seventeen.md) |
+| 十九模型编码增补 | 中 / 英 | 新增 Haiku 5.5 与 Gemini 4 Argon（22 次），累计 209 次 | [coding-nineteen](coding-nineteen.md) · [EN](coding-nineteen.en.md) |
+| Gemini 4 Carbon 前沿与安全评测 | 中 / 英（含 7 页卡片） | 16 项官方基准（14 项第一）、4 项网络安全子榜与对齐指标；本地 CLI A1–C4 待测 (`null`) | [gemini-4-carbon](gemini-4-carbon.md) · [EN](gemini-4-carbon.en.md) · [7 页卡片](../../examples/gemini-4-carbon-card-report/index.html) |
 | Jev 路由集成观察 | 中 / 英 | 少量示例，不是准确率基准 | [routing-jev](routing-jev.md) |
 | Laya / Jev / LLM 对比 | 中 | 20 个请求，每引擎一轮 | [routing-laya](routing-laya.md) |
 | Decision-1 四引擎对比 | 中 / 英 | 40 个请求，三轮，480 次决策 | [routing-decision](routing-decision.md) |

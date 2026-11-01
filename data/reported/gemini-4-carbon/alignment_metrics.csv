@@ -1,0 +1,8 @@
+report_id,provenance,independently_reproduced,metric,value,attempt_rate,baseline_comparison
+gemini-4-carbon,anonymized_reported,false,Terminal-Bench 4.0 successful cheating rate,0.0%,0.4%,Zero successful reward-hacking exploits
+gemini-4-carbon,anonymized_reported,false,Internal live coding high-severity misalignment alerts,-80%,,80% reduction vs prior generation
+gemini-4-carbon,anonymized_reported,false,Unsupported claims rate,-50%,,~2x reduction vs Gemini 4 Argon
+gemini-4-carbon,anonymized_reported,false,Agent overreach rate,-26%,,26% reduction vs Gemini 4 Argon
+gemini-4-carbon,anonymized_reported,false,Task under-service rate,-29%,,29% reduction vs Gemini 4 Argon
+gemini-4-carbon,anonymized_reported,false,Secure code generation rate,>2x,,>2x higher secure code rate vs Gemini 4 Argon
+gemini-4-carbon,anonymized_reported,false,Chrome vulnerability patch quality,>10x,,>10x patch quality vs competing frontier model

@@ -1,14 +1,14 @@
 # Anonymous reported-data archive
 
 These are factual historical report transcriptions, **not measured results produced
-by this harness**. Start with the [eight-report index](../../docs/reports/README.md)
+by this harness**. Start with the [ten-report index](../../docs/reports/README.md)
 or machine-readable [catalog](catalog.json).
 
 Each family has a `report.json` with original summary metadata and reported metric
 cells. CSVs contain the same cells plus `report_id`, `provenance` and
 `independently_reproduced` columns. Chinese/English numeric task tables were compared;
-language variants are source views, never additional runs. The catalog covers thirteen
-source pages/card decks across eight report families, not thirteen independent datasets.
+language variants are source views, never additional runs. The catalog covers seventeen
+source pages/card decks across ten report families, not seventeen independent datasets.
 
 ## Units and precision
 

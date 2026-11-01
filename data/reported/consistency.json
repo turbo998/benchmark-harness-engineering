@@ -2088,6 +2088,78 @@
       "model": "strands-decider-2B-qwen3.5-v1-2610",
       "check": "scenario_and_reversal_counts",
       "status": "exact"
+    },
+    {
+      "report_id": "coding-nineteen",
+      "table": "task_scores",
+      "model": "Haiku 5.5",
+      "check": "reported_total_vs_displayed_tasks",
+      "computed_total": "1091.61",
+      "reported_total": "1091.61",
+      "absolute_difference": "0.00",
+      "rounding_tolerance": "0.060",
+      "status": "within_display_rounding"
+    },
+    {
+      "report_id": "coding-nineteen",
+      "table": "task_scores",
+      "model": "Gemini 4 Argon",
+      "check": "reported_total_vs_displayed_tasks",
+      "computed_total": "1084.50",
+      "reported_total": "1084.50",
+      "absolute_difference": "0.00",
+      "rounding_tolerance": "0.060",
+      "status": "within_display_rounding"
+    },
+    {
+      "report_id": "coding-nineteen",
+      "table": "task_rounds",
+      "model": "Haiku 5.5",
+      "check": "reported_total_vs_displayed_tasks",
+      "computed_total": "94",
+      "reported_total": "94",
+      "absolute_difference": "0",
+      "rounding_tolerance": "0",
+      "status": "within_display_rounding"
+    },
+    {
+      "report_id": "coding-nineteen",
+      "table": "task_rounds",
+      "model": "Gemini 4 Argon",
+      "check": "reported_total_vs_displayed_tasks",
+      "computed_total": "106",
+      "reported_total": "106",
+      "absolute_difference": "0",
+      "rounding_tolerance": "0",
+      "status": "within_display_rounding"
+    },
+    {
+      "report_id": "coding-nineteen",
+      "table": "task_output_tokens",
+      "model": "Haiku 5.5",
+      "check": "reported_total_vs_displayed_tasks",
+      "computed_total": "453116",
+      "reported_total": "453116",
+      "absolute_difference": "0",
+      "rounding_tolerance": "0",
+      "status": "within_display_rounding"
+    },
+    {
+      "report_id": "coding-nineteen",
+      "table": "task_output_tokens",
+      "model": "Gemini 4 Argon",
+      "check": "reported_total_vs_displayed_tasks",
+      "computed_total": "116755",
+      "reported_total": "116755",
+      "absolute_difference": "0",
+      "rounding_tolerance": "0",
+      "status": "within_display_rounding"
+    },
+    {
+      "report_id": "gemini-4-carbon",
+      "model": "Gemini 4 Carbon",
+      "check": "benchmark_matrix_and_cyber_leaderboards",
+      "status": "exact"
     }
   ]
 }
