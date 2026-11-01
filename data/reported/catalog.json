@@ -122,10 +122,7 @@
       "json": "gemini-4-carbon/report.json",
       "csv_files": [
         "gemini-4-carbon/benchmark_matrix.csv",
-        "gemini-4-carbon/cyber_sec_bench_pro.csv",
-        "gemini-4-carbon/cyber_exploitgym.csv",
-        "gemini-4-carbon/cyber_cwe_bench.csv",
-        "gemini-4-carbon/cyber_gray_swan_ipi.csv",
+        "gemini-4-carbon/cybersecurity_leaderboards.csv",
         "gemini-4-carbon/alignment_metrics.csv"
       ],
       "provenance": "anonymized_reported",
