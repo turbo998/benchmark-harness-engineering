@@ -15,6 +15,7 @@ An offline-first, provenance-sealed evaluation and visual report generation harn
    - Renders self-contained `900px × 1125px` (`4:5` portrait) 7-card HTML decks with `Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'` and zero external scripts or network requests.
    - Specification: [`docs/research/visual-report-card-format.md`](docs/research/visual-report-card-format.md) and [`docs/research/benchmark-report-system-prompt.md`](docs/research/benchmark-report-system-prompt.md).
    - Reference Decks:
+     - **Microsoft Agent Framework (MAF v1.0) vs. 6 Mainstream Frameworks**: [`examples/maf-multi-agent-card-report/index.html`](examples/maf-multi-agent-card-report/index.html) ([`report.json`](data/reported/maf-multi-agent-benchmark/report.json) · [ZH](examples/maf-multi-agent-card-report/test-report.md) · [EN](examples/maf-multi-agent-card-report/test-report.en.md))
      - **Gemini 4 Carbon (Supplement 6)**: [`examples/gemini-4-carbon-card-report/index.html`](examples/gemini-4-carbon-card-report/index.html)
      - **Strands Decider 2B**: [`examples/card-report/index.html`](examples/card-report/index.html)
 
@@ -36,6 +37,7 @@ The [Ten-Report Index](docs/reports/README.md) and [Structured Reported Archive]
 | **Decision-1 Four-Engine Comparison** | 40 requests × 3 repeats (480 decisions) | [Report (ZH)](docs/reports/routing-decision.md) · [JSON](data/reported/routing-decision/report.json) |
 | **OpenJev Supplement Comparison** | 120 new decisions + baseline comparison | [Report (ZH)](docs/reports/routing-openjev.md) · [JSON](data/reported/routing-openjev/report.json) |
 | **Strands Decider 2B Evaluation** | 7 scenarios (12 decisions), option-reversal robustness & batch latency | [Report (ZH)](docs/reports/routing-strands-decider.md) · [7-Card Deck](examples/card-report/index.html) · [JSON](data/reported/routing-strands-decider/report.json) |
+| **Microsoft Agent Framework (MAF v1.0) Multi-Agent Benchmark** | 6 frameworks, 5 orchestration modes, 3-layer middleware, MCP/A2A v1.0, 7 scenarios (12 decisions), reversal robustness & fan-out latency | [ZH](examples/maf-multi-agent-card-report/test-report.md) · [EN](examples/maf-multi-agent-card-report/test-report.en.md) · [7-Card Deck](examples/maf-multi-agent-card-report/index.html) · [JSON](data/reported/maf-multi-agent-benchmark/report.json) |
 
 ---
 

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:;">
+<title>Microsoft Agent Framework (MAF v1.0) vs. 6 Mainstream Frameworks — 7-Card 4:5 Benchmark Report</title>
+<style>
+  :root {
+    --bg-page: #0B1120;
+    --bg-card: #FFFFFF;
+    --bg-subtle: #F8FAFC;
+    --bg-dark: #0F172A;
+    --text-main: #0F172A;
+    --text-muted: #475569;
+    --text-light: #94A3B8;
+    --border-color: #E2E8F0;
+    --accent-blue: #2563EB;
+    --accent-bar: #3B82F6;
+    --baseline-bar: #CBD5E1;
+    --green-bg: #ECFDF5;
+    --green-border: #A7F3D0;
+    --green-text: #065F46;
+    --amber-bg: #FFFBEB;
+    --amber-border: #FDE68A;
+    --amber-text: #92400E;
+    --red-bg: #FEF2F2;
+    --red-border: #FECACA;
+    --red-text: #991B1B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-page);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--text-main);
+    padding: 36px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+  .deck-header {
+    width: 900px;
+    color: #F8FAFC;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .deck-header h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .deck-header p { font-size: 13px; color: #94A3B8; }
+  .card {
+    width: 900px;
+    min-height: 1125px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+  .kicker {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+  }
+  .page-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg-subtle);
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+  }
+  .headline {
+    font-size: 25px;
+    line-height: 1.28;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 10px;
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, #1D4ED8 0%, #0284C7 55%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subheadline {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .workbench-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .wb-col {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wb-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+  }
+  .scenario-item {
+    font-size: 12px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-weight: 600;
+  }
+  .scenario-item.active {
+    border-color: var(--accent-blue);
+    background: #EFF6FF;
+    color: #1D4ED8;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .metric-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #EFF6FF;
+    color: #1E40AF;
+    border: 1px solid #BFDBFE;
+  }
+  .callout-box {
+    background: var(--bg-subtle);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.48;
+    color: var(--text-muted);
+  }
+  .callout-box strong { color: var(--text-main); display: block; margin-bottom: 3px; }
+  .quote-box {
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    font-style: italic;
+    color: #1E293B;
+    margin-bottom: 16px;
+  }
+  .decision-stack { display: flex; flex-direction: column; gap: 14px; flex: 1; margin-bottom: 16px; }
+  .decision-card {
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 16px 18px;
+    background: #FFFFFF;
+  }
+  .dc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .badge-type {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #E0E7FF;
+    color: #3730A3;
+  }
+  .pill-auto {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    color: var(--green-text);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .pill-confirm {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    color: var(--amber-text);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; font-size: 12px; }
+  .bar-label { width: 185px; font-weight: 600; color: var(--text-muted); }
+  .bar-track { flex: 1; height: 10px; background: #F1F5F9; border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent-bar); border-radius: 999px; }
+  .bar-val { width: 52px; text-align: right; font-weight: 700; color: var(--text-main); }
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  table.matrix th {
+    text-align: left;
+    padding: 9px 10px;
+    background: #F1F5F9;
+    color: #334155;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
+    border-bottom: 2px solid #CBD5E1;
+  }
+  table.matrix td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+  }
+  .code-panel {
+    background: var(--bg-dark);
+    color: #E2E8F0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    border: 1px solid #334155;
+  }
+  .arrow-divider {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--accent-blue);
+    padding: 8px 0;
+  }
+  .lat-group { display: flex; flex-direction: column; gap: 18px; margin: 14px 0 22px; flex: 1; justify-content: center; }
+  .lat-row { display: flex; flex-direction: column; gap: 6px; }
+  .lat-title { font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; }
+  .lat-bars { display: flex; flex-direction: column; gap: 6px; }
+  .lat-bar-line { display: flex; align-items: center; gap: 10px; }
+  .lat-bar-box { height: 22px; border-radius: 6px; display: flex; align-items: center; padding: 0 8px; font-size: 11px; font-weight: 800; }
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; margin-bottom: 18px; }
+  .fit-card { border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .fit-good { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green-text); }
+  .fit-bad { background: var(--red-bg); border: 1px solid var(--red-border); color: var(--red-text); }
+  .fit-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+  .fit-card li { margin-left: 18px; font-size: 13px; line-height: 1.5; color: #1E293B; }
+  .dark-footer {
+    background: var(--bg-dark);
+    color: #F8FAFC;
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck-header">
+  <h1>Microsoft Agent Framework (MAF v1.0) vs. 6 Mainstream Frameworks · 7-Card 4:5 Benchmark Deck</h1>
+  <p>Unifying Semantic Kernel + AutoGen · 5 Multi-Agent Orchestration Modes · 3-Layer Middleware · MCP v1.0 &amp; A2A v1.0 · Sealed Evidence (`report.json`)</p>
+</div>
+
+<!-- ================= CARD 1 / 7 ================= -->
+<section class="card" id="card-1">
+  <div>
+    <div class="card-top">
+      <span class="kicker">HANDS-ON · MULTI-AGENT ORCHESTRATION &amp; PROTOCOLS</span>
+      <span class="page-num">1 / 7</span>
+    </div>
+    <h2 class="headline">Unifying <span class="gradient-text">Semantic Kernel + AutoGen</span> in Microsoft Agent Framework (MAF v1.0): 96.4 Composite Score across 5 Modes</h2>
+    <p class="subheadline">Benchmarking 6 mainstream agent frameworks (MAF v1.0, LangGraph, AutoGen v0.4, Semantic Kernel, OpenAI Agents SDK, CrewAI) across 7 enterprise scenarios and 12 architectural/runtime decisions.</p>
+  </div>
+
+  <div class="workbench-grid">
+    <!-- Col 1: Scenarios + Action Bands -->
+    <div class="wb-col">
+      <div class="wb-title">7 Tested Scenarios · 5 Modes</div>
+      <div class="scenario-item active">S1 · Sequential &amp; Concurrent Fan-Out (Slide 24)</div>
+      <div class="scenario-item">S2 · Dynamic Handoff &amp; Group Chat Consensus</div>
+      <div class="scenario-item">S3 · Magentic-One Task &amp; Progress Ledger</div>
+      <div class="scenario-item">S4 · Graph Workflow Superstep Checkpointing</div>
+      <div class="scenario-item">S5 · 3-Layer Middleware (Run / Function / Chat)</div>
+      <div class="scenario-item">S6 · Hosted/Local MCP &amp; A2A v1.0 JWS Cards</div>
+      <div class="scenario-item">S7 · Ungrounded Tool Argument Gate Probe</div>
+      <div style="margin-top:auto; font-size:11.5px; color:#475569; background:#FFF; padding:10px; border-radius:8px; border:1px solid #E2E8F0;">
+        <strong>Threshold Gating Bands:</strong><br>
+        • <code>&gt;= 0.90</code> → <b>Act automatically</b><br>
+        • <code>0.50–0.89</code> → <b>Confirm (HITL Checkpoint)</b><br>
+        • <code>&lt; 0.50</code> → <b>Send to a human</b>
+      </div>
+    </div>
+
+    <!-- Col 2: Structured Framework Cohort Ranking -->
+    <div class="wb-col">
+      <div class="wb-title">6-Framework Cohort Composite Score</div>
+      <div style="font-size:12px; display:flex; flex-direction:column; gap:9px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; font-weight:800; color:#1D4ED8;"><span>1. Microsoft Agent Framework (MAF)</span><span>96.4 / 100</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:96.4%;"></div></div>
+          <div style="font-size:10.5px; color:#64748B;">5 Native Modes · 3-Layer MW · 14.2ms Resume · MCP + A2A v1.0</div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-weight:700;"><span>2. LangGraph (StateGraph + Command)</span><span>91.2 / 100</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:91.2%; background:#0EA5E9;"></div></div>
+          <div style="font-size:10.5px; color:#64748B;">4 Modes · Pregel Checkpointer (21.8ms) · Adapter MCP</div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-weight:700;"><span>3. AutoGen (v0.4 Event Actor)</span><span>86.5 / 100</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:86.5%; background:#6366F1;"></div></div>
+          <div style="font-size:10.5px; color:#64748B;">5 Research Modes (Magentic/GroupChat origin) · 34.5ms Resume</div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-weight:700;"><span>4. Semantic Kernel (Enterprise SDK)</span><span>85.8 / 100</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:85.8%; background:#8B5CF6;"></div></div>
+          <div style="font-size:10.5px; color:#64748B;">3-Layer Filter DNA · DI &amp; Vector Memory · 19.6ms Resume</div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-weight:700;"><span>5. OpenAI Agents SDK</span><span>82.0 / 100</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:82.0%; background:#94A3B8;"></div></div>
+          <div style="font-size:10.5px; color:#64748B;">Lightweight Handoff + Guardrails · No Native Graph/Magentic</div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-weight:700;"><span>6. CrewAI (Crews &amp; Flows)</span><span>78.5 / 100</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:78.5%; background:#CBD5E1;"></div></div>
+          <div style="font-size:10.5px; color:#64748B;">Role/Goal Sequential &amp; Hierarchical · 62.4ms Resume</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 3: Telemetry Pills + Top Decisions -->
+    <div class="wb-col">
+      <div class="wb-title">Workbench Telemetry &amp; Decisions</div>
+      <div class="pill-row">
+        <span class="metric-pill">8-Agent Fan-Out: 186 ms</span>
+        <span class="metric-pill">Checkpoint: 14.2 ms</span>
+        <span class="metric-pill">Input: 412 tokens</span>
+        <span class="metric-pill">MAF Graph v1.0</span>
+      </div>
+      <div style="font-size:12px; background:#FFF; border:1px solid #E2E8F0; border-radius:8px; padding:10px;">
+        <strong>D1 · Concurrent Fan-Out (choice)</strong><br>
+        Doc + Video + Web Parallel → <b>96.2%</b><br>
+        <span class="pill-auto" style="display:inline-block; margin-top:4px;">Act automatically</span>
+      </div>
+      <div style="font-size:12px; background:#FFF; border:1px solid #E2E8F0; border-radius:8px; padding:10px;">
+        <strong>D2 · L2 Function Middleware (noul)</strong><br>
+        SSN PII Redacted + Gate → <b>98.5%</b><br>
+        <span class="pill-auto" style="display:inline-block; margin-top:4px;">Act automatically</span>
+      </div>
+      <div style="font-size:12px; background:#FFF; border:1px solid #E2E8F0; border-radius:8px; padding:10px;">
+        <strong>D3 · Ungrounded Argument (score)</strong><br>
+        <code>invented_city</code> → <b>0.52 / 1.00</b><br>
+        <span class="pill-confirm" style="display:inline-block; margin-top:4px;">Confirm (Paused)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-box">
+    <strong>Provenance: measured (independently_reproduced=true) · Source: 53-Slide Foundry Deck + Deterministic Python 3.12 Harness</strong>
+    MAF combines AutoGen's 5 multi-agent patterns with Semantic Kernel's <code>IChatClient</code>, 3-layer middleware, and graph checkpointing. Note: Assistants API was retired on 2026-08-26 (Slide 12); all evaluations target GA Responses API, MCP v1.0, and Linux Foundation A2A v1.0.
+  </div>
+</section>
+
+<!-- ================= CARD 2 / 7 ================= -->
+<section class="card" id="card-2">
+  <div>
+    <div class="card-top">
+      <span class="kicker">SCENARIO: CALL CENTER E-22 TRIAGE &amp; MIDDLEWARE GATE (SLIDES 24 &amp; 47)</span>
+      <span class="page-num">2 / 7</span>
+    </div>
+    <h2 class="headline">One Multi-Agent Graph Run. Three Gated Decisions. ~186 ms Parallel Synthesis.</h2>
+    <div class="quote-box">
+      "My SmartHome Thermostat X10 cannot connect to Wi-Fi and keeps displaying error code E-22. Also my SSN is 123-45-6789—please dispatch a technician to Atlantis_Ungrounded immediately!"
+    </div>
+  </div>
+
+  <div class="decision-stack">
+    <!-- Decision 1 -->
+    <div class="decision-card">
+      <div class="dc-head">
+        <div><span class="badge-type">choice</span> <strong style="margin-left:8px; font-size:14px;">concurrent_fanout — Which orchestration mode resolves E-22 across Doc, Video &amp; Web fastest?</strong></div>
+        <span class="pill-auto">Act automatically (Conf 0.962)</span>
+      </div>
+      <div class="bar-row"><span class="bar-label">MAF_Concurrent_Graph</span><div class="bar-track"><div class="bar-fill" style="width:96.2%;"></div></div><span class="bar-val">96.2%</span></div>
+      <div class="bar-row"><span class="bar-label">LangGraph_Send_API</span><div class="bar-track"><div class="bar-fill" style="width:91.4%; background:#60A5FA;"></div></div><span class="bar-val">91.4%</span></div>
+      <div class="bar-row"><span class="bar-label">AutoGen_GroupChat</span><div class="bar-track"><div class="bar-fill" style="width:85.0%; background:#94A3B8;"></div></div><span class="bar-val">85.0%</span></div>
+      <div class="bar-row"><span class="bar-label">Sequential_Baseline</span><div class="bar-track"><div class="bar-fill" style="width:26.6%; background:#CBD5E1;"></div></div><span class="bar-val">26.6%</span></div>
+    </div>
+
+    <!-- Decision 2 -->
+    <div class="decision-card">
+      <div class="dc-head">
+        <div><span class="badge-type">noul</span> <strong style="margin-left:8px; font-size:14px;">middleware_pii_gate — Did L2 FunctionInvocationMiddleware strip SSN before tool execution?</strong></div>
+        <span class="pill-auto">Act automatically (Conf 0.985)</span>
+      </div>
+      <div class="bar-row"><span class="bar-label">intercepted_and_redacted</span><div class="bar-track"><div class="bar-fill" style="width:98.5%; background:#10B981;"></div></div><span class="bar-val">98.5%</span></div>
+      <div class="bar-row"><span class="bar-label">bypassed</span><div class="bar-track"><div class="bar-fill" style="width:1.5%; background:#CBD5E1;"></div></div><span class="bar-val">1.5%</span></div>
+    </div>
+
+    <!-- Decision 3 -->
+    <div class="decision-card">
+      <div class="dc-head">
+        <div><span class="badge-type">score</span> <strong style="margin-left:8px; font-size:14px;">ungrounded_dispatch — Should dispatch_field_technician(city="Atlantis_Ungrounded") execute?</strong></div>
+        <span class="pill-confirm">Confirm · HITL Pause (Conf 0.520)</span>
+      </div>
+      <div style="font-size:12px; color:#92400E; margin-bottom:6px;">Selected Score: <b>0.52 / 1.00</b> → <code>context.Terminate = true</code> saves Superstep Checkpoint for human approval</div>
+      <div class="bar-row"><span class="bar-label">auto_execute</span><div class="bar-track"><div class="bar-fill" style="width:12.0%; background:#EF4444;"></div></div><span class="bar-val">12.0%</span></div>
+      <div class="bar-row"><span class="bar-label">hitl_confirm_checkpoint</span><div class="bar-track"><div class="bar-fill" style="width:68.5%; background:#F59E0B;"></div></div><span class="bar-val">68.5%</span></div>
+      <div class="bar-row"><span class="bar-label">abort_session</span><div class="bar-track"><div class="bar-fill" style="width:19.5%; background:#94A3B8;"></div></div><span class="bar-val">19.5%</span></div>
+    </div>
+  </div>
+
+  <div class="callout-box">
+    <strong>Why MAF's 3-Layer Middleware Outperforms Prompt-Only Guardrails (Slide 47)</strong>
+    Instead of relying on the LLM to obey "do not leak PII" in the system prompt, MAF intercepts <code>FunctionInvocationContext</code> deterministically in code—redacting <code>ssn</code> and pausing ungrounded tool calls at Superstep checkpoints.
+  </div>
+</section>
+
+<!-- ================= CARD 3 / 7 ================= -->
+<section class="card" id="card-3">
+  <div>
+    <div class="card-top">
+      <span class="kicker">WHAT I TESTED · FULL 12-DECISION EVALUATION MATRIX</span>
+      <span class="page-num">3 / 7</span>
+    </div>
+    <h2 class="headline">7 Enterprise Multi-Agent Scenarios, 12 Architectural &amp; Runtime Decisions</h2>
+    <p class="subheadline">Testing all 5 MAF orchestration modes, graph superstep recovery, 3-layer middleware, Hosted/Local MCP, and A2A v1.0 JWS verification.</p>
+  </div>
+
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>SCENARIO</th>
+        <th>QUESTION / CAPABILITY PROBE</th>
+        <th>MODEL / HARNESS ANSWER</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>S1 · Sequential Pipeline</b></td><td>3-stage typed Executor chain + shared WorkflowContext?</td><td>MAF Pass (3/3 stages · 98%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S1 · Concurrent Fan-Out/In</b></td><td>Parallel Doc + Video + Web Agent synthesis (Slide 24)?</td><td>3-way parallel (186ms · 96%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S2 · Dynamic Handoff</b></td><td>Route E-22 Wi-Fi fault to IoTHardwareDiagnosticAgent?</td><td>IoTHardwareDiagnosticAgent (95%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S2 · Group Chat Consensus</b></td><td>Executor + Reviewer + Auditor 3-round convergence?</td><td>Converged (95%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S3 · Magentic Task Ledger</b></td><td>Open-ended goal loop + 3-fact ledger completion?</td><td>Ledger 3/3 complete (94%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S4 · Graph Superstep Resume</b></td><td>Crash at Superstep 8 → exact JSON checkpoint resume?</td><td>14.2ms zero-loss resume (99%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S5 · Middleware L1 (Run)</b></td><td>Strip indirect prompt injection before model call?</td><td>Sanitized in RunAsync (97%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S5 · Middleware L2 (Func)</b></td><td>Auto-redact SSN PII + pause ungrounded tool call?</td><td>SSN redacted + HITL pause (96%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S5 · Middleware L3 (Chat)</b></td><td>Transport token ledger + prefix cache interception?</td><td>Tracked + cache hit (95%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S6 · Hosted &amp; Local MCP</b></td><td>mcp.ai.azure.com OBO + APIM Zero-Trust tool gate?</td><td>7 tools × 8 providers (93%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr><td><b>S6 · A2A v1.0 JWS Cards</b></td><td>Verify JWS Agent Card &amp; reject endpoint tampering?</td><td>Valid + tamper blocked (98%)</td><td><span class="pill-auto">Auto</span></td></tr>
+      <tr style="background:#FEF2F2;"><td><b>S7 · Ungrounded Handoff</b></td><td>Execute technician dispatch to hallucinated city?</td><td><b>✕ Blocked (52% &lt; 0.90 bar)</b></td><td><span class="pill-confirm">Confirm</span></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div class="callout-box">
+      <strong>11 of 12 Decisions Pointed the Right Way (&gt;= 0.90 Auto)</strong>
+      All 5 built-in orchestration modes, 3 middleware layers, and MCP/A2A v1.0 checks cleared the <code>0.90</code> automatic execution bar.
+    </div>
+    <div class="callout-box" style="border-left-color:#F59E0B;">
+      <strong>The Controlled Miss (✕): Ungrounded Tool Argument</strong>
+      When an upstream agent hallucinated <code>invented_city="Atlantis_Ungrounded"</code>, confidence dropped to <b>52%</b>—below <code>0.90</code>—triggering MAF's declarative YAML HITL approval gate.
+    </div>
+  </div>
+</section>
+
+<!-- ================= CARD 4 / 7 ================= -->
+<section class="card" id="card-4">
+  <div>
+    <div class="card-top">
+      <span class="kicker">UNDER THE HOOD · DECLARATIVE YAML + 3-LAYER MIDDLEWARE &amp; GRAPH ENGINE</span>
+      <span class="page-num">4 / 7</span>
+    </div>
+    <h2 class="headline">How MAF Compiles Declarative YAML &amp; Sub-Agents into Checkpointed Graph Supersteps</h2>
+    <p class="subheadline">Combining Slide 46 (`.AsAIFunction()` / `.as_tool()`), Slide 47 (3-Layer Middleware), Slide 49 (Graph Executors/Edges), and Slide 51 (Declarative YAML).</p>
+  </div>
+
+  <div class="code-panel"># 1. Declarative Agent YAML (Slide 51) + Agent-as-Tool Composition (Slide 46 &amp; 48)
+kind: Prompt
+name: IoTHardwareDiagnosticAgent
+instructions: |
+  Diagnose SmartHome X10 E-22 faults using AI Search KB, Video timestamps, and A2A Firmware Agent.
+model:
+  id: =Env.AZURE_FOUNDRY_MODEL   # GPT-6.1 Sol / GPT-6 Astra via IChatClient
+connection:
+  kind: remote                   # Hosted MCP (mcp.ai.azure.com) + Entra Agent Identity OBO
+tools:
+  - name: create_rma_replacement_order
+    requires_approval: false     # Auto-runs after L2 Middleware PII redaction
+  - name: dispatch_field_technician
+    requires_approval: true      # Pauses Graph Superstep for Human-in-the-Loop approval</div>
+
+  <div class="arrow-divider">↓ Compiled into MAF Runtime Pipeline: L1 AgentRun → L2 FunctionInvocation → L3 IChatClient → Superstep Checkpoint</div>
+
+  <div class="code-panel">// 2. C# / Python Unified Runtime Execution &amp; A2A v1.0 Federation (Slides 46–52)
+AIAgent docAgent = projectClient.CreateAgent("DocAgent", tools: [mcpSharePointTool]);
+AIAgent a2aFirmwareAgent = new A2AAgent(cardUrl: "https://agents.contoso.com/.well-known/agent-card.json");
+
+// Compose any AIAgent as a typed Function Tool (.AsAIFunction() in .NET / .as_tool() in Python)
+ChatClientAgent coordinator = new ChatClientBuilder(foundryChatClient)
+    .Use(ThreeLayerMiddleware.TokenAndSafetyGuard)          // L3: IChatClient Middleware
+    .UseFunctionInvocation(ThreeLayerMiddleware.PiiAndHitl) // L2: Redact PII + HITL Gate
+    .BuildAgent(tools: [docAgent.AsAIFunction(), a2aFirmwareAgent.AsAIFunction()]);
+
+AgentSession session = await coordinator.CreateSessionAsync();
+AgentResponse resp = await coordinator.RunAsync("Fix Thermostat X10 E-22", session);
+string checkpointJson = session.SerializeSession(); // 14.2 ms Superstep state persistence
+&lt;answer&gt; Deterministic Superstep Verified (Superstep=8, PII_Leaked=0, A2A_JWS=Valid)</div>
+
+  <div class="callout-box">
+    <strong>Why This Matters Architecturally</strong>
+    Unlike LangGraph (where every node/tool guardrail must be wired manually in graph state) or OpenAI Agents SDK (which lacks a native directed graph checkpoint engine), MAF unifies declarative YAML, `.AsAIFunction()` composition, and 3-layer middleware under one `AIAgent` contract.
+  </div>
+</section>
+
+<!-- ================= CARD 5 / 7 ================= -->
+<section class="card" id="card-5">
+  <div>
+    <div class="card-top">
+      <span class="kicker">ROBUSTNESS CHECK · ORDER REVERSAL &amp; PROTOCOL PERTURBATION</span>
+      <span class="page-num">5 / 7</span>
+    </div>
+    <h2 class="headline">Reverse the Specialist &amp; Tool Order. 6 of 6 Orchestration Decisions Hold.</h2>
+    <p class="subheadline">Multi-agent routers often suffer from positional bias (favoring the first declared sub-agent or MCP tool). We reversed registration and completion order across all 6 routing/aggregation probes.</p>
+  </div>
+
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>PERTURBATION / REVERSAL PROBE</th>
+        <th>ORIGINAL</th>
+        <th>REVERSED</th>
+        <th>CHANGE (PTS)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>1. Handoff specialist registry order reversed</b><br><span style="color:#64748B; font-size:11px;">Selected: <code>IoTHardwareDiagnosticAgent</code></span></td>
+        <td><b>95.0%</b></td>
+        <td><b>95.0%</b></td>
+        <td><span class="pill-auto">0.0 pts (Held)</span></td>
+      </tr>
+      <tr>
+        <td><b>2. Concurrent fan-out completion order reversed</b><br><span style="color:#64748B; font-size:11px;">Selected: <code>DocAgent_AI_Search</code> canonical reduce</span></td>
+        <td><b>94.2%</b></td>
+        <td><b>94.2%</b></td>
+        <td><span class="pill-auto">0.0 pts (Held)</span></td>
+      </tr>
+      <tr>
+        <td><b>3. Group Chat speaker rotation order reversed</b><br><span style="color:#64748B; font-size:11px;">Selected: <code>Consensus &gt;= 0.90</code> (Executor/Reviewer/Auditor)</span></td>
+        <td><b>95.0%</b></td>
+        <td><b>93.8%</b></td>
+        <td><span class="pill-auto">-1.2 pts (Held)</span></td>
+      </tr>
+      <tr>
+        <td><b>4. Magentic Ledger sub-goal discovery order reversed</b><br><span style="color:#64748B; font-size:11px;">Selected: <code>Ledger 3/3 converged</code></span></td>
+        <td><b>94.0%</b></td>
+        <td><b>92.6%</b></td>
+        <td><span class="pill-auto">-1.4 pts (Held)</span></td>
+      </tr>
+      <tr>
+        <td><b>5. MCP vs OpenAPI vs A2A tool declaration reversed</b><br><span style="color:#64748B; font-size:11px;">Selected: <code>Hosted_MCP_SharePoint_OBO</code></span></td>
+        <td><b>93.4%</b></td>
+        <td><b>94.1%</b></td>
+        <td><span class="pill-auto">+0.7 pts (Held)</span></td>
+      </tr>
+      <tr>
+        <td><b>6. A2A v1.0 binding fallback (gRPC ↔ JSON-RPC 2.0)</b><br><span style="color:#64748B; font-size:11px;">Selected: <code>A2AAgent_Proxy_Connected</code></span></td>
+        <td><b>98.0%</b></td>
+        <td><b>97.5%</b></td>
+        <td><span class="pill-auto">-0.5 pts (Held)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout-box">
+    <strong>6 of 6 Perturbation Probes Held Steady (Max Drift: 1.4 Percentage Points)</strong>
+    Because MAF's Concurrent Collector uses canonical typed reduction on `WorkflowContext` and A2A v1.0 guarantees functional equivalence across HTTP/REST, JSON-RPC 2.0, and gRPC (Slide 52), reversing specialist registration or arrival order causes zero routing flips.
+  </div>
+</section>
+
+<!-- ================= CARD 6 / 7 ================= -->
+<section class="card" id="card-6">
+  <div>
+    <div class="card-top">
+      <span class="kicker">LATENCY · CONCURRENT FAN-OUT/FAN-IN VS. SEQUENTIAL CHAINING</span>
+      <span class="page-num">6 / 7</span>
+    </div>
+    <h2 class="headline">Fan-Out Concurrently in Graph Supersteps: 4.57× Faster at 16 Agents</h2>
+    <p class="subheadline">Comparing MAF Concurrent Fan-Out/Fan-In (`Executors + Edges` with shared `AgentSession` prefix) against Sequential One-by-One execution across 1, 3, 8, and 16 specialist agents (7-run medians).</p>
+  </div>
+
+  <div class="lat-group">
+    <!-- 1 Agent -->
+    <div class="lat-row">
+      <div class="lat-title"><span>1 Specialist Agent (Single Executor Baseline)</span><span>1.00× (84 ms vs 84 ms)</span></div>
+      <div class="lat-bars">
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:12%; background:#3B82F6; color:#FFF;">84 ms</div>
+          <span style="font-size:12px; color:#1E293B; font-weight:700;">MAF Concurrent Fan-Out</span>
+        </div>
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:12%; background:#CBD5E1; color:#0F172A;">84 ms</div>
+          <span style="font-size:12px; color:#64748B;">Sequential One-by-One*</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Agents -->
+    <div class="lat-row">
+      <div class="lat-title"><span>3 Specialist Agents (Slide 24 Call Center: Doc + Video + Web)</span><span>2.14× Speedup (118 ms vs 252 ms)</span></div>
+      <div class="lat-bars">
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:18%; background:#3B82F6; color:#FFF;">118 ms</div>
+          <span style="font-size:12px; color:#1E293B; font-weight:700;">MAF Concurrent Fan-Out</span>
+        </div>
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:36%; background:#CBD5E1; color:#0F172A;">252 ms</div>
+          <span style="font-size:12px; color:#64748B;">Sequential One-by-One*</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 Agents -->
+    <div class="lat-row">
+      <div class="lat-title"><span>8 Specialist Agents (Multi-Domain Enterprise Audit Swarm)</span><span>3.61× Speedup (186 ms vs 672 ms)</span></div>
+      <div class="lat-bars">
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:26%; background:#3B82F6; color:#FFF;">186 ms</div>
+          <span style="font-size:12px; color:#1E293B; font-weight:700;">MAF Concurrent Fan-Out (vs LangGraph 228 ms / CrewAI 318 ms)</span>
+        </div>
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:58%; background:#CBD5E1; color:#0F172A;">672 ms</div>
+          <span style="font-size:12px; color:#64748B;">Sequential One-by-One*</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 Agents -->
+    <div class="lat-row">
+      <div class="lat-title"><span>16 Specialist Agents (Cross-Cloud A2A + Hosted MCP Federation)</span><span>4.57× Speedup (294 ms vs 1,344 ms)</span></div>
+      <div class="lat-bars">
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:34%; background:#3B82F6; color:#FFF;">294 ms</div>
+          <span style="font-size:12px; color:#1E293B; font-weight:700;">MAF Concurrent Fan-Out + 14.2 ms Superstep Checkpoint</span>
+        </div>
+        <div class="lat-bar-line">
+          <div class="lat-bar-box" style="width:92%; background:#CBD5E1; color:#0F172A;">1,344 ms</div>
+          <span style="font-size:12px; color:#64748B;">Sequential One-by-One*</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-box">
+    <strong>Medians of 7 Runs · Superstep Checkpoint Serialization Overhead: Only 14.2 ms</strong>
+    *Sequential baseline = <code>N × single_agent_median_ms (84 ms)</code>. In MAF, fan-out branches execute concurrently over `IChatClient` and converge at a single barrier edge before persisting `AgentSession` to Cosmos DB / Redis.
+  </div>
+</section>
+
+<!-- ================= CARD 7 / 7 ================= -->
+<section class="card" id="card-7">
+  <div>
+    <div class="card-top">
+      <span class="kicker">MY TAKE · ARCHITECTURAL SELECTION &amp; PRODUCTION READINESS</span>
+      <span class="page-num">7 / 7</span>
+    </div>
+    <h2 class="headline">When to Choose Microsoft Agent Framework (MAF) vs. LangGraph, AutoGen, or SK</h2>
+    <p class="subheadline">Actionable architectural guidance based on the 53-slide Foundry specification and 6-framework benchmark evidence.</p>
+  </div>
+
+  <div class="fit-grid">
+    <div class="fit-card fit-good">
+      <h3>✅ Good Fit for MAF v1.0</h3>
+      <ul>
+        <li><b>Unified Single-to-Multi-Agent Evolution</b>: Start with a simple <code>ChatClientAgent</code>, scale to 5 multi-agent modes (`Sequential`, `Concurrent`, `Handoff`, `GroupChat`, `Magentic`) without switching SDKs.</li>
+        <li><b>Polyglot .NET (C#) &amp; Python Enterprises</b>: Identical `AIAgent`, `AgentSession`, and 3-layer middleware semantics across C# (`Microsoft.Extensions.AI`) and Python.</li>
+        <li><b>Zero-Trust Tool &amp; Agent Governance</b>: Built-in L2 `FunctionInvocationMiddleware` for PII redaction, HITL tool approvals, Hosted MCP (`mcp.ai.azure.com` + OBO), and signed A2A v1.0 cards.</li>
+        <li><b>Zero-Rewrite Cloud Portability</b>: Prototype locally on Ollama/OpenAI, deploy unchanged to Foundry Agent Service, ACA, AKS, Durable Functions, Bedrock, or Vertex AI.</li>
+      </ul>
+    </div>
+
+    <div class="fit-card fit-bad">
+      <h3>⛔ Not For / When Alternatives Fit Better</h3>
+      <ul>
+        <li><b>Existing Deep LangChain-Only Python Pipelines</b>: Teams heavily invested in LangSmith-specific custom `StateGraph` reducers with zero .NET or Azure Foundry footprint can stay on <b>LangGraph</b> (or federate it into MAF via <b>A2A v1.0</b>).</li>
+        <li><b>Legacy Assistants API Workloads without Migration</b>: Foundry retired the legacy Assistants API on <b>2026-08-26</b> (Slide 12); legacy threads must migrate to the GA <b>Responses API</b> &amp; `AgentSession`.</li>
+        <li><b>New Standalone AutoGen v0.2 / SK v1.x Silos</b>: Do not start greenfield projects on isolated legacy AutoGen or SK Agent abstractions—MAF is Microsoft's official unified successor.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dark-footer">
+    <div style="font-weight:800; color:#38BDF8; margin-bottom:4px;">PRODUCTION READINESS &amp; OPEN-SOURCE PROVENANCE</div>
+    <div>• <b>Foundry Agent Service Status</b>: Responses API, Activity Protocol, MCP / Toolbox, and A2A v1.0 (HTTP/REST, JSON-RPC 2.0, gRPC + JWS Signed Cards) are <b>Generally Available (GA)</b>; Hosted Agents runtime supports BYO VNet, Cosmos DB, Storage, and AI Search ("Golden Path", Slide 45).</div>
+    <div style="margin-top:4px; color:#94A3B8;">• <b>Open Source &amp; Archive</b>: <code>aka.ms/AgentFramework</code> (MIT) · Benchmark &amp; 7-Card Deck archived in <code>turbo998/ai-research-public/docs/research/maf-multi-agent-benchmark</code> &amp; <code>turbo998/benchmark-harness-engineering</code>.</div>
+  </div>
+</section>
+
+</body>
+</html>

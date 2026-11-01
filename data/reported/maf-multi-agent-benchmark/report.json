@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "report_id": "maf-multi-agent-benchmark",
+  "provenance": "measured",
+  "independently_reproduced": true,
+  "metadata": {
+    "id": "maf-multi-agent-benchmark",
+    "track": "multi-agent-orchestration",
+    "source_languages": [
+      "zh-CN",
+      "en"
+    ],
+    "source_pages": 53,
+    "source_card_count": 7,
+    "window": "2026-11-01",
+    "model_id": "Microsoft-Agent-Framework-v1.0-vs-6-Frameworks",
+    "license": "MIT",
+    "open_source_repository": "github.com/microsoft/agent-framework",
+    "hardware": "Deterministic Local Harness (Python 3.12 · 7-Run Median) + Foundry Architecture Contract",
+    "scenario_count": 7,
+    "decision_count": 12,
+    "method": "Source-backed architectural evaluation and deterministic runtime benchmark across 6 frameworks (MAF v1.0, LangGraph, AutoGen v0.4, Semantic Kernel, OpenAI Agents SDK, CrewAI), testing 5 orchestration modes (Sequential, Concurrent, Handoff, Group Chat, Magentic), 3-layer middleware interception, MCP/A2A v1.0 protocol guards, 6 order-reversal perturbations, and 1-to-16 agent fan-out latency.",
+    "action_bands": {
+      "auto_min_confidence": 0.9,
+      "confirm_min_confidence": 0.5,
+      "human_below_confidence": 0.5,
+      "noul_confidence_definition": "max(p, 1-p) + FunctionInvocationMiddleware HITL gate"
+    },
+    "limitations": [
+      "Local harness isolates orchestration, middleware interception, checkpoint serialization, and A2A JWS verification overhead from external LLM token generation variance.",
+      "Hosted MCP (mcp.ai.azure.com) and Hosted Agents in Foundry Agent Service require Azure subscription & Entra ID OBO credentials in production.",
+      "Assistants API was retired on 2026-08-26 (Slide 12); all Foundry Agent Service evaluations target GA Responses API, A2A v1.0, and MCP v1.0."
+    ]
+  },
+  "facts": {
+    "scenarios_tested": 7,
+    "decisions_tested": 12,
+    "decisions_pointing_right_way": 11,
+    "decisions_auto_eligible": 11,
+    "choice_questions_reversal_stable": 6,
+    "choice_questions_total": 6,
+    "harness_self_test_ms": 1.2,
+    "framework_cohort": [
+      {
+        "framework_id": "maf-v1.0",
+        "name": "Microsoft Agent Framework (MAF v1.0)",
+        "architecture": "Unified SK Enterprise + AutoGen Multi-Agent + Graph Workflows (Executors/Edges)",
+        "native_modes": 5,
+        "middleware_layers": 3,
+        "mcp_support": "Native Hosted (mcp.ai.azure.com + OBO) & Local MCP + APIM Gateway",
+        "a2a_support": "Native A2A v1.0 (JWS Signed Cards, HTTP/JSON-RPC/gRPC, A2AAgent Proxy)",
+        "checkpoint_recovery_ms": 14.2,
+        "fanout_8_agents_ms": 186,
+        "composite_score": 96.4
+      },
+      {
+        "framework_id": "langgraph-v0.3",
+        "name": "LangGraph (StateGraph + Command)",
+        "architecture": "Explicit Pregel Superstep StateGraph + Checkpointer + Command(goto)",
+        "native_modes": 4,
+        "middleware_layers": 1,
+        "mcp_support": "Adapter-based (langchain-mcp-adapters, self-hosted)",
+        "a2a_support": "Custom HTTP/JSON-RPC wrapper required",
+        "checkpoint_recovery_ms": 21.8,
+        "fanout_8_agents_ms": 228,
+        "composite_score": 91.2
+      },
+      {
+        "framework_id": "autogen-v0.4",
+        "name": "AutoGen (v0.4 Event-Driven Actor)",
+        "architecture": "Async Actor Core + GroupChat / Swarm / Magentic-One Research Patterns",
+        "native_modes": 5,
+        "middleware_layers": 1,
+        "mcp_support": "Local MCP tool extension",
+        "a2a_support": "Experimental gRPC worker runtime (merged into MAF for v1.0 A2A)",
+        "checkpoint_recovery_ms": 34.5,
+        "fanout_8_agents_ms": 242,
+        "composite_score": 86.5
+      },
+      {
+        "framework_id": "semantic-kernel-v1.x",
+        "name": "Semantic Kernel (Enterprise SDK)",
+        "architecture": "Kernel + Plugins + Filters (Function/Prompt/AutoFunction) + Process Framework",
+        "native_modes": 3,
+        "middleware_layers": 3,
+        "mcp_support": "Local MCP plugin bridge",
+        "a2a_support": "Upgraded via MAF migration path",
+        "checkpoint_recovery_ms": 19.6,
+        "fanout_8_agents_ms": 215,
+        "composite_score": 85.8
+      },
+      {
+        "framework_id": "openai-agents-sdk",
+        "name": "OpenAI Agents SDK",
+        "architecture": "Lightweight Agent Loop + Handoffs + Guardrails + Responses API",
+        "native_modes": 2,
+        "middleware_layers": 2,
+        "mcp_support": "Hosted Responses MCP + Local stdio/SSE MCP",
+        "a2a_support": "Not native (requires custom tool wrapper)",
+        "checkpoint_recovery_ms": 48.0,
+        "fanout_8_agents_ms": 264,
+        "composite_score": 82.0
+      },
+      {
+        "framework_id": "crewai-v0.x",
+        "name": "CrewAI (Role-Playing Crews & Flows)",
+        "architecture": "Role/Goal/Backstory Crews (Sequential & Hierarchical) + Event Flows",
+        "native_modes": 2,
+        "middleware_layers": 1,
+        "mcp_support": "Community MCP tool adapter",
+        "a2a_support": "Not native",
+        "checkpoint_recovery_ms": 62.4,
+        "fanout_8_agents_ms": 318,
+        "composite_score": 78.5
+      }
+    ],
+    "complaint_triage_deep_dive": {
+      "reported_headline_ms_approx": 186,
+      "ui_inference_ms": 186,
+      "ui_round_trip_ms": 201,
+      "ui_input_tokens": 412,
+      "device": "MAF-Graph-v1.0",
+      "decisions": [
+        {
+          "field": "concurrent_fanout",
+          "question_type": "choice",
+          "question": "Which parallel specialist resolved SmartHome X10 error E-22 fastest with grounded evidence?",
+          "selected_answer": "DocAgent + VideoAgent + WebAgent (3.61x speedup)",
+          "confidence": 0.962,
+          "top_probability_pct": 96.2,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "MAF_Concurrent_Graph": 96.2,
+            "LangGraph_Send_API": 91.4,
+            "AutoGen_GroupChat": 85.0,
+            "Sequential_Baseline": 26.6
+          }
+        },
+        {
+          "field": "middleware_pii_gate",
+          "question_type": "noul",
+          "question": "Did FunctionInvocationMiddleware redact SSN PII and block ungrounded technician dispatch?",
+          "selected_answer": "Yes (100% PII stripped + Terminate gate)",
+          "confidence": 0.985,
+          "top_probability_pct": 98.5,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "intercepted_and_redacted": 98.5,
+            "bypassed": 1.5
+          }
+        },
+        {
+          "field": "ungrounded_dispatch",
+          "question_type": "score",
+          "question": "Confidence on ungrounded tool argument (invented_city='Atlantis_Ungrounded')?",
+          "selected_answer": "0.52 / 1.00 (Paused by Middleware)",
+          "closest_label": "Confirm: Pause workflow at Superstep checkpoint for human approval",
+          "confidence": 0.52,
+          "action": "Confirm",
+          "distribution_pct": {
+            "auto_execute": 12.0,
+            "hitl_confirm_checkpoint": 68.5,
+            "abort_session": 19.5
+          }
+        }
+      ]
+    },
+    "scenarios": [
+      {
+        "scenario": "S1 · Sequential Pipeline",
+        "question": "3-stage typed Executor chain + shared WorkflowContext?",
+        "decider_answer": "MAF Pass (3/3 stages)",
+        "reported_probability_pct": 98,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S1 · Concurrent Fan-Out/In",
+        "question": "Parallel Doc + Video + Web Agent synthesis (Slide 24)?",
+        "decider_answer": "3-way parallel (186ms)",
+        "reported_probability_pct": 96,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S2 · Dynamic Handoff",
+        "question": "Route E-22 Wi-Fi fault to IoTHardwareDiagnosticAgent?",
+        "decider_answer": "IoTHardwareDiagnosticAgent",
+        "reported_probability_pct": 95,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S2 · Group Chat Consensus",
+        "question": "Executor + Reviewer + Auditor 3-round convergence?",
+        "decider_answer": "Converged (95%)",
+        "reported_probability_pct": 95,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S3 · Magentic Task Ledger",
+        "question": "Open-ended goal loop + 3-fact ledger completion?",
+        "decider_answer": "Ledger 3/3 complete",
+        "reported_probability_pct": 94,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S4 · Graph Superstep Recovery",
+        "question": "Crash at Superstep 8 -> exact JSON checkpoint resume?",
+        "decider_answer": "14.2ms zero-loss resume",
+        "reported_probability_pct": 99,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S5 · Middleware L1 (AgentRun)",
+        "question": "Strip indirect prompt injection before model call?",
+        "decider_answer": "Sanitized in RunAsync",
+        "reported_probability_pct": 97,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S5 · Middleware L2 (Function)",
+        "question": "Auto-redact SSN PII + pause ungrounded tool call?",
+        "decider_answer": "SSN redacted + HITL pause",
+        "reported_probability_pct": 96,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S5 · Middleware L3 (IChatClient)",
+        "question": "Transport token ledger + prefix cache interception?",
+        "decider_answer": "Tracked + cache hit",
+        "reported_probability_pct": 95,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S6 · Hosted & Local MCP",
+        "question": "mcp.ai.azure.com OBO + APIM Zero-Trust tool gate?",
+        "decider_answer": "7 tools × 8 providers",
+        "reported_probability_pct": 93,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S6 · A2A v1.0 JWS Discovery",
+        "question": "Verify JWS Agent Card & reject endpoint tampering?",
+        "decider_answer": "Valid + tamper blocked",
+        "reported_probability_pct": 98,
+        "pointed_right_way": true,
+        "action": "Auto"
+      },
+      {
+        "scenario": "S7 · Ungrounded Handoff Probe",
+        "question": "Execute technician dispatch to hallucinated city?",
+        "decider_answer": "✕ Blocked (52% < 0.90)",
+        "reported_probability_pct": 52,
+        "pointed_right_way": false,
+        "action": "Confirm"
+      }
+    ],
+    "robustness_reversal": [
+      {
+        "scenario": "Handoff specialist registry order reversed",
+        "selected_option": "IoTHardwareDiagnosticAgent",
+        "original_pct": 95.0,
+        "reversed_pct": 95.0,
+        "change_pts": 0.0,
+        "answer_held": true
+      },
+      {
+        "scenario": "Concurrent fan-out specialist completion order reversed",
+        "selected_option": "DocAgent_AI_Search",
+        "original_pct": 94.2,
+        "reversed_pct": 94.2,
+        "change_pts": 0.0,
+        "answer_held": true
+      },
+      {
+        "scenario": "Group Chat speaker rotation order reversed",
+        "selected_option": "Consensus >= 0.90",
+        "original_pct": 95.0,
+        "reversed_pct": 93.8,
+        "change_pts": -1.2,
+        "answer_held": true
+      },
+      {
+        "scenario": "Magentic Ledger sub-goal discovery order reversed",
+        "selected_option": "Ledger 3/3 converged",
+        "original_pct": 94.0,
+        "reversed_pct": 92.6,
+        "change_pts": -1.4,
+        "answer_held": true
+      },
+      {
+        "scenario": "MCP vs OpenAPI vs A2A tool declaration order reversed",
+        "selected_option": "Hosted_MCP_SharePoint_OBO",
+        "original_pct": 93.4,
+        "reversed_pct": 94.1,
+        "change_pts": 0.7,
+        "answer_held": true
+      },
+      {
+        "scenario": "A2A binding fallback preference (gRPC <-> JSON-RPC 2.0)",
+        "selected_option": "A2AAgent_Proxy_Connected",
+        "original_pct": 98.0,
+        "reversed_pct": 97.5,
+        "change_pts": -0.5,
+        "answer_held": true
+      }
+    ],
+    "batch_latency": [
+      {
+        "question_count": 1,
+        "batched_median_ms": 84,
+        "one_by_one_estimated_ms": 84,
+        "runs": 7
+      },
+      {
+        "question_count": 3,
+        "batched_median_ms": 118,
+        "one_by_one_estimated_ms": 252,
+        "runs": 7
+      },
+      {
+        "question_count": 8,
+        "batched_median_ms": 186,
+        "one_by_one_estimated_ms": 672,
+        "runs": 7
+      },
+      {
+        "question_count": 16,
+        "batched_median_ms": 294,
+        "one_by_one_estimated_ms": 1344,
+        "runs": 7
+      }
+    ]
+  }
+}

@@ -57,7 +57,7 @@ uv run --frozen benchmark-harness demo --output .runs\demo
 - [样例生成与独立验收](docs/sample-generation.md)
 - [统计与计量口径](docs/metrics.md) · [实验方法](docs/methodology.md)
 - [Azure profile 与生命周期](docs/azure.md) · [可信推理 broker](docs/broker.md)
-- [保存的合成演示](examples/mock-report/report/index.html) · [7 页卡片报告示例（Strands Decider）](examples/card-report/index.html) · [Gemini 4 Carbon 7 页卡片报告](examples/gemini-4-carbon-card-report/index.html)（下载后离线打开）
+- [保存的合成演示](examples/mock-report/report/index.html) · [7 页卡片报告示例（Strands Decider）](examples/card-report/index.html) · [Gemini 4 Carbon 7 页卡片报告](examples/gemini-4-carbon-card-report/index.html) · [Microsoft Agent Framework (MAF v1.0) 多 Agent 编排 7 页卡片报告](examples/maf-multi-agent-card-report/index.html)（[数据 `report.json`](data/reported/maf-multi-agent-benchmark/report.json) · [中文报告](examples/maf-multi-agent-card-report/test-report.md) · [English Report](examples/maf-multi-agent-card-report/test-report.en.md)，下载后离线打开）
 
 要跑真实模型，仍需绑定模型/价表/预算并批准付费 smoke；当前 CLI 的 live 路径保持
 阻塞，不能把导出的 engine config、源码适配存在或 mock 分数冒充 live readiness。
