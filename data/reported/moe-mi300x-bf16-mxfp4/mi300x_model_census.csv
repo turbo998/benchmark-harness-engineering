@@ -1,0 +1,4 @@
+report_id,provenance,independently_reproduced,model_id,repo_revision,total_params_b,active_params_b,layers,routed_experts,top_k,hybrid_operators,bf16_files,bf16_tensors,bf16_weight_gb,bf16_weight_gib,nvfp4_weight_gb,nvfp4_weight_gib,bf16_min_mi300x_nodes,mxfp4_min_mi300x_nodes
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,Muse-Spark-Open-816B-A42B,0fb02478,816,42,62,256,8,None (Standard Attention + Routed MoE),,,1644.333,1531.405,533.011,496.405,2,1
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,NVIDIA-Nemotron-3-Ultra-550B-A55B,77df655d,550,55,,,,Mamba-2 SSM + Attention + LatentMoE (non-gated relu2) + MTP,225,51023,1121.049,1044.058,320.071,298.09,1,1
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,ThinkingMachines-Inkling-975B-A41B,828496ee / bc3fdef2,975,41,66,256,6,Local/Global Attention + ShortConv (264 sconv kernels) + 2 Shared Experts + MTP,109,1552,1904.755,1773.942,592.005,551.348,2,1

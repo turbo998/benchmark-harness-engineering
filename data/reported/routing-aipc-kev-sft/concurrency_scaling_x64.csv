@@ -1,0 +1,7 @@
+report_id,provenance,independently_reproduced,concurrency,server_config,requests_total,correct_count,accuracy_pct,timeouts,median_latency_s,p95_latency_s,throughput_req_per_s,peak_working_set_mib,commit_memory_mib
+routing-aipc-kev-sft,anonymized_reported,false,1,-c 8192 -np 1,384,360,93.75,0,0.92,1.38,0.923,1674,4412
+routing-aipc-kev-sft,anonymized_reported,false,2,-c 16384 -np 2,384,360,93.75,0,2.32,2.86,0.929,1790,4528
+routing-aipc-kev-sft,anonymized_reported,false,4,-c 32768 -np 4,384,360,93.75,0,4.21,5.39,0.93,2238,4976
+routing-aipc-kev-sft,anonymized_reported,false,8,-c 65536 -np 8,384,360,93.75,0,8.48,10.71,0.925,3756,6494
+routing-aipc-kev-sft,anonymized_reported,false,16,-c 131072 -np 16,384,360,93.75,0,16.57,20.89,0.927,5033,7771
+routing-aipc-kev-sft,anonymized_reported,false,32,-c 262144 -np 32,384,351,91.41,9,26.2,30.0,0.919,6906,9644

@@ -1,0 +1,12 @@
+report_id,provenance,independently_reproduced,model_variant,hardware,quantization,file_size_mib,context_flags,support_id_acc_pct,assistant_id_acc_pct,support_ood_acc_pct,assistant_ood_acc_pct,support_median_ms,assistant_median_ms,support_ood_median_ms,assistant_ood_median_ms,peak_working_set_mib,commit_memory_mib
+routing-aipc-kev-sft,anonymized_reported,false,0.8B R2-C Q8_0 (1q/req),Snapdragon X Elite ARM64 CPU,Q8_0 (8.52 BPW),774.8,-c 8192 -b 2048 -ub 2048 --cache-ram 0,97.06,99.58,88.72,96.95,386.34,409.32,635.37,448.31,2585,
+routing-aipc-kev-sft,anonymized_reported,false,0.8B R2-C Q8_0 (3q/req default),Snapdragon X Elite ARM64 CPU,Q8_0 (8.52 BPW),774.8,-c 8192 -b 2048 -ub 2048,96.9,99.6,,,635.0,905.0,,,2314,5014
+routing-aipc-kev-sft,anonymized_reported,false,0.8B R2-C Q8_0 (3q/req compact),Snapdragon X Elite ARM64 CPU,Q8_0 (8.52 BPW),774.8,-c 2048 -b 512 -ub 512,96.9,99.6,,,851.0,1023.0,,,2196,2119
+routing-aipc-kev-sft,anonymized_reported,false,0.8B R2-C Q8_0 (3q/req x64 default),Azure Standard_D16as_v5 x86-64 CPU,Q8_0 (8.52 BPW),774.8,-c 8192 -b 2048 -ub 2048,96.5,99.8,,,1260.0,1430.0,,,1552,4284
+routing-aipc-kev-sft,anonymized_reported,false,0.8B R2-C Q8_0 (3q/req x64 compact),Azure Standard_D16as_v5 x86-64 CPU,Q8_0 (8.52 BPW),774.8,-c 2048 -b 512 -ub 512,96.5,99.8,,,1255.0,1421.0,,,1421,1360
+routing-aipc-kev-sft,anonymized_reported,false,0.8B FT-cf BF16 (3q/req),Snapdragon X Elite ARM64 CPU,BF16 (16.0 BPW),1446.6,-c 8192 -b 2048 -ub 2048,86.9,97.5,82.5,94.4,1007.0,1207.0,,,3001,
+routing-aipc-kev-sft,anonymized_reported,false,0.8B FT-cf Q8_0 (3q/req),Snapdragon X Elite ARM64 CPU,Q8_0 (8.52 BPW),774.8,-c 8192 -b 2048 -ub 2048,86.9,97.9,82.1,94.5,674.0,825.0,,,2333,
+routing-aipc-kev-sft,anonymized_reported,false,0.8B FT-cf Custom Q4_K_M (3q/req),Snapdragon X Elite ARM64 CPU,Custom Q4_K_M (5.76 BPW),527.8,-c 8192 -b 2048 -ub 2048,87.3,97.3,81.8,94.0,657.0,798.0,,,2088,
+routing-aipc-kev-sft,anonymized_reported,false,0.8B FT Q8_0 Adreno GPU (-ngl 99),Snapdragon X Elite Adreno X1-85 OpenCL,Q8_0 (8.52 BPW),774.8,-ngl 99 -c 8192,86.5,93.7,,,1035.0,1221.0,,,4105,
+routing-aipc-kev-sft,anonymized_reported,false,4B FT-cf Q8_0 (3q/req),Snapdragon X Elite ARM64 CPU,Q8_0,4276.0,-c 8192 -b 2048 -ub 2048,96.3,99.8,91.5,99.1,2368.0,2925.0,,,6122,
+routing-aipc-kev-sft,anonymized_reported,false,4B FT-cf Custom Q4_K_M (3q/req),Snapdragon X Elite ARM64 CPU,Custom Q4_K_M,2893.0,-c 8192 -b 2048 -ub 2048,95.3,99.6,91.1,98.4,2033.0,2380.0,,,4743,

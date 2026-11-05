@@ -1,0 +1,868 @@
+{
+  "schema_version": 1,
+  "report_id": "routing-aipc-kev-sft",
+  "track": "routing-decision",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "source_languages": [
+    "zh",
+    "en"
+  ],
+  "source_page_count": 2,
+  "deck_title": "Kev-0.8B / 4B Edge Decision SFT, Temperature Calibration & Q8_0 GGUF Benchmark (7-Card Deck)",
+  "metadata": {
+    "report_date": "2026-11-05",
+    "scope": "Counterfactual SFT (+31.5 to +51.6 pts accuracy), post-hoc temperature calibration (T=2.83), and 8-bit Q8_0 GGUF CPU execution (2-3 GB RAM) on Snapdragon X Elite and x86-64 for Kev-0.8B/4B (Qwen3.5 base)",
+    "base_models": [
+      "jaredpalmer/kev-0.8b@v1.0 (Qwen/Qwen3.5-0.8B-Base, rev dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68)",
+      "jaredpalmer/kev-4b@v1.0 (Qwen/Qwen3.5-4B)"
+    ],
+    "delivered_artifact": "Contoso-Kev-0.8B-FTcf-R2C-Q8_0.gguf (775 MiB, 8.52 BPW)",
+    "training_hardware": "1x NVIDIA H100 NVL (PyTorch)",
+    "edge_hardware": [
+      "Qualcomm Snapdragon X Elite X1E80100 (12 cores, 64 GB RAM, Windows 11 ARM64, llama.cpp b11935)",
+      "Azure Standard_D16as_v5 (AMD EPYC 7763 8 vCPU / 16 threads, x86-64, llama.cpp b11935)"
+    ],
+    "sft_recipe": {
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_targets": "all (attention, FFN, DeltaNet projections)",
+      "pointer_head_dim": 256,
+      "trainable_params_0_8b": "11.3M (1.4% of total)",
+      "trainable_params_4b": "33.8M (0.8% of total)",
+      "learning_rate": 2e-05,
+      "replay_samples": 1000,
+      "replay_dataset": "evals/v7/decision-v7",
+      "counterfactual_rows_r1": 3832,
+      "counterfactual_rows_r2c": 4038,
+      "epochs_r2c": 4,
+      "calibration_temperature_r2c": 2.83
+    }
+  },
+  "sft_accuracy_progression": [
+    {
+      "stage": "B0",
+      "model_size": "0.8B",
+      "description": "Release checkpoint without enterprise rules",
+      "train_rows": 0,
+      "epochs": 0,
+      "train_minutes": 0.0,
+      "gpu_peak_mib": null,
+      "temperature": 1.0,
+      "support_id_acc_pct": 44.7,
+      "assistant_id_acc_pct": 67.1,
+      "support_ood_acc_pct": 43.0,
+      "assistant_ood_acc_pct": 65.7,
+      "support_id_brier": 0.641,
+      "support_id_ece": 0.048,
+      "assistant_id_ece": 0.168,
+      "ood_flip_acc_pct": 48.4,
+      "public_transfer_v4_acc_pct": 64.8
+    },
+    {
+      "stage": "B0-policy",
+      "model_size": "0.8B",
+      "description": "Zero-training prompt policy injection (~950 -> ~4600 chars)",
+      "train_rows": 0,
+      "epochs": 0,
+      "train_minutes": 0.0,
+      "gpu_peak_mib": null,
+      "temperature": 1.0,
+      "support_id_acc_pct": 60.8,
+      "assistant_id_acc_pct": 71.9,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_id_brier": 0.562,
+      "support_id_ece": 0.15,
+      "assistant_id_ece": 0.146,
+      "ood_flip_acc_pct": null,
+      "public_transfer_v4_acc_pct": null
+    },
+    {
+      "stage": "FT",
+      "model_size": "0.8B",
+      "description": "Standard SFT on 2,147 vendor rows + 1,000 replay",
+      "train_rows": 2147,
+      "epochs": 2,
+      "train_minutes": 26.9,
+      "gpu_peak_mib": 4555,
+      "temperature": 1.26,
+      "support_id_acc_pct": 86.5,
+      "assistant_id_acc_pct": 93.5,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_id_brier": 0.197,
+      "support_id_ece": 0.03,
+      "assistant_id_ece": 0.017,
+      "ood_flip_acc_pct": null,
+      "public_transfer_v4_acc_pct": 65.1
+    },
+    {
+      "stage": "FT-cf",
+      "model_size": "0.8B",
+      "description": "Round 1 counterfactual SFT (single-field boundary flips)",
+      "train_rows": 3832,
+      "epochs": 2,
+      "train_minutes": 11.6,
+      "gpu_peak_mib": 7573,
+      "temperature": 1.15,
+      "support_id_acc_pct": 86.9,
+      "assistant_id_acc_pct": 97.5,
+      "support_ood_acc_pct": 82.5,
+      "assistant_ood_acc_pct": 94.4,
+      "support_id_brier": 0.185,
+      "support_id_ece": 0.029,
+      "assistant_id_ece": 0.014,
+      "ood_flip_acc_pct": 64.9,
+      "public_transfer_v4_acc_pct": 64.8
+    },
+    {
+      "stage": "R2-A",
+      "model_size": "0.8B",
+      "description": "Round 2 targeted counterfactual data (+116 region, +90 onsite)",
+      "train_rows": 4038,
+      "epochs": 2,
+      "train_minutes": 14.25,
+      "gpu_peak_mib": 13589,
+      "temperature": 1.2,
+      "support_id_acc_pct": 88.0,
+      "assistant_id_acc_pct": 97.5,
+      "support_ood_acc_pct": 83.3,
+      "assistant_ood_acc_pct": 94.7,
+      "support_id_brier": 0.172,
+      "support_id_ece": 0.032,
+      "assistant_id_ece": 0.015,
+      "ood_flip_acc_pct": 66.8,
+      "public_transfer_v4_acc_pct": 64.5
+    },
+    {
+      "stage": "R2-B",
+      "model_size": "0.8B",
+      "description": "Round 2 4-epoch schedule on 3,832 counterfactual rows",
+      "train_rows": 3832,
+      "epochs": 4,
+      "train_minutes": 21.97,
+      "gpu_peak_mib": 7495,
+      "temperature": 2.41,
+      "support_id_acc_pct": 92.2,
+      "assistant_id_acc_pct": 99.8,
+      "support_ood_acc_pct": 84.8,
+      "assistant_ood_acc_pct": 97.5,
+      "support_id_brier": 0.123,
+      "support_id_ece": 0.025,
+      "assistant_id_ece": 0.008,
+      "ood_flip_acc_pct": 71.1,
+      "public_transfer_v4_acc_pct": 64.6
+    },
+    {
+      "stage": "R2-C",
+      "model_size": "0.8B",
+      "description": "Delivered R2-C recipe (targeted counterfactuals + 4 epochs + T=2.83)",
+      "train_rows": 4038,
+      "epochs": 4,
+      "train_minutes": 22.7,
+      "gpu_peak_mib": 7475,
+      "temperature": 2.83,
+      "support_id_acc_pct": 96.3,
+      "assistant_id_acc_pct": 100.0,
+      "support_ood_acc_pct": 88.4,
+      "assistant_ood_acc_pct": 97.3,
+      "support_id_brier": 0.063,
+      "support_id_ece": 0.025,
+      "assistant_id_ece": 0.009,
+      "ood_flip_acc_pct": 76.9,
+      "public_transfer_v4_acc_pct": 65.2
+    },
+    {
+      "stage": "4B-B0",
+      "model_size": "4B",
+      "description": "4B release checkpoint without enterprise rules",
+      "train_rows": 0,
+      "epochs": 0,
+      "train_minutes": 0.0,
+      "gpu_peak_mib": null,
+      "temperature": 1.0,
+      "support_id_acc_pct": 60.8,
+      "assistant_id_acc_pct": 81.8,
+      "support_ood_acc_pct": 60.7,
+      "assistant_ood_acc_pct": 81.9,
+      "support_id_brier": 0.459,
+      "support_id_ece": 0.059,
+      "assistant_id_ece": 0.098,
+      "ood_flip_acc_pct": null,
+      "public_transfer_v4_acc_pct": 74.1
+    },
+    {
+      "stage": "4B-FT-cf",
+      "model_size": "4B",
+      "description": "4B counterfactual SFT (3,832 rows, 2 epochs, T=2.35)",
+      "train_rows": 3832,
+      "epochs": 2,
+      "train_minutes": 20.1,
+      "gpu_peak_mib": 26215,
+      "temperature": 2.35,
+      "support_id_acc_pct": 95.9,
+      "assistant_id_acc_pct": 99.8,
+      "support_ood_acc_pct": 91.4,
+      "assistant_ood_acc_pct": 98.8,
+      "support_id_brier": 0.068,
+      "support_id_ece": 0.025,
+      "assistant_id_ece": 0.008,
+      "ood_flip_acc_pct": null,
+      "public_transfer_v4_acc_pct": 74.2
+    }
+  ],
+  "edge_quantization_matrix": [
+    {
+      "model_variant": "0.8B R2-C Q8_0 (1q/req)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-c 8192 -b 2048 -ub 2048 --cache-ram 0",
+      "support_id_acc_pct": 97.06,
+      "assistant_id_acc_pct": 99.58,
+      "support_ood_acc_pct": 88.72,
+      "assistant_ood_acc_pct": 96.95,
+      "support_median_ms": 386.34,
+      "assistant_median_ms": 409.32,
+      "support_ood_median_ms": 635.37,
+      "assistant_ood_median_ms": 448.31,
+      "peak_working_set_mib": 2585,
+      "commit_memory_mib": null
+    },
+    {
+      "model_variant": "0.8B R2-C Q8_0 (3q/req default)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 96.9,
+      "assistant_id_acc_pct": 99.6,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_median_ms": 635.0,
+      "assistant_median_ms": 905.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 2314,
+      "commit_memory_mib": 5014
+    },
+    {
+      "model_variant": "0.8B R2-C Q8_0 (3q/req compact)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-c 2048 -b 512 -ub 512",
+      "support_id_acc_pct": 96.9,
+      "assistant_id_acc_pct": 99.6,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_median_ms": 851.0,
+      "assistant_median_ms": 1023.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 2196,
+      "commit_memory_mib": 2119
+    },
+    {
+      "model_variant": "0.8B R2-C Q8_0 (3q/req x64 default)",
+      "hardware": "Azure Standard_D16as_v5 x86-64 CPU",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 96.5,
+      "assistant_id_acc_pct": 99.8,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_median_ms": 1260.0,
+      "assistant_median_ms": 1430.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 1552,
+      "commit_memory_mib": 4284
+    },
+    {
+      "model_variant": "0.8B R2-C Q8_0 (3q/req x64 compact)",
+      "hardware": "Azure Standard_D16as_v5 x86-64 CPU",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-c 2048 -b 512 -ub 512",
+      "support_id_acc_pct": 96.5,
+      "assistant_id_acc_pct": 99.8,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_median_ms": 1255.0,
+      "assistant_median_ms": 1421.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 1421,
+      "commit_memory_mib": 1360
+    },
+    {
+      "model_variant": "0.8B FT-cf BF16 (3q/req)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "BF16 (16.0 BPW)",
+      "file_size_mib": 1446.6,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 86.9,
+      "assistant_id_acc_pct": 97.5,
+      "support_ood_acc_pct": 82.5,
+      "assistant_ood_acc_pct": 94.4,
+      "support_median_ms": 1007.0,
+      "assistant_median_ms": 1207.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 3001,
+      "commit_memory_mib": null
+    },
+    {
+      "model_variant": "0.8B FT-cf Q8_0 (3q/req)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 86.9,
+      "assistant_id_acc_pct": 97.9,
+      "support_ood_acc_pct": 82.1,
+      "assistant_ood_acc_pct": 94.5,
+      "support_median_ms": 674.0,
+      "assistant_median_ms": 825.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 2333,
+      "commit_memory_mib": null
+    },
+    {
+      "model_variant": "0.8B FT-cf Custom Q4_K_M (3q/req)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Custom Q4_K_M (5.76 BPW)",
+      "file_size_mib": 527.8,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 87.3,
+      "assistant_id_acc_pct": 97.3,
+      "support_ood_acc_pct": 81.8,
+      "assistant_ood_acc_pct": 94.0,
+      "support_median_ms": 657.0,
+      "assistant_median_ms": 798.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 2088,
+      "commit_memory_mib": null
+    },
+    {
+      "model_variant": "0.8B FT Q8_0 Adreno GPU (-ngl 99)",
+      "hardware": "Snapdragon X Elite Adreno X1-85 OpenCL",
+      "quantization": "Q8_0 (8.52 BPW)",
+      "file_size_mib": 774.8,
+      "context_flags": "-ngl 99 -c 8192",
+      "support_id_acc_pct": 86.5,
+      "assistant_id_acc_pct": 93.7,
+      "support_ood_acc_pct": null,
+      "assistant_ood_acc_pct": null,
+      "support_median_ms": 1035.0,
+      "assistant_median_ms": 1221.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 4105,
+      "commit_memory_mib": null
+    },
+    {
+      "model_variant": "4B FT-cf Q8_0 (3q/req)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Q8_0",
+      "file_size_mib": 4276.0,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 96.3,
+      "assistant_id_acc_pct": 99.8,
+      "support_ood_acc_pct": 91.5,
+      "assistant_ood_acc_pct": 99.1,
+      "support_median_ms": 2368.0,
+      "assistant_median_ms": 2925.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 6122,
+      "commit_memory_mib": null
+    },
+    {
+      "model_variant": "4B FT-cf Custom Q4_K_M (3q/req)",
+      "hardware": "Snapdragon X Elite ARM64 CPU",
+      "quantization": "Custom Q4_K_M",
+      "file_size_mib": 2893.0,
+      "context_flags": "-c 8192 -b 2048 -ub 2048",
+      "support_id_acc_pct": 95.3,
+      "assistant_id_acc_pct": 99.6,
+      "support_ood_acc_pct": 91.1,
+      "assistant_ood_acc_pct": 98.4,
+      "support_median_ms": 2033.0,
+      "assistant_median_ms": 2380.0,
+      "support_ood_median_ms": null,
+      "assistant_ood_median_ms": null,
+      "peak_working_set_mib": 4743,
+      "commit_memory_mib": null
+    }
+  ],
+  "concurrency_scaling_x64": [
+    {
+      "concurrency": 1,
+      "server_config": "-c 8192 -np 1",
+      "requests_total": 384,
+      "correct_count": 360,
+      "accuracy_pct": 93.75,
+      "timeouts": 0,
+      "median_latency_s": 0.92,
+      "p95_latency_s": 1.38,
+      "throughput_req_per_s": 0.923,
+      "peak_working_set_mib": 1674,
+      "commit_memory_mib": 4412
+    },
+    {
+      "concurrency": 2,
+      "server_config": "-c 16384 -np 2",
+      "requests_total": 384,
+      "correct_count": 360,
+      "accuracy_pct": 93.75,
+      "timeouts": 0,
+      "median_latency_s": 2.32,
+      "p95_latency_s": 2.86,
+      "throughput_req_per_s": 0.929,
+      "peak_working_set_mib": 1790,
+      "commit_memory_mib": 4528
+    },
+    {
+      "concurrency": 4,
+      "server_config": "-c 32768 -np 4",
+      "requests_total": 384,
+      "correct_count": 360,
+      "accuracy_pct": 93.75,
+      "timeouts": 0,
+      "median_latency_s": 4.21,
+      "p95_latency_s": 5.39,
+      "throughput_req_per_s": 0.93,
+      "peak_working_set_mib": 2238,
+      "commit_memory_mib": 4976
+    },
+    {
+      "concurrency": 8,
+      "server_config": "-c 65536 -np 8",
+      "requests_total": 384,
+      "correct_count": 360,
+      "accuracy_pct": 93.75,
+      "timeouts": 0,
+      "median_latency_s": 8.48,
+      "p95_latency_s": 10.71,
+      "throughput_req_per_s": 0.925,
+      "peak_working_set_mib": 3756,
+      "commit_memory_mib": 6494
+    },
+    {
+      "concurrency": 16,
+      "server_config": "-c 131072 -np 16",
+      "requests_total": 384,
+      "correct_count": 360,
+      "accuracy_pct": 93.75,
+      "timeouts": 0,
+      "median_latency_s": 16.57,
+      "p95_latency_s": 20.89,
+      "throughput_req_per_s": 0.927,
+      "peak_working_set_mib": 5033,
+      "commit_memory_mib": 7771
+    },
+    {
+      "concurrency": 32,
+      "server_config": "-c 262144 -np 32",
+      "requests_total": 384,
+      "correct_count": 351,
+      "accuracy_pct": 91.41,
+      "timeouts": 9,
+      "median_latency_s": 26.2,
+      "p95_latency_s": 30.0,
+      "throughput_req_per_s": 0.919,
+      "peak_working_set_mib": 6906,
+      "commit_memory_mib": 9644
+    }
+  ],
+  "cards": [
+    {
+      "kind": "overview",
+      "eyebrow": "HANDS-ON · EDGE DECISION SFT & GGUF",
+      "headline_prefix": "Kev-0.8B Counterfactual SFT: ",
+      "headline_Gradient": "+31.5 to +51.6 pts in 2.2–2.6 GB CPU RAM",
+      "subtitle": "Fine-tuning jaredpalmer/kev-0.8b (Qwen3.5-0.8B-Base) on 4,038 counterfactual rows lifts Support ID accuracy from 44.7% to 96.3% (+51.6 pts) and OOD from 43.0% to 88.4% (+45.4 pts), running in 775 MiB Q8_0 GGUF at 386–409 ms on Snapdragon X Elite CPU.",
+      "workbench": {
+        "title": "Kev-0.8B / 4B Edge Decision SFT & GGUF Workbench",
+        "status_pill": "2026-11-05 · Q8_0 GGUF (775 MiB) · anonymized_reported",
+        "scenarios": [
+          "Support Ticket Triage ID (510 q): 44.7% -> 96.3% (+51.6 pts)",
+          "Support Ticket Triage OOD (1,011 q): 43.0% -> 88.4% (+45.4 pts)",
+          "Enterprise Assistant ID (477 q): 67.1% -> 100.0% (+32.9 pts)",
+          "Enterprise Assistant OOD (951 q): 65.7% -> 97.3% (+31.5 pts)",
+          "OOD Single-Field Flip (312 pairs): 48.4% -> 76.9% (+28.5 pts)",
+          "Public Benchmark (transfer-v4, 656 q): 64.8% -> 65.2% (+0.4 pts)"
+        ],
+        "bands_note": "Readiness gating: Act automatically on p >= 0.80 (T=2.83 calibrated, 100% coverage @ <=5% err on ID); Confirm on 0.50 <= p < 0.80; Send to a human on p < 0.50 or context > 2,048 tokens.",
+        "metrics": [
+          "386 ms Support ID (Q8_0)",
+          "775 MiB GGUF (8.52 BPW)",
+          "2,196–2,585 MiB CPU RAM",
+          "T = 2.83 (ECE 0.009–0.025)"
+        ],
+        "decisions": [
+          {
+            "field": "support_id_and_ood_leap",
+            "question_type": "score",
+            "question": "How much does Round 2 C counterfactual SFT improve Support ID (510 q) and OOD (1,011 q) over release B0?",
+            "selected_answer": "Support ID: 44.7% -> 96.3% (+51.6 pts) · Support OOD: 43.0% -> 88.4% (+45.4 pts)",
+            "closest_label": "On Snapdragon X Elite Q8_0 GGUF (1q/req): 97.06% Support ID (386.34 ms) & 88.72% OOD (635.37 ms)",
+            "confidence": 0.963,
+            "action": "Act automatically",
+            "distribution_pct": {
+              "R2-C Q8_0 Support ID (97.1%)": 97.1,
+              "R2-C PyTorch Support ID (96.3%)": 96.3,
+              "R2-C PyTorch Support OOD (88.4%)": 88.4,
+              "Release B0 Support ID (44.7%)": 44.7
+            }
+          },
+          {
+            "field": "assistant_id_and_calibration",
+            "question_type": "choice",
+            "question": "Does post-hoc temperature scaling (T=2.83) calibrate Assistant ID/OOD probabilities for automated execution?",
+            "selected_answer": "Yes: Assistant ID 100.0% (ECE 0.009, Brier 0.003) · Assistant OOD 97.3% (ECE 0.008)",
+            "closest_label": "Support ID Brier drops 0.641 -> 0.063 (ECE 0.025), enabling 100.0% coverage at <=5% error on ID splits",
+            "confidence": 0.996,
+            "action": "Act automatically",
+            "distribution_pct": {
+              "R2-C PyTorch Assistant ID (100.0%)": 100.0,
+              "R2-C Q8_0 Assistant ID (99.6%)": 99.6,
+              "R2-C PyTorch Assistant OOD (97.3%)": 97.3,
+              "Release B0 Assistant ID (67.1%)": 67.1
+            }
+          },
+          {
+            "field": "edge_gguf_memory_budget",
+            "question_type": "noul",
+            "question": "Does 8-bit Q8_0 GGUF stay within the 2–3 GB CPU RAM budget on Snapdragon X Elite and x86-64?",
+            "selected_answer": "Yes: 2,196 MiB working set / 2,119 MiB commit (compact -c 2048) on X Elite; 1,421–2,238 MiB on x64 (N=1..4)",
+            "closest_label": "774.8 MiB Q8_0 file (8.52 BPW) matches BF16 accuracy while cutting commit RAM by 58%",
+            "confidence": 0.995,
+            "action": "Act automatically",
+            "distribution_pct": {
+              "Cross-ISA ARM64 vs x64 Match (982/987 = 99.5%)": 99.5,
+              "Compact Context Bitwise Parity (987/987 = 100.0%)": 100.0
+            }
+          }
+        ]
+      },
+      "callouts": [
+        {
+          "lead": "Edge Decision Model SFT & Quantization Validation (anonymized_reported, independently_reproduced=false).",
+          "body": "Trained in 22m 42s on 1x H100 NVL (7,475 MiB peak VRAM) using LoRA rank 16 across all attention, FFN, and DeltaNet projections plus the 256-dim pointer decision head (11.3M params = 1.4%)."
+        }
+      ]
+    },
+    {
+      "kind": "deep_dive",
+      "eyebrow": "SCENARIO: COUNTERFACTUAL BOUNDARY FLIP & CALIBRATION",
+      "headline": "1 Request. 3 Calibrated Decisions. 386 ms in 2.52 GiB RAM.",
+      "quote": "Standard SFT memorizes surface templates (64.9% OOD single-field flip); Round 2 C counterfactual SFT pairs every base ticket with single-field boundary flips (days, amount, region, photo, onsite) to reach 76.9% OOD flip and 97.06% Support ID on Q8_0 GGUF.",
+      "decisions": [
+        {
+          "field": "replacement_vs_repair_boundary",
+          "question_type": "choice",
+          "question": "Day 16 fault vs <=15-day instant replacement policy cutoff (days-window counterfactual flip)",
+          "selected_answer": "approve_onsite_component_repair (Days OOD flip: 37.4% B0 -> 78.6% R2-C)",
+          "closest_label": "B0-policy prompt stuffing takes 4,353 ms and still errs on boundary flips (60.8% ID)",
+          "confidence": 0.971,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "approve_onsite_component_repair (Selected)": 97.1,
+            "approve_full_unit_replacement (Day <=15 trap)": 2.1,
+            "reject_claim_out_of_warranty": 0.8
+          }
+        },
+        {
+          "field": "onsite_service_minority_recall",
+          "question_type": "choice",
+          "question": "Onsite technician dispatch eligibility after adding +90 onsite & +116 region counterfactual positives",
+          "selected_answer": "dispatch_next_business_day_onsite_engineer (ID recall: 2/18 -> 17/18 = 94.4%)",
+          "closest_label": "Region OOD flip jumps from 35.7% (R1 FT-cf) to 69.0% (R2-C)",
+          "confidence": 0.944,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "R2-C Onsite Positive ID Recall (17/18 = 94.4%)": 94.4,
+            "R2-C Region OOD Flip Accuracy (69.0%)": 69.0,
+            "R1 FT-cf Onsite Positive ID Recall (2/18 = 11.1%)": 11.1
+          }
+        },
+        {
+          "field": "quantization_tier_selection",
+          "question_type": "score",
+          "question": "8-bit Q8_0 (775 MiB) vs BF16 (1,447 MiB), Custom Q4_K_M (528 MiB), and Adreno OpenCL GPU (-ngl 99)",
+          "selected_answer": "Q8_0 CPU Wins: 386 ms (1q) / 635 ms (3q), 2,196–2,585 MiB RAM, zero accuracy loss",
+          "closest_label": "Adreno OpenCL is slower (1,035 ms) and uses 4,105 MiB + 3.4 GB shared GPU RAM",
+          "confidence": 0.971,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "0.8B R2-C Q8_0 Support ID (97.1%)": 97.1,
+            "0.8B FT-cf Custom Q4_K_M Support ID (87.3%)": 87.3,
+            "0.8B FT-cf BF16 Support ID (86.9%)": 86.9,
+            "0.8B FT Q8_0 Adreno GPU Support ID (86.5%)": 86.5
+          }
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Post-hoc temperature scaling (T=2.83) prevents overconfident logits after 4-epoch SFT.",
+          "body": "Without changing argmax accuracy, T=2.83 aligns predicted confidence with empirical accuracy (Support ID ECE 0.025, Assistant ID ECE 0.009; Q8_0 ECE 0.034 / 0.007)."
+        }
+      ]
+    },
+    {
+      "kind": "scorecard",
+      "eyebrow": "WHAT I TESTED",
+      "headline": "9 SFT, Quantization & Context Stages Across 2,949 Edge Queries",
+      "rows": [
+        {
+          "scenario": "Baseline & Prompt",
+          "question": "B0 Release 0.8B (No domain rules in weights or prompt)",
+          "decider_answer": "Support ID 44.7% | OOD 43.0%",
+          "reported_probability_pct": 44.7,
+          "pointed_right_way": false,
+          "action": "Human"
+        },
+        {
+          "scenario": "Baseline & Prompt",
+          "question": "B0-policy Prompt 0.8B (~4,600 chars, 4,353 ms latency, 3,446 MiB)",
+          "decider_answer": "Support ID 60.8% | Asst 71.9%",
+          "reported_probability_pct": 60.8,
+          "pointed_right_way": false,
+          "action": "Human"
+        },
+        {
+          "scenario": "Round 1 SFT",
+          "question": "Standard FT 0.8B (2,147 rows + 1k replay, 2 ep, 26.9m, T=1.26)",
+          "decider_answer": "Support ID 86.5% | Asst 93.5%",
+          "reported_probability_pct": 86.5,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "Round 1 SFT",
+          "question": "Counterfactual FT-cf 0.8B (3,832 rows, 2 ep, 11.6m, T=1.15)",
+          "decider_answer": "Support ID 86.9% | OOD 82.5%",
+          "reported_probability_pct": 86.9,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "Round 2 SFT",
+          "question": "R2-A Targeted Data (4,038 rows, 2 ep, 14.3m, T=1.20)",
+          "decider_answer": "Support ID 88.0% | OOD 83.3%",
+          "reported_probability_pct": 88.0,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "Round 2 SFT",
+          "question": "R2-B 4-Epoch Schedule (3,832 rows, 4 ep, 22.0m, T=2.41)",
+          "decider_answer": "Support ID 92.2% | Asst 99.8%",
+          "reported_probability_pct": 92.2,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Round 2 SFT",
+          "question": "R2-C Delivered Recipe (4,038 rows, 4 ep, 22.7m, T=2.83)",
+          "decider_answer": "Support ID 96.3% | Asst 100.0%",
+          "reported_probability_pct": 96.3,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Edge GGUF (X Elite)",
+          "question": "0.8B R2-C Q8_0 1q/req (775 MiB, 386 ms, 2,585 MiB RAM)",
+          "decider_answer": "Support ID 97.06% | OOD 88.72%",
+          "reported_probability_pct": 97.1,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Edge GGUF (X Elite)",
+          "question": "0.8B R2-C Q8_0 Compact -c 2048 (2,196 MiB WS / 2,119 MiB Commit)",
+          "decider_answer": "Support ID 96.9% | Asst 99.6%",
+          "reported_probability_pct": 96.9,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Edge GGUF (X Elite)",
+          "question": "0.8B FT-cf Custom Q4_K_M (528 MiB, 657 ms, 2,088 MiB RAM)",
+          "decider_answer": "Support ID 87.3% | OOD 81.8%",
+          "reported_probability_pct": 87.3,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "4B Scale Comparison",
+          "question": "4B FT-cf Q8_0 (4,276 MiB file, 2,368 ms, 6,122 MiB RAM)",
+          "decider_answer": "Support ID 96.3% | OOD 91.5%",
+          "reported_probability_pct": 96.3,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Boundary Stress",
+          "question": "Long History 3k–8k tokens (160 cases, 7 overflow, 26,395 ms)",
+          "decider_answer": "44.9% Acc (5,060 MiB RAM)",
+          "reported_probability_pct": 44.9,
+          "pointed_right_way": false,
+          "action": "Human"
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Why Prompt Policy Injection (✕) and Long Uncompressed History (✕) fail on edge.",
+          "body": "B0-policy inflates prompt length from ~950 to ~4,600 chars, slowing laptop CPU inference 6.5x (666 -> 4,353 ms) while stalling at 60.8% accuracy. On 3k–8k token transcripts, accuracy drops to 44.9% (26.4s)."
+        },
+        {
+          "lead": "Why Q8_0 (775 MiB) is the production sweet spot over Q4_K_M and 4B.",
+          "body": "0.8B R2-C Q8_0 matches 4B Support ID (97.06% vs 96.3%) while using 6.1x less latency (386 ms vs 2,368 ms) and 2.4x less RAM (2.58 GiB vs 6.12 GiB)."
+        }
+      ]
+    },
+    {
+      "kind": "protocol",
+      "eyebrow": "UNDER THE HOOD",
+      "headline": "Pointer Decision Head + LoRA-All + Temperature Scaling + GGUF Export",
+      "top_code": "{\n  \"architecture\": \"Qwen3.5-0.8B-Base + Pointer Decision Head (d=256)\",\n  \"scoring_formula\": \"z_i = dot(k(h_opt_i), q(h_decide)) / 16\",\n  \"calibrated_prob\": \"p_i = softmax(z / T)_i, where T_R2C = 2.83\",\n  \"sft_config\": {\n    \"lora_rank\": 16, \"lora_alpha\": 32,\n    \"lora_targets\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\", \"gate_proj\", \"up_proj\", \"down_proj\", \"deltanet_in\", \"deltanet_out\"],\n    \"trainable_head\": [\"decision_q\", \"decision_k\"],\n    \"trainable_params\": \"11.3M / 800M (1.4%)\",\n    \"dataset\": \"4,038 counterfactual vendor rows + 1,000 decision-v7 replay rows\"\n  }\n}",
+      "transition": "↓ single-prefill pointer scoring & compact llama.cpp CPU execution",
+      "bottom_code": "# 1. Export LoRA-merged + T=2.83 calibrated model to 8-bit GGUF (774.8 MiB, 8.52 BPW)\nllama-quantize Contoso-Kev-0.8B-FTcf-R2C-BF16.gguf Contoso-Kev-0.8B-FTcf-R2C-Q8_0.gguf Q8_0\n\n# 2. Run on AIPC CPU within 2.1–2.5 GiB RAM (987/987 bitwise-identical to -c 8192)\nllama-server -m Contoso-Kev-0.8B-FTcf-R2C-Q8_0.gguf \\\n  -c 2048 -b 512 -ub 512 --cache-ram 0 -np 1\n# Prefill forward pass extracts h_opt_i & h_decide -> <answer> probabilities in 386 ms",
+      "callouts": [
+        {
+          "lead": "At <answer> Kev computes option probabilities in one prefill pass with zero autoregressive token decoding.",
+          "body": "Shrinking context flags from -c 8192 -b 2048 -ub 2048 to -c 2048 -b 512 -ub 512 cuts Windows commit memory from 5,014 MiB to 2,119 MiB (-2,895 MiB) with 987/987 identical predictions."
+        }
+      ]
+    },
+    {
+      "kind": "robustness",
+      "eyebrow": "ROBUSTNESS CHECK",
+      "headline": "Counterfactual Flip Gains (+28.5 to +51.6 pts) & 99.5% Cross-ISA Parity",
+      "subtitle": "Comparing Release B0 (ORIGINAL) against Delivered Round 2 C (REVERSED / UPGRADED) across ID, OOD, single-field boundary flips, and general capability retention.",
+      "rows": [
+        {
+          "scenario": "Support Ticket Triage ID (510 questions)",
+          "selected_option": "B0 44.7% -> R2-C 96.3% (Q8_0: 97.1%)",
+          "original_pct": 44.7,
+          "reversed_pct": 96.3,
+          "change_pts": 51.6,
+          "answer_held": true
+        },
+        {
+          "scenario": "Support Ticket Triage OOD (1,011 questions)",
+          "selected_option": "B0 43.0% -> R2-C 88.4% (Q8_0: 88.7%)",
+          "original_pct": 43.0,
+          "reversed_pct": 88.4,
+          "change_pts": 45.4,
+          "answer_held": true
+        },
+        {
+          "scenario": "Enterprise Assistant ID (477 questions)",
+          "selected_option": "B0 67.1% -> R2-C 100.0% (Q8_0: 99.6%)",
+          "original_pct": 67.1,
+          "reversed_pct": 100.0,
+          "change_pts": 32.9,
+          "answer_held": true
+        },
+        {
+          "scenario": "Enterprise Assistant OOD (951 questions)",
+          "selected_option": "B0 65.7% -> R2-C 97.3% (Q8_0: 97.0%)",
+          "original_pct": 65.7,
+          "reversed_pct": 97.3,
+          "change_pts": 31.6,
+          "answer_held": true
+        },
+        {
+          "scenario": "OOD Single-Field Counterfactual Flip (312 pairs)",
+          "selected_option": "B0 48.4% -> R2-C 76.9% (Days: 37.4% -> 78.6%)",
+          "original_pct": 48.4,
+          "reversed_pct": 76.9,
+          "change_pts": 28.5,
+          "answer_held": true
+        },
+        {
+          "scenario": "Public General Decision Benchmark (transfer-v4, 656 q)",
+          "selected_option": "B0 64.8% -> R2-C 65.2% (1,000 decision-v7 replay rows)",
+          "original_pct": 64.8,
+          "reversed_pct": 65.2,
+          "change_pts": 0.4,
+          "answer_held": true
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Counterfactual data + 4-epoch schedule unlocks +28.5 pts on OOD boundary flips without catastrophic forgetting.",
+          "body": "Cross-architecture Q8_0 verification between Snapdragon X Elite (ARM64) and AMD EPYC 7763 (x86-64) also achieved 982/987 (99.49%) exact decision agreement."
+        }
+      ]
+    },
+    {
+      "kind": "latency",
+      "eyebrow": "LATENCY & MEMORY SCALING",
+      "headline": "386 ms on AIPC CPU & <=2.24 GiB RAM Up to 4x Parallel Slots",
+      "subtitle": "Comparing optimized Q8_0 GGUF CPU path (Batched / Blue) against baseline BF16, Prompt-Policy, or default commit memory (One by one* / Gray).",
+      "rows": [
+        {
+          "question_count": 1,
+          "batched_median_ms": 386,
+          "one_by_one_estimated_ms": 386,
+          "runs": 510
+        },
+        {
+          "question_count": 2,
+          "batched_median_ms": 635,
+          "one_by_one_estimated_ms": 4353,
+          "runs": 170
+        },
+        {
+          "question_count": 3,
+          "batched_median_ms": 674,
+          "one_by_one_estimated_ms": 1007,
+          "runs": 170
+        },
+        {
+          "question_count": 4,
+          "batched_median_ms": 2119,
+          "one_by_one_estimated_ms": 5014,
+          "runs": 329
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Row 1: 1-question Support ID median latency on X Elite Q8_0 is 386 ms (409 ms Assistant ID, 2,585 MiB RAM).",
+          "body": "Row 2: 3-question Support ID on R2-C Q8_0 (635 ms) vs B0-policy prompt injection (4,353 ms, 6.85x slower). Row 3: FT-cf Q8_0 (674 ms) vs BF16 (1,007 ms). Row 4: Commit RAM in MiB for compact -c 2048 (2,119 MiB) vs default -c 8192 (5,014 MiB)."
+        }
+      ]
+    },
+    {
+      "kind": "takeaways",
+      "eyebrow": "MY TAKE",
+      "headline": "Production-Ready for Structured AIPC Decisions (<2k Tokens, 2–3 GB RAM)",
+      "good_fit": [
+        "Offline or privacy-strict AI PC (Snapdragon X Elite / Intel Core Ultra / AMD Ryzen AI) structured routing, entitlement, and policy gating within 2.1–2.6 GiB CPU RAM",
+        "Multi-decision atomic forms (scoring 3–5 policy questions in a single 386–851 ms prefill pass) where prompt-stuffing is 6.8x slower and 35.5 pts less accurate",
+        "Uncertainty-gated workflows using T=2.83 calibrated probabilities (ECE 0.009–0.025) to auto-execute 90–100% of ID tickets at <=5% error",
+        "Fast enterprise policy updates: 4,038 counterfactual rows + 1,000 replay rows train in 22.7 min on 1x H100 (7.5 GiB VRAM)"
+      ],
+      "not_for": [
+        "Uncompressed multi-turn chat transcripts > 2,048 tokens (on 3k–8k token logs, accuracy falls to 44.9% and latency spikes to 26.4s)",
+        "Open-ended free-form text generation (Kev's pointer head scores discrete candidate options in a single prefill pass)",
+        "Single-instance high-concurrency CPU queuing (N >= 8 on 8-vCPU x64 queues linearly at ~0.93 req/s while inflating RAM to 3.8–6.9 GiB)",
+        "Naive 4-bit quantization or Adreno OpenCL GPU offload (-ngl 99 is 1.5x slower than CPU and adds 1.8 GiB working set + 3.4 GB shared RAM)"
+      ],
+      "dark_box": {
+        "lead": "Delivered Artifact: Contoso-Kev-0.8B-FTcf-R2C-Q8_0.gguf (775 MiB, T=2.83) · 2.1–2.6 GiB CPU RAM · 96.3–100.0% ID Accuracy.",
+        "repo": "Source: AIPC Decision Model SFT, Calibration & Quantization Evaluation · anonymized_reported"
+      }
+    }
+  ]
+}

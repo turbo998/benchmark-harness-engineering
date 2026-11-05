@@ -1,0 +1,10 @@
+report_id,provenance,independently_reproduced,stage,model_size,description,train_rows,epochs,train_minutes,gpu_peak_mib,temperature,support_id_acc_pct,assistant_id_acc_pct,support_ood_acc_pct,assistant_ood_acc_pct,support_id_brier,support_id_ece,assistant_id_ece,ood_flip_acc_pct,public_transfer_v4_acc_pct
+routing-aipc-kev-sft,anonymized_reported,false,B0,0.8B,Release checkpoint without enterprise rules,0,0,0.0,,1.0,44.7,67.1,43.0,65.7,0.641,0.048,0.168,48.4,64.8
+routing-aipc-kev-sft,anonymized_reported,false,B0-policy,0.8B,Zero-training prompt policy injection (~950 -> ~4600 chars),0,0,0.0,,1.0,60.8,71.9,,,0.562,0.15,0.146,,
+routing-aipc-kev-sft,anonymized_reported,false,FT,0.8B,Standard SFT on 2147 vendor rows + 1000 replay,2147,2,26.9,4555,1.26,86.5,93.5,,,0.197,0.03,0.017,,65.1
+routing-aipc-kev-sft,anonymized_reported,false,FT-cf,0.8B,Round 1 counterfactual SFT (single-field boundary flips),3832,2,11.6,7573,1.15,86.9,97.5,82.5,94.4,0.185,0.029,0.014,64.9,64.8
+routing-aipc-kev-sft,anonymized_reported,false,R2-A,0.8B,Round 2 targeted counterfactual data (+116 region +90 onsite),4038,2,14.25,13589,1.2,88.0,97.5,83.3,94.7,0.172,0.032,0.015,66.8,64.5
+routing-aipc-kev-sft,anonymized_reported,false,R2-B,0.8B,Round 2 4-epoch schedule on 3832 counterfactual rows,3832,4,21.97,7495,2.41,92.2,99.8,84.8,97.5,0.123,0.025,0.008,71.1,64.6
+routing-aipc-kev-sft,anonymized_reported,false,R2-C,0.8B,Delivered R2-C recipe (targeted counterfactuals + 4 epochs + T=2.83),4038,4,22.7,7475,2.83,96.3,100.0,88.4,97.3,0.063,0.025,0.009,76.9,65.2
+routing-aipc-kev-sft,anonymized_reported,false,4B-B0,4B,4B release checkpoint without enterprise rules,0,0,0.0,,1.0,60.8,81.8,60.7,81.9,0.459,0.059,0.098,,74.1
+routing-aipc-kev-sft,anonymized_reported,false,4B-FT-cf,4B,4B counterfactual SFT (3832 rows 2 epochs T=2.35),3832,2,20.1,26215,2.35,95.9,99.8,91.4,98.8,0.068,0.025,0.008,,74.2

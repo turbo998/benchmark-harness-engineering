@@ -56,11 +56,44 @@ def test_gemini_4_carbon_reported_cards_and_catalog_integrity(workdir: Path) -> 
     assert "<script" not in content
 
     catalog = json.loads((root / "data" / "reported" / "catalog.json").read_bytes())
-    assert catalog["report_families"] == 10
-    assert catalog["source_pages"] == 17
+    assert catalog["report_families"] == 12
+    assert catalog["source_pages"] == 21
     report_ids = [r["report_id"] for r in catalog["reports"]]
     assert "coding-nineteen" in report_ids
     assert "gemini-4-carbon" in report_ids
+    assert "routing-aipc-kev-sft" in report_ids
+    assert "moe-mi300x-bf16-mxfp4" in report_ids
+
+
+def test_aipc_kev_sft_and_moe_mi300x_reported_cards_and_bilingual_docs(
+    workdir: Path,
+) -> None:
+    root = Path(__file__).resolve().parents[1]
+    for report_id, html_rel, expected_phrase in [
+        (
+            "routing-aipc-kev-sft",
+            Path("examples") / "aipc-kev-sft-card-report" / "index.html",
+            "Q8_0 GGUF",
+        ),
+        (
+            "moe-mi300x-bf16-mxfp4",
+            Path("examples") / "moe-mi300x-card-report" / "index.html",
+            "MI300X",
+        ),
+    ]:
+        source = root / "data" / "reported" / report_id / "report.json"
+        out = workdir / f"{report_id}-cards.html"
+        meta = generate_cards(source, out)
+        assert meta["cards"] == 7
+        assert meta["provenance"] == "anonymized_reported"
+        content = out.read_text(encoding="utf-8")
+        assert content.count('class="report-card"') == 7
+        assert "1 / 7" in content and "7 / 7" in content
+        assert expected_phrase in content
+        assert "<script" not in content
+        assert (root / html_rel).is_file()
+        assert (root / "docs" / "reports" / f"{report_id}.md").is_file()
+        assert (root / "docs" / "reports" / f"{report_id}.en.md").is_file()
 
 
 def test_maf_multi_agent_benchmark_report_and_cards_integrity() -> None:

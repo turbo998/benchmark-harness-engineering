@@ -1,7 +1,7 @@
 # 匿名历史测试报告档案
 
-本档案将指定资料库中的历史测试报告与 7 页视觉卡片评测归并为 **10 个主题**：
-四个 coding-agent 主题、一个前沿编程/智能体/网络安全综合评测主题（增补报告六：Gemini 4 Carbon）和五个路由/决策模型主题。中英文版本与视觉卡片合并归档，不当成独立实验；
+本档案将指定资料库中的历史测试报告与 7 页视觉卡片评测归并为 **12 个主题**：
+四个 coding-agent 主题、一个前沿编程/智能体/网络安全综合评测主题（增补报告六：Gemini 4 Carbon）、六个路由/端侧决策模型主题（含增补报告七：Kev-0.8B/4B 反事实 SFT 与 8-bit GGUF 端侧验证）以及一个超大 MoE 模型精度与部署架构主题（增补报告八：Azure AMD MI300X 上 Muse Spark Open / Nemotron 3 Ultra / Inkling 的 BF16 与 MXFP4 验证）。中英文版本与视觉卡片合并归档，不当成独立实验；
 其他私人页面未迁移。内容为重新撰写的方法、事实数据和限制说明，
 **不是原文转载，也不是本 harness 新跑出的成绩**。
 
@@ -17,6 +17,8 @@
 | Decision-1 四引擎对比 | 中 / 英 | 40 个请求，三轮，480 次决策 | [routing-decision](routing-decision.md) |
 | OpenJev 补充对比 | 中 | 新测 120 次，另四个引擎复用上一报告 | [routing-openjev](routing-openjev.md) |
 | Strands Decider 2B 决策评测 | 英（7 页卡片） | 7 个场景 12 次决策、6 题逆序鲁棒性与批量延迟 | [routing-strands-decider](routing-strands-decider.md) |
+| AIPC 端侧决策模型 Kev-0.8B/4B 微调与量化 | 中 / 英（含 7 页卡片） | 反事实 SFT（准确率 +31.5 至 +51.6 pts）、$T=2.83$ 校准与 `Q8_0` GGUF（2.1–2.6 GB CPU RAM，386 ms） | [routing-aipc-kev-sft](routing-aipc-kev-sft.md) · [EN](routing-aipc-kev-sft.en.md) · [7 页卡片](../../examples/aipc-kev-sft-card-report/index.html) |
+| Azure MI300X 超大 MoE BF16 与 MXFP4 验证 | 中 / 英（含 7 页卡片） | Muse Spark 816B、Nemotron 3 Ultra 550B、Inkling 975B 在 1–2 节点 MI300X 上的 BF16 (317–349 tok/s) 与 MXFP4 验证 | [moe-mi300x-bf16-mxfp4](moe-mi300x-bf16-mxfp4.md) · [EN](moe-mi300x-bf16-mxfp4.en.md) · [7 页卡片](../../examples/moe-mi300x-card-report/index.html) |
 
 ## 如何读数据
 

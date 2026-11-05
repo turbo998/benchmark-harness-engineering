@@ -15,13 +15,15 @@ An offline-first, provenance-sealed evaluation and visual report generation harn
    - Renders self-contained `900px × 1125px` (`4:5` portrait) 7-card HTML decks with `Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'` and zero external scripts or network requests.
    - Specification: [`docs/research/visual-report-card-format.md`](docs/research/visual-report-card-format.md) and [`docs/research/benchmark-report-system-prompt.md`](docs/research/benchmark-report-system-prompt.md).
    - Reference Decks:
+     - **AIPC Edge Decision Model (Kev-0.8B / 4B) SFT, Calibration & Q8_0 GGUF (Supplement 7)**: [`examples/aipc-kev-sft-card-report/index.html`](examples/aipc-kev-sft-card-report/index.html) ([`report.json`](data/reported/routing-aipc-kev-sft/report.json) · [ZH](docs/reports/routing-aipc-kev-sft.md) · [EN](docs/reports/routing-aipc-kev-sft.en.md))
+     - **Azure AMD MI300X Large MoE (Muse Spark 816B / Nemotron 3 Ultra 550B / Inkling 975B) BF16 & MXFP4 (Supplement 8)**: [`examples/moe-mi300x-card-report/index.html`](examples/moe-mi300x-card-report/index.html) ([`report.json`](data/reported/moe-mi300x-bf16-mxfp4/report.json) · [ZH](docs/reports/moe-mi300x-bf16-mxfp4.md) · [EN](docs/reports/moe-mi300x-bf16-mxfp4.en.md))
      - **Microsoft Agent Framework (MAF v1.0) vs. 6 Mainstream Frameworks**: [`examples/maf-multi-agent-card-report/index.html`](examples/maf-multi-agent-card-report/index.html) ([`report.json`](data/reported/maf-multi-agent-benchmark/report.json) · [ZH](examples/maf-multi-agent-card-report/test-report.md) · [EN](examples/maf-multi-agent-card-report/test-report.en.md))
      - **Gemini 4 Carbon (Supplement 6)**: [`examples/gemini-4-carbon-card-report/index.html`](examples/gemini-4-carbon-card-report/index.html)
      - **Strands Decider 2B**: [`examples/card-report/index.html`](examples/card-report/index.html)
 
 ---
 
-## Historical Benchmark Report Archive (10 Report Families)
+## Historical Benchmark Report Archive (12 Report Families)
 
 The [Ten-Report Index](docs/reports/README.md) and [Structured Reported Archive](data/reported/README.md) preserve anonymized, provenance-tagged transcriptions of historical benchmark evaluations (`provenance="anonymized_reported"`, `independently_reproduced=false`). Bilingual views and 7-card visual decks are indexed under [`data/reported/catalog.json`](data/reported/catalog.json) with arithmetic audits in [`data/reported/consistency.json`](data/reported/consistency.json).
 
@@ -37,6 +39,8 @@ The [Ten-Report Index](docs/reports/README.md) and [Structured Reported Archive]
 | **Decision-1 Four-Engine Comparison** | 40 requests × 3 repeats (480 decisions) | [Report (ZH)](docs/reports/routing-decision.md) · [JSON](data/reported/routing-decision/report.json) |
 | **OpenJev Supplement Comparison** | 120 new decisions + baseline comparison | [Report (ZH)](docs/reports/routing-openjev.md) · [JSON](data/reported/routing-openjev/report.json) |
 | **Strands Decider 2B Evaluation** | 7 scenarios (12 decisions), option-reversal robustness & batch latency | [Report (ZH)](docs/reports/routing-strands-decider.md) · [7-Card Deck](examples/card-report/index.html) · [JSON](data/reported/routing-strands-decider/report.json) |
+| **AIPC Edge Decision Model (Kev-0.8B / 4B) SFT & GGUF (Supplement 7)** | Counterfactual SFT (`+31.5` to `+51.6 pts`), $T=2.83$ calibration, `Q8_0` GGUF (`775 MiB`, `2.1–2.6 GiB` CPU RAM, `386 ms` on Snapdragon X Elite) | [ZH](docs/reports/routing-aipc-kev-sft.md) · [EN](docs/reports/routing-aipc-kev-sft.en.md) · [7-Card Deck](examples/aipc-kev-sft-card-report/index.html) · [JSON](data/reported/routing-aipc-kev-sft/report.json) |
+| **Azure AMD MI300X Large MoE BF16 & MXFP4 Validation (Supplement 8)** | `Muse Spark Open 816B-A42B`, `Nemotron 3 Ultra 550B-A55B`, and `Inkling 975B-A41B` on `Standard_ND96isr_MI300X_v5` (`317.4–348.6 tok/s` BF16; `-68.3%` weight RAM & 1-node `975B` in MXFP4) | [ZH](docs/reports/moe-mi300x-bf16-mxfp4.md) · [EN](docs/reports/moe-mi300x-bf16-mxfp4.en.md) · [7-Card Deck](examples/moe-mi300x-card-report/index.html) · [JSON](data/reported/moe-mi300x-bf16-mxfp4/report.json) |
 | **Microsoft Agent Framework (MAF v1.0) Multi-Agent Benchmark** | 6 frameworks, 5 orchestration modes, 3-layer middleware, MCP/A2A v1.0, 7 scenarios (12 decisions), reversal robustness & fan-out latency | [ZH](examples/maf-multi-agent-card-report/test-report.md) · [EN](examples/maf-multi-agent-card-report/test-report.en.md) · [7-Card Deck](examples/maf-multi-agent-card-report/index.html) · [JSON](data/reported/maf-multi-agent-benchmark/report.json) |
 
 ---

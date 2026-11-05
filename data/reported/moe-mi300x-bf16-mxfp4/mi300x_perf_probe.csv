@@ -1,0 +1,11 @@
+report_id,provenance,independently_reproduced,run_id,model,precision,concurrency,max_tokens,ttft_ms,decode_tok_per_s,e2e_latency_s,aggregate_tok_per_s
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,muse_spark_bf16_2node,Muse Spark Open 816B-A42B,BF16 (16x MI300X TP8xPP2),1,256,205.0,84.6,3.22,79.5
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,muse_spark_bf16_2node,Muse Spark Open 816B-A42B,BF16 (16x MI300X TP8xPP2),8,256,506.0,47.6,5.88,348.6
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,nemotron3_ultra_bf16_1node,Nemotron 3 Ultra 550B-A55B,BF16 (8x MI300X TP8+EP8),1,256,170.0,60.7,4.37,58.6
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,nemotron3_ultra_bf16_1node,Nemotron 3 Ultra 550B-A55B,BF16 (8x MI300X TP8+EP8),8,256,358.0,42.0,6.45,317.4
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,nemotron3_ultra_mxfp4_1node,Nemotron 3 Ultra 550B-A55B,MXFP4 Emulation (8x MI300X TP8+EP8),1,256,178.0,7.7,33.42,7.7
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,nemotron3_ultra_mxfp4_1node,Nemotron 3 Ultra 550B-A55B,MXFP4 Emulation (8x MI300X TP8+EP8),8,256,484.0,6.9,37.3,54.9
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,inkling_bf16_2node,Inkling 975B-A41B,BF16 (16x MI300X TP8xPP2),1,256,45.0,68.9,3.75,68.3
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,inkling_bf16_2node,Inkling 975B-A41B,BF16 (16x MI300X TP8xPP2),8,256,97.0,42.5,6.1,335.8
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,inkling_mxfp4_1node,Inkling 975B-A41B,MXFP4 Emulation (8x MI300X TP8 1-Node),1,256,358.0,6.1,41.97,6.1
+moe-mi300x-bf16-mxfp4,anonymized_reported,false,inkling_mxfp4_1node,Inkling 975B-A41B,MXFP4 Emulation (8x MI300X TP8 1-Node),8,256,726.0,5.7,45.92,44.6

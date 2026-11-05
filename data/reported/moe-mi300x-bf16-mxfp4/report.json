@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "report_id": "moe-mi300x-bf16-mxfp4",
+  "track": "large-moe-precision-deployment",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "source_languages": [
+    "zh",
+    "en"
+  ],
+  "source_page_count": 2,
+  "deck_title": "Azure AMD MI300X Large MoE BF16 vs MXFP4 Precision & Deployment Benchmark (7-Card Deck)",
+  "metadata": {
+    "report_date": "2026-11-05",
+    "scope": "Real-hardware validation of Muse Spark Open (816B-A42B), NVIDIA Nemotron 3 Ultra (550B-A55B), and Thinking Machines Lab Inkling (975B-A41B) on Azure Standard_ND96isr_MI300X_v5 across BF16 and OCP-MXFP4",
+    "hardware_sku": "Azure Standard_ND96isr_MI300X_v5 (8x AMD Instinct MI300X 192 GB HBM3 per node = 1,536 GB HBM3/node, gfx942)",
+    "host_environment": "Ubuntu 24.04.5 LTS, kernel 6.8.0-1067-azure, ROCm host 6.4.4-129",
+    "models_evaluated": [
+      "meta-models/Muse-Spark-Open-816B-A42B (rev 0fb02478)",
+      "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 (rev 77df655d)",
+      "thinkingmachines/Inkling (rev 828496ee) & lightseekorg/Inkling-MXFP4 (rev bc3fdef2)"
+    ],
+    "key_finding": "All 3 MoE models pass BF16 on MI300X (317.4-348.6 tok/s aggregate at C=8). In MXFP4, Nemotron 3 Ultra cuts weights 68.3% (136.51 -> 43.21 GiB/GPU) and Inkling halves hardware from 2 nodes (16 GPUs) to 1 node (8 GPUs, 66.74 GiB/GPU), but MI300X (gfx942) software FP4 emulation runs 5.8-7.5x slower (44.6-54.9 tok/s at C=8), whereas Muse Spark Open rejects EMULATION and requires gfx950 hardware FP4."
+  },
+  "mi300x_model_census": [
+    {
+      "model_id": "Muse-Spark-Open-816B-A42B",
+      "repo_revision": "0fb02478",
+      "total_params_b": 816,
+      "active_params_b": 42,
+      "layers": 62,
+      "routed_experts": 256,
+      "top_k": 8,
+      "hybrid_operators": "None (Standard Attention + Routed MoE)",
+      "bf16_files": null,
+      "bf16_tensors": null,
+      "bf16_weight_gb": 1644.333,
+      "bf16_weight_gib": 1531.405,
+      "nvfp4_weight_gb": 533.011,
+      "nvfp4_weight_gib": 496.405,
+      "bf16_min_mi300x_nodes": 2,
+      "mxfp4_min_mi300x_nodes": 1
+    },
+    {
+      "model_id": "NVIDIA-Nemotron-3-Ultra-550B-A55B",
+      "repo_revision": "77df655d",
+      "total_params_b": 550,
+      "active_params_b": 55,
+      "layers": null,
+      "routed_experts": null,
+      "top_k": null,
+      "hybrid_operators": "Mamba-2 SSM + Attention + LatentMoE (non-gated relu2) + MTP",
+      "bf16_files": 225,
+      "bf16_tensors": 51023,
+      "bf16_weight_gb": 1121.049,
+      "bf16_weight_gib": 1044.058,
+      "nvfp4_weight_gb": 320.071,
+      "nvfp4_weight_gib": 298.09,
+      "bf16_min_mi300x_nodes": 1,
+      "mxfp4_min_mi300x_nodes": 1
+    },
+    {
+      "model_id": "ThinkingMachines-Inkling-975B-A41B",
+      "repo_revision": "828496ee / bc3fdef2",
+      "total_params_b": 975,
+      "active_params_b": 41,
+      "layers": 66,
+      "routed_experts": 256,
+      "top_k": 6,
+      "hybrid_operators": "Local/Global Attention + ShortConv (264 sconv kernels) + 2 Shared Experts + MTP",
+      "bf16_files": 109,
+      "bf16_tensors": 1552,
+      "bf16_weight_gb": 1904.755,
+      "bf16_weight_gib": 1773.942,
+      "nvfp4_weight_gb": 592.005,
+      "nvfp4_weight_gib": 551.348,
+      "bf16_min_mi300x_nodes": 2,
+      "mxfp4_min_mi300x_nodes": 1
+    }
+  ],
+  "mi300x_bf16_mxfp4_runs": [
+    {
+      "run_id": "muse_spark_bf16_2node",
+      "model": "Muse Spark Open 816B-A42B",
+      "precision": "BF16",
+      "status": "PASS",
+      "nodes": 2,
+      "gpus": 16,
+      "parallelism": "TP8 x PP2 (Ray)",
+      "container_image": "vllm/vllm-openai-rocm:v0.33.0 + ray==2.55.1",
+      "moe_backend": "MuseSparkTritonExperts",
+      "attn_backend": "ROCM_AITER_FA",
+      "max_model_len": 32768,
+      "weight_per_gpu_gib": 99.1,
+      "consumed_per_gpu_gib": 102.7,
+      "available_kv_per_gpu_gib": 72.02,
+      "kv_cache_tokens": 8130184,
+      "max_concurrency_at_ctx": 248.11,
+      "load_seconds": 176.0,
+      "critical_fix": "Avoid muse-spark-open gfx950-only fused QK-norm/RoPE HIP kernel (SIGSEGV on gfx942)"
+    },
+    {
+      "run_id": "muse_spark_mxfp4_1node",
+      "model": "Muse Spark Open 816B-A42B",
+      "precision": "OCP-MXFP4",
+      "status": "FAIL",
+      "nodes": 1,
+      "gpus": 8,
+      "parallelism": "TP8",
+      "container_image": "vllm/vllm-openai-rocm:v0.33.0",
+      "moe_backend": "Rejected EMULATION (Requires AITER_MXFP4_MXFP4)",
+      "attn_backend": "ROCM_AITER_FA",
+      "max_model_len": 32768,
+      "weight_per_gpu_gib": null,
+      "consumed_per_gpu_gib": null,
+      "available_kv_per_gpu_gib": null,
+      "kv_cache_tokens": null,
+      "max_concurrency_at_ctx": null,
+      "load_seconds": null,
+      "critical_fix": "Hard assertion in MuseSpark1x: rejects online quantization and requires native gfx950 AITER_MXFP4_MXFP4"
+    },
+    {
+      "run_id": "nemotron3_ultra_bf16_1node",
+      "model": "Nemotron 3 Ultra 550B-A55B",
+      "precision": "BF16",
+      "status": "PASS",
+      "nodes": 1,
+      "gpus": 8,
+      "parallelism": "TP8 + EP8",
+      "container_image": "rocm/vllm:rocm10.1.0_ubuntu24.04_py3.14-pytorch_2.13.0_vllm-0.29.0",
+      "moe_backend": "TritonExperts (VLLM_ROCM_USE_AITER_MOE=0)",
+      "attn_backend": "ROCM_ATTN + Triton Mamba SSU (fp16 cache)",
+      "max_model_len": 65536,
+      "weight_per_gpu_gib": 136.51,
+      "consumed_per_gpu_gib": 146.78,
+      "available_kv_per_gpu_gib": 23.07,
+      "kv_cache_tokens": 3490022,
+      "max_concurrency_at_ctx": 53.25,
+      "load_seconds": 333.24,
+      "critical_fix": "Set VLLM_ROCM_USE_AITER_MOE=0 for non-gated relu2 LatentMoE; omit stochastic rounding (PHILOX_ROUNDS ld.lld bug)"
+    },
+    {
+      "run_id": "nemotron3_ultra_mxfp4_1node",
+      "model": "Nemotron 3 Ultra 550B-A55B",
+      "precision": "Online OCP-MXFP4 (MoE)",
+      "status": "PASS",
+      "nodes": 1,
+      "gpus": 8,
+      "parallelism": "TP8 + EP8",
+      "container_image": "vllm/vllm-openai-rocm:v0.33.0",
+      "moe_backend": "OCP_MXQuantizationEmulationTritonExperts",
+      "attn_backend": "ROCM_ATTN + Triton Mamba SSU",
+      "max_model_len": 32768,
+      "weight_per_gpu_gib": 43.21,
+      "consumed_per_gpu_gib": 53.48,
+      "available_kv_per_gpu_gib": 111.86,
+      "kv_cache_tokens": 13758836,
+      "max_concurrency_at_ctx": 419.89,
+      "load_seconds": 359.7,
+      "critical_fix": "--quantization online --quantization-config '{\"moe\":\"mxfp4\"}' --moe-backend emulation (-68.3% weight RAM, 3.94x KV tokens)"
+    },
+    {
+      "run_id": "inkling_bf16_2node",
+      "model": "Inkling 975B-A41B",
+      "precision": "BF16",
+      "status": "PASS",
+      "nodes": 2,
+      "gpus": 16,
+      "parallelism": "TP8 x PP2 (Ray)",
+      "container_image": "rocm/vllm:rocm10.1.0_ubuntu24.04_py3.14-pytorch_2.13.0_vllm-0.29.0 + ray==2.55.1",
+      "moe_backend": "AiterExperts (ROCm AITER)",
+      "attn_backend": "ROCM_ATTN + ShortConv (sconv)",
+      "max_model_len": 65536,
+      "weight_per_gpu_gib": 112.82,
+      "consumed_per_gpu_gib": 115.72,
+      "available_kv_per_gpu_gib": 54.21,
+      "kv_cache_tokens": 398239,
+      "max_concurrency_at_ctx": 6.08,
+      "load_seconds": 175.87,
+      "critical_fix": "NCCL_NET_GDR_LEVEL=0 fixes 16-rank cross-node hang (52.4 GB/s all_reduce); TP8xPP2 respects sconv tp_size <= 8"
+    },
+    {
+      "run_id": "inkling_mxfp4_1node",
+      "model": "Inkling 975B-A41B (lightseekorg/Inkling-MXFP4)",
+      "precision": "Quark OCP-MXFP4",
+      "status": "PASS",
+      "nodes": 1,
+      "gpus": 8,
+      "parallelism": "TP8 (Single-Node Halved Hardware)",
+      "container_image": "vllm/vllm-openai-rocm:v0.33.0",
+      "moe_backend": "AiterUnquantizedExperts + OCP_MXQuantizationEmulationTritonExperts",
+      "attn_backend": "ROCM_ATTN + ShortConv (sconv)",
+      "max_model_len": 32768,
+      "weight_per_gpu_gib": 66.74,
+      "consumed_per_gpu_gib": 70.21,
+      "available_kv_per_gpu_gib": 94.79,
+      "kv_cache_tokens": 305150,
+      "max_concurrency_at_ctx": 9.31,
+      "load_seconds": 173.44,
+      "critical_fix": "Pre-quantized Quark MXFP4 checkpoint fits 975B model on 1x ND96isr_MI300X_v5 node (8 GPUs instead of 16)"
+    }
+  ],
+  "mi300x_perf_probe": [
+    {
+      "run_id": "muse_spark_bf16_2node",
+      "model": "Muse Spark Open 816B-A42B",
+      "precision": "BF16 (16x MI300X TP8xPP2)",
+      "concurrency": 1,
+      "max_tokens": 256,
+      "ttft_ms": 205.0,
+      "decode_tok_per_s": 84.6,
+      "e2e_latency_s": 3.22,
+      "aggregate_tok_per_s": 79.5
+    },
+    {
+      "run_id": "muse_spark_bf16_2node",
+      "model": "Muse Spark Open 816B-A42B",
+      "precision": "BF16 (16x MI300X TP8xPP2)",
+      "concurrency": 8,
+      "max_tokens": 256,
+      "ttft_ms": 506.0,
+      "decode_tok_per_s": 47.6,
+      "e2e_latency_s": 5.88,
+      "aggregate_tok_per_s": 348.6
+    },
+    {
+      "run_id": "nemotron3_ultra_bf16_1node",
+      "model": "Nemotron 3 Ultra 550B-A55B",
+      "precision": "BF16 (8x MI300X TP8+EP8)",
+      "concurrency": 1,
+      "max_tokens": 256,
+      "ttft_ms": 170.0,
+      "decode_tok_per_s": 60.7,
+      "e2e_latency_s": 4.37,
+      "aggregate_tok_per_s": 58.6
+    },
+    {
+      "run_id": "nemotron3_ultra_bf16_1node",
+      "model": "Nemotron 3 Ultra 550B-A55B",
+      "precision": "BF16 (8x MI300X TP8+EP8)",
+      "concurrency": 8,
+      "max_tokens": 256,
+      "ttft_ms": 358.0,
+      "decode_tok_per_s": 42.0,
+      "e2e_latency_s": 6.45,
+      "aggregate_tok_per_s": 317.4
+    },
+    {
+      "run_id": "nemotron3_ultra_mxfp4_1node",
+      "model": "Nemotron 3 Ultra 550B-A55B",
+      "precision": "MXFP4 Emulation (8x MI300X TP8+EP8)",
+      "concurrency": 1,
+      "max_tokens": 256,
+      "ttft_ms": 178.0,
+      "decode_tok_per_s": 7.7,
+      "e2e_latency_s": 33.42,
+      "aggregate_tok_per_s": 7.7
+    },
+    {
+      "run_id": "nemotron3_ultra_mxfp4_1node",
+      "model": "Nemotron 3 Ultra 550B-A55B",
+      "precision": "MXFP4 Emulation (8x MI300X TP8+EP8)",
+      "concurrency": 8,
+      "max_tokens": 256,
+      "ttft_ms": 484.0,
+      "decode_tok_per_s": 6.9,
+      "e2e_latency_s": 37.3,
+      "aggregate_tok_per_s": 54.9
+    },
+    {
+      "run_id": "inkling_bf16_2node",
+      "model": "Inkling 975B-A41B",
+      "precision": "BF16 (16x MI300X TP8xPP2)",
+      "concurrency": 1,
+      "max_tokens": 256,
+      "ttft_ms": 45.0,
+      "decode_tok_per_s": 68.9,
+      "e2e_latency_s": 3.75,
+      "aggregate_tok_per_s": 68.3
+    },
+    {
+      "run_id": "inkling_bf16_2node",
+      "model": "Inkling 975B-A41B",
+      "precision": "BF16 (16x MI300X TP8xPP2)",
+      "concurrency": 8,
+      "max_tokens": 256,
+      "ttft_ms": 97.0,
+      "decode_tok_per_s": 42.5,
+      "e2e_latency_s": 6.1,
+      "aggregate_tok_per_s": 335.8
+    },
+    {
+      "run_id": "inkling_mxfp4_1node",
+      "model": "Inkling 975B-A41B",
+      "precision": "MXFP4 Emulation (8x MI300X TP8 1-Node)",
+      "concurrency": 1,
+      "max_tokens": 256,
+      "ttft_ms": 358.0,
+      "decode_tok_per_s": 6.1,
+      "e2e_latency_s": 41.97,
+      "aggregate_tok_per_s": 6.1
+    },
+    {
+      "run_id": "inkling_mxfp4_1node",
+      "model": "Inkling 975B-A41B",
+      "precision": "MXFP4 Emulation (8x MI300X TP8 1-Node)",
+      "concurrency": 8,
+      "max_tokens": 256,
+      "ttft_ms": 726.0,
+      "decode_tok_per_s": 5.7,
+      "e2e_latency_s": 45.92,
+      "aggregate_tok_per_s": 44.6
+    }
+  ],
+  "cards": [
+    {
+      "kind": "overview",
+      "eyebrow": "HANDS-ON · AZURE AMD MI300X LARGE MOE",
+      "headline_prefix": "550B–975B OSS MoEs on Azure MI300X: ",
+      "headline_Gradient": "317–349 tok/s BF16 vs 1-Node MXFP4",
+      "subtitle": "Real-hardware validation of Muse Spark Open (816B-A42B), Nemotron 3 Ultra (550B-A55B), and Inkling (975B-A41B) on Azure Standard_ND96isr_MI300X_v5 (8x 192 GB HBM3 = 1,536 GB/node) across native BF16 and OCP-MXFP4.",
+      "workbench": {
+        "title": "Azure AMD MI300X Large MoE Precision & Deployment Workbench",
+        "status_pill": "2026-11-05 · ND96isr_MI300X_v5 · anonymized_reported",
+        "scenarios": [
+          "Muse Spark Open 816B-A42B BF16: 2 nodes (TP8xPP2) -> PASS (348.6 tok/s @ C=8)",
+          "Muse Spark Open 816B-A42B MXFP4: 1 node (TP8) -> FAIL (Requires gfx950 AITER_MXFP4)",
+          "Nemotron 3 Ultra 550B-A55B BF16: 1 node (TP8+EP8) -> PASS (317.4 tok/s @ C=8)",
+          "Nemotron 3 Ultra 550B-A55B MXFP4: 1 node (TP8+EP8) -> PASS (-68.3% weight RAM, 3.94x KV)",
+          "Inkling 975B-A41B BF16: 2 nodes (TP8xPP2) -> PASS (335.8 tok/s @ C=8, 45 ms TTFT)",
+          "Inkling 975B-A41B MXFP4: 1 node (TP8) -> PASS (Halves 16 GPUs -> 8 GPUs, 66.74 GiB/GPU)"
+        ],
+        "bands_note": "Deployment gating: Act automatically on native BF16 (1 node for 550B, 2 nodes TP8xPP2 for 816B/975B); Confirm on MXFP4 for 1-node 975B consolidation or 13.76M-token KV capacity; Hold Muse Spark MXFP4 for MI355X (gfx950).",
+        "metrics": [
+          "348.6 tok/s Muse BF16 (C=8)",
+          "335.8 tok/s Inkling BF16 (C=8)",
+          "317.4 tok/s Nemotron BF16 (C=8)",
+          "43.21 GiB/GPU Nemotron MXFP4"
+        ],
+        "decisions": [
+          {
+            "field": "nemotron_3_ultra_550b_1node",
+            "question_type": "score",
+            "question": "Can 550B-A55B Nemotron 3 Ultra run in full BF16 on a single 8x MI300X node (1,536 GB HBM3)?",
+            "selected_answer": "Yes: 136.51 GiB/GPU weights (TP8+EP8), 23.07 GiB free KV (3.49M tok), 317.4 tok/s @ C=8",
+            "closest_label": "Online MoE MXFP4 shrinks weights to 43.21 GiB/GPU (-68.3%) and expands KV to 111.86 GiB (13.76M tok)",
+            "confidence": 0.99,
+            "action": "Act automatically",
+            "distribution_pct": {
+              "BF16 Weight Share of 192 GiB (136.51 GiB = 71.1%)": 71.1,
+              "MXFP4 Free KV Share of 192 GiB (111.86 GiB = 58.3%)": 58.3,
+              "MXFP4 Weight Share of 192 GiB (43.21 GiB = 22.5%)": 22.5
+            }
+          },
+          {
+            "field": "inkling_975b_topology_choice",
+            "question_type": "choice",
+            "question": "How should 975B-A41B Inkling (1,773.9 GiB BF16) be deployed across BF16 vs Quark OCP-MXFP4?",
+            "selected_answer": "BF16: 2 Nodes (16x MI300X TP8xPP2, 335.8 tok/s) · MXFP4: 1 Node (8x MI300X TP8, 66.74 GiB/GPU)",
+            "closest_label": "Quark MXFP4 halves hardware from 2 nodes to 1 node with 94.79 GiB/GPU free KV, at 44.6 tok/s (emulated)",
+            "confidence": 0.975,
+            "action": "Act automatically",
+            "distribution_pct": {
+              "Inkling BF16 2-Node Weight Share (112.8 GiB = 58.8%)": 58.8,
+              "Inkling MXFP4 1-Node Free KV Share (94.79 GiB = 49.4%)": 49.4,
+              "Inkling MXFP4 1-Node Weight Share (66.74 GiB = 34.8%)": 34.8
+            }
+          },
+          {
+            "field": "muse_spark_816b_mxfp4_gate",
+            "question_type": "noul",
+            "question": "Does Muse Spark Open 816B-A42B support OCP-MXFP4 on MI300X (CDNA3 / gfx942)?",
+            "selected_answer": "No: vLLM MuseSpark1x requires native AITER_MXFP4_MXFP4 (gfx950 / MI355X) and rejects EMULATION",
+            "closest_label": "Deploy Muse Spark Open in BF16 on 2x MI300X nodes (TP8xPP2, 99.1 GiB/GPU, 348.6 tok/s @ C=8)",
+            "confidence": 1.0,
+            "action": "Send to a human",
+            "distribution_pct": {
+              "Muse BF16 2-Node Weight Share (99.1 GiB = 51.6%)": 51.6,
+              "Muse BF16 2-Node Free KV Share (72.0 GiB = 37.5%)": 37.5
+            }
+          }
+        ]
+      },
+      "callouts": [
+        {
+          "lead": "Azure Standard_ND96isr_MI300X_v5 Large MoE Validation (anonymized_reported, independently_reproduced=false).",
+          "body": "Tested on Ubuntu 24.04.5 LTS (kernel 6.8.0-1067-azure, ROCm 6.4.4-129) with 8x MI300X 192 GB HBM3 per node (1,536 GB/node)."
+        }
+      ]
+    },
+    {
+      "kind": "deep_dive",
+      "eyebrow": "SCENARIO: 3 CRITICAL BRING-UP TRAPS & HBM3 BUDGET",
+      "headline": "Fixing gfx950 SIGSEGV, Non-Gated Relu2 MoE, and 2-Node RCCL Deadlocks.",
+      "quote": "Out-of-the-box container defaults failed on all three frontier MoEs: Muse Spark segfaulted in a gfx950-only HIP kernel, Nemotron crashed in AITER gated MoE, and Inkling hung for 240s on 16-rank cross-node RCCL until NCCL_NET_GDR_LEVEL=0 was set.",
+      "decisions": [
+        {
+          "field": "muse_spark_816b_kernel_fix",
+          "question_type": "choice",
+          "question": "Muse Spark Open 816B-A42B (62 layers, 256 experts top-8, 1,531.4 GiB BF16) on 2x MI300X nodes",
+          "selected_answer": "Use vllm/vllm-openai-rocm:v0.33.0 + ray==2.55.1 (MuseSparkTritonExperts + ROCM_AITER_FA)",
+          "closest_label": "Avoids SIGSEGV in fused_muse_spark_qknorm_rope_kv_insert_kernel.hip compiled only for gfx950",
+          "confidence": 0.99,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "C=1 Decode Speed (84.6 tok/s, 205 ms TTFT)": 84.6,
+            "Per-GPU Weight Load (99.1 GiB / 192 GiB = 51.6%)": 51.6,
+            "Per-GPU Free KV Cache (72.02 GiB / 192 GiB = 37.5%)": 37.5
+          }
+        },
+        {
+          "field": "nemotron_3_ultra_550b_latent_moe",
+          "question_type": "choice",
+          "question": "Nemotron 3 Ultra 550B-A55B (Mamba-2 + Attention + non-gated relu2 LatentMoE) on 1x MI300X node",
+          "selected_answer": "Set VLLM_ROCM_USE_AITER_MOE=0 -> TritonExperts + Triton Mamba SSU (float16 cache)",
+          "closest_label": "Also omit --enable-mamba-cache-stochastic-rounding to avoid ld.lld PHILOX_ROUNDS target error",
+          "confidence": 0.99,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "C=1 Decode Speed BF16 (60.7 tok/s, 170 ms TTFT)": 60.7,
+            "MXFP4 KV Cache Expansion (111.86 GiB / 192 GiB = 58.3%)": 58.3,
+            "MXFP4 Weight Footprint (43.21 GiB / 192 GiB = 22.5%)": 22.5
+          }
+        },
+        {
+          "field": "inkling_975b_sconv_and_rccl",
+          "question_type": "choice",
+          "question": "Inkling 975B-A41B (66 layers, 264 ShortConv kernels, 256 routed + 2 shared experts) on 2x/1x MI300X",
+          "selected_answer": "Set NCCL_NET_GDR_LEVEL=0 + TP8xPP2 (BF16 2-Node) or TP8 Quark MXFP4 (1-Node)",
+          "closest_label": "TP16 fails sconv tp_size <= num_kv_heads (8); TP8xDP2+EP16 hangs in remote DP coordinator RPC",
+          "confidence": 0.985,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "C=1 Decode Speed BF16 (68.9 tok/s, 45 ms TTFT)": 68.9,
+            "16-Rank 64MiB AllReduce BusBW (52.4 GB/s @ GDR=0)": 52.4,
+            "1-Node MXFP4 Weight Share (66.74 GiB / 192 GiB = 34.8%)": 34.8
+          }
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Single-expert NVFP4 numerical verification on MI300X passed with < 1e-8 relative L2 error.",
+          "body": "Nvfp4QuantizationEmulationTritonExperts recorded 0.0 relative L2 error on Nemotron-3-Ultra-NVFP4 and 3.74e-9 on Inkling-NVFP4 (threshold <= 0.02)."
+        }
+      ]
+    },
+    {
+      "kind": "scorecard",
+      "eyebrow": "WHAT I TESTED",
+      "headline": "6 Main BF16/MXFP4 Matrix Cells + 6 Failure Diagnoses & Probes",
+      "rows": [
+        {
+          "scenario": "Muse Spark 816B",
+          "question": "BF16 on 2 Nodes (16x MI300X TP8xPP2, vllm v0.33.0 + Ray)",
+          "decider_answer": "PASS | 348.6 tok/s @ C=8 (99.1 GiB/GPU)",
+          "reported_probability_pct": 99.1,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Muse Spark 816B",
+          "question": "BF16 with muse-spark-open image (gfx950 fused HIP kernel)",
+          "decider_answer": "FAIL | SIGSEGV on MI300X gfx942",
+          "reported_probability_pct": 0.0,
+          "pointed_right_way": false,
+          "action": "Human"
+        },
+        {
+          "scenario": "Muse Spark 816B",
+          "question": "OCP-MXFP4 on 1 Node (8x MI300X TP8, online or auto backend)",
+          "decider_answer": "FAIL | Requires AITER_MXFP4_MXFP4",
+          "reported_probability_pct": 0.0,
+          "pointed_right_way": false,
+          "action": "Human"
+        },
+        {
+          "scenario": "Nemotron 3 Ultra 550B",
+          "question": "BF16 on 1 Node (8x MI300X TP8+EP8, VLLM_ROCM_USE_AITER_MOE=0)",
+          "decider_answer": "PASS | 317.4 tok/s @ C=8 (136.5 GiB/GPU)",
+          "reported_probability_pct": 99.0,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Nemotron 3 Ultra 550B",
+          "question": "BF16 with default AITER MoE + Mamba stochastic rounding",
+          "decider_answer": "FAIL | Relu2 mismatch + ld.lld PHILOX error",
+          "reported_probability_pct": 0.0,
+          "pointed_right_way": false,
+          "action": "Human"
+        },
+        {
+          "scenario": "Nemotron 3 Ultra 550B",
+          "question": "Online MoE MXFP4 on 1 Node (8x MI300X TP8+EP8, emulation)",
+          "decider_answer": "PASS | 43.21 GiB wt, 111.86 GiB KV, 54.9 tok/s",
+          "reported_probability_pct": 68.3,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "Inkling 975B",
+          "question": "BF16 on 2 Nodes (16x MI300X TP8xPP2, NCCL_NET_GDR_LEVEL=0)",
+          "decider_answer": "PASS | 335.8 tok/s @ C=8 (45 ms TTFT @ C=1)",
+          "reported_probability_pct": 99.0,
+          "pointed_right_way": true,
+          "action": "Auto"
+        },
+        {
+          "scenario": "Inkling 975B",
+          "question": "BF16 with TP16 or TP8xDP2+EP16 or default GDR",
+          "decider_answer": "FAIL | sconv tp<=8 rule; DP2 hang; GDR timeout",
+          "reported_probability_pct": 0.0,
+          "pointed_right_way": false,
+          "action": "Human"
+        },
+        {
+          "scenario": "Inkling 975B",
+          "question": "Quark OCP-MXFP4 on 1 Node (8x MI300X TP8, halved hardware)",
+          "decider_answer": "PASS | 66.74 GiB wt, 94.79 GiB KV, 44.6 tok/s",
+          "reported_probability_pct": 50.0,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "NVFP4 Numerical Probe",
+          "question": "1x MI300X Nvfp4QuantizationEmulationTritonExperts L2 error",
+          "decider_answer": "PASS | Rel L2 0.0 (Nemotron) & 3.74e-9 (Inkling)",
+          "reported_probability_pct": 100.0,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "5 of 6 main model x precision cells pass on MI300X; all 3 models pass in native BF16.",
+          "body": "Rows marked (✕) show the exact container/kernel traps resolved during bring-up and the single unsupported MXFP4 cell (Muse Spark Open on gfx942)."
+        },
+        {
+          "lead": "MXFP4 on MI300X is a memory-density & node-consolidation mode, not a throughput booster.",
+          "body": "Because CDNA3 (gfx942) emulates FP4 in Triton software, MXFP4 cuts weights by 50–68% and halves Inkling from 16 to 8 GPUs, but runs 5.8–7.5x slower than BF16."
+        }
+      ]
+    },
+    {
+      "kind": "protocol",
+      "eyebrow": "UNDER THE HOOD",
+      "headline": "Verified Launch Contracts: 1-Node TP8+EP8 & 2-Node Ray TP8xPP2",
+      "top_code": "{\n  \"nemotron_3_ultra_550b_1node\": {\n    \"env\": { \"VLLM_ROCM_USE_AITER_MOE\": \"0\" },\n    \"bf16\": \"--tensor-parallel-size 8 --enable-expert-parallel --max-model-len 65536 --mamba-ssm-cache-dtype float16\",\n    \"mxfp4\": \"--tensor-parallel-size 8 --enable-expert-parallel --quantization online --quantization-config '{\\\"moe\\\":\\\"mxfp4\\\"}' --moe-backend emulation --max-model-len 32768\"\n  },\n  \"inkling_975b_and_muse_816b\": {\n    \"env_2node\": { \"NCCL_NET_GDR_LEVEL\": \"0\", \"GLOO_SOCKET_IFNAME\": \"eth0\", \"NCCL_SOCKET_IFNAME\": \"eth0\" },\n    \"bf16_2node\": \"--tensor-parallel-size 8 --pipeline-parallel-size 2 --distributed-executor-backend ray\",\n    \"inkling_mxfp4_1node\": \"--model lightseekorg/Inkling-MXFP4 --tensor-parallel-size 8 --moe-backend emulation --max-model-len 32768\"\n  }\n}",
+      "transition": "↓ operator backend routing & multi-node RCCL verification gate",
+      "bottom_code": "<mi300x_deployment_verification_gate>\n16_rank_64mib_all_reduce_gdr0: 2.4 ms (52.4 GB/s busbw vs 240s hang at default GDR)\nmuse_spark_bf16_backends: MuseSparkTritonExperts + ROCM_AITER_FA (348.6 tok/s @ C=8)\nnemotron_bf16_backends: TritonExperts + ROCM_ATTN + Triton Mamba SSU (317.4 tok/s @ C=8)\ninkling_bf16_backends: AiterExperts + ROCM_ATTN + 264 ShortConv kernels (335.8 tok/s @ C=8)\nmxfp4_gfx942_backend: OCP_MXQuantizationEmulationTritonExperts -> <answer>\n</mi300x_deployment_verification_gate>",
+      "callouts": [
+        {
+          "lead": "At <answer> always run a 16-rank RCCL all_reduce sanity check with NCCL_NET_GDR_LEVEL=0 before starting Ray.",
+          "body": "Inkling's 264 ShortConv (sconv) + sliding-window attention layers enforce tp_size <= num_kv_heads (8); TP8 x PP2 keeps tensor parallelism inside each 8-GPU node."
+        }
+      ]
+    },
+    {
+      "kind": "robustness",
+      "eyebrow": "ROBUSTNESS & MEMORY CHECK",
+      "headline": "HBM3 Weight Compression (-68.3%) & KV Cache Expansion (+294%)",
+      "subtitle": "Comparing BF16 per-GPU weight/KV footprint (ORIGINAL) against OCP-MXFP4 (REVERSED / COMPRESSED) on 192 GiB MI300X GPUs.",
+      "rows": [
+        {
+          "scenario": "Nemotron 3 Ultra Weight Share of 192 GiB GPU",
+          "selected_option": "136.51 GiB (BF16) -> 43.21 GiB (MXFP4, -68.3%)",
+          "original_pct": 71.1,
+          "reversed_pct": 22.5,
+          "change_pts": -48.6,
+          "answer_held": true
+        },
+        {
+          "scenario": "Nemotron 3 Ultra Free KV Share of 192 GiB GPU",
+          "selected_option": "23.07 GiB / 3.49M tok (BF16) -> 111.86 GiB / 13.76M tok (MXFP4)",
+          "original_pct": 12.0,
+          "reversed_pct": 58.3,
+          "change_pts": 46.3,
+          "answer_held": true
+        },
+        {
+          "scenario": "Inkling 975B Total Cluster GPU Allocation (of 16 GPUs)",
+          "selected_option": "16 GPUs / 2 Nodes (BF16) -> 8 GPUs / 1 Node (Quark MXFP4)",
+          "original_pct": 100.0,
+          "reversed_pct": 50.0,
+          "change_pts": -50.0,
+          "answer_held": true
+        },
+        {
+          "scenario": "Inkling 975B Per-GPU Weight Share of 192 GiB",
+          "selected_option": "112.82 GiB avg on 16 GPUs (BF16) -> 66.74 GiB on 8 GPUs (MXFP4)",
+          "original_pct": 58.8,
+          "reversed_pct": 34.8,
+          "change_pts": -24.0,
+          "answer_held": true
+        },
+        {
+          "scenario": "Inkling 975B Per-GPU Free KV Share of 192 GiB",
+          "selected_option": "54.21 GiB avg (BF16 2-Node) -> 94.79 GiB (MXFP4 1-Node)",
+          "original_pct": 28.2,
+          "reversed_pct": 49.4,
+          "change_pts": 21.2,
+          "answer_held": true
+        },
+        {
+          "scenario": "NVFP4 Single-Expert Numerical Fidelity (100% - Rel L2 %)",
+          "selected_option": "Rel L2 error: 0.0 (Nemotron-NVFP4) & 3.74e-9 (Inkling-NVFP4)",
+          "original_pct": 100.0,
+          "reversed_pct": 100.0,
+          "change_pts": 0.0,
+          "answer_held": true
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "192 GB HBM3 per GPU enables single-node 550B BF16 and single-node 975B MXFP4.",
+          "body": "On 80 GB (H100) or 141 GB (H200) GPUs, 1,044 GiB BF16 weights for Nemotron 3 Ultra cannot fit in a single 8-GPU node; MI300X fits it with 23.07 GiB/GPU to spare."
+        }
+      ]
+    },
+    {
+      "kind": "latency",
+      "eyebrow": "LATENCY & THROUGHPUT",
+      "headline": "45–205 ms C=1 TTFT in BF16 & 5.8–7.5x Emulation Penalty in MXFP4",
+      "subtitle": "Comparing fast BF16 TTFT / E2E latency in milliseconds (Batched / Blue) against C=8 queuing or MXFP4 software emulation E2E latency (One by one* / Gray).",
+      "rows": [
+        {
+          "question_count": 1,
+          "batched_median_ms": 45,
+          "one_by_one_estimated_ms": 45,
+          "runs": 1
+        },
+        {
+          "question_count": 2,
+          "batched_median_ms": 97,
+          "one_by_one_estimated_ms": 726,
+          "runs": 8
+        },
+        {
+          "question_count": 3,
+          "batched_median_ms": 4370,
+          "one_by_one_estimated_ms": 33420,
+          "runs": 1
+        },
+        {
+          "question_count": 4,
+          "batched_median_ms": 3750,
+          "one_by_one_estimated_ms": 41970,
+          "runs": 1
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Row 1: Inkling 975B BF16 C=1 TTFT is 45 ms (68.9 tok/s decode; Muse 205 ms / 84.6 tok/s; Nemotron 170 ms / 60.7 tok/s).",
+          "body": "Row 2: Inkling C=8 TTFT in BF16 (97 ms, 335.8 tok/s agg) vs MXFP4 (726 ms, 44.6 tok/s agg). Rows 3–4: 256-token E2E latency in ms for Nemotron (4,370 ms BF16 vs 33,420 ms MXFP4) and Inkling (3,750 ms BF16 vs 41,970 ms MXFP4)."
+        }
+      ]
+    },
+    {
+      "kind": "takeaways",
+      "eyebrow": "MY TAKE",
+      "headline": "Deploy BF16 for Production Throughput on MI300X; Use MXFP4 for 1-Node Density",
+      "good_fit": [
+        "1-node 550B BF16 production serving: Nemotron 3 Ultra on 1x ND96isr_MI300X_v5 (TP8+EP8, 136.51 GiB/GPU) delivers 60.7 tok/s (C=1) and 317.4 tok/s (C=8)",
+        "2-node 816B–975B BF16 serving: Muse Spark Open (348.6 tok/s @ C=8) and Inkling (335.8 tok/s @ C=8, 45 ms TTFT) via Ray TP8 x PP2 with NCCL_NET_GDR_LEVEL=0",
+        "1-node 975B hardware consolidation: Quark MXFP4 fits Inkling 975B on a single 8-GPU MI300X node (66.74 GiB/GPU, 94.79 GiB free KV) for functional/batch evaluation",
+        "Ultra-large KV cache residency: Nemotron online MoE MXFP4 unlocks 111.86 GiB/GPU KV cache (13.76M tokens across 8 GPUs)"
+      ],
+      "not_for": [
+        "Interactive low-latency serving with MXFP4 on MI300X (gfx942 software FP4 emulation drops C=1 decode to 6.1–7.7 tok/s; use MI355X gfx950 or Blackwell for native FP4 speed)",
+        "Running Muse Spark Open in MXFP4 on MI300X (MuseSpark1x rejects EMULATION and requires native AITER_MXFP4_MXFP4)",
+        "Running TP16 or default GDR on 2-node Inkling 975B (sconv requires tp_size <= 8; default GDR hangs 16-rank RCCL)",
+        "Using default AITER MoE on Nemotron 3 Ultra without VLLM_ROCM_USE_AITER_MOE=0 (non-gated relu2 incompatibility)"
+      ],
+      "dark_box": {
+        "lead": "Production Matrix Verified on Azure Standard_ND96isr_MI300X_v5 · BF16: 317.4–348.6 tok/s @ C=8 · MXFP4: -68.3% weight RAM / 1-node 975B.",
+        "repo": "Source: Large MoE Precision & Deployment Guide on Azure AMD MI300X · anonymized_reported"
+      }
+    }
+  ]
+}
