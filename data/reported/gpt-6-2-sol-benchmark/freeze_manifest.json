@@ -1,0 +1,30 @@
+{
+  "benchmark_id": "sol62-live-bench-v1",
+  "frozen_at_utc": "2026-11-18T07:13:06.494325+00:00",
+  "files": {
+    "P1_coding_4tasks.md": {
+      "sha256": "b1e463c9348c0cf3eea15d9de1a582980f7b3c53725adb099ac87ec8b515e4a0",
+      "bytes": 12992
+    },
+    "P2_routing_6scenarios_orig.md": {
+      "sha256": "e93dc200f79abb82f05da4608f064fdeadcaa4f2c1773abe021669b088f99551",
+      "bytes": 8797
+    },
+    "P3_routing_6scenarios_rev.md": {
+      "sha256": "4a1de87f1fea5273d83bc61cf2d3100e8a12ffa0e2e293bdd0da8cc68c013426",
+      "bytes": 9479
+    },
+    "P4_batch_n1.md": {
+      "sha256": "47af733d00d988042a30be3d573b4dd812d9d72558920bd5aee7726050f5f786",
+      "bytes": 2762
+    },
+    "P4_batch_n2.md": {
+      "sha256": "4dec96be3fed833a71ce67dd9c152319408bb081d1b5f0c2f520d0d32c920173",
+      "bytes": 3928
+    },
+    "P4_batch_n4.md": {
+      "sha256": "b73c0648d9107f1469d48b4e984965235ac0a180f524f1504e3ee8e3a9631ae5",
+      "bytes": 5828
+    }
+  }
+}

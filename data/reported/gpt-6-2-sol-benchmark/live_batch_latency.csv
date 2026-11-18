@@ -1,0 +1,5 @@
+question_count,batched_median_ms,one_by_one_estimated_ms,sol62_med_ms,sol61_high_ms,speedup_vs_seq,runs
+1,5377,5377,4819,6232,1.0,1
+2,4875,10754,4425,6840,2.21,1
+4,7100,21508,7177,10742,3.03,1
+6,8826,32262,8667,13140,3.66,1

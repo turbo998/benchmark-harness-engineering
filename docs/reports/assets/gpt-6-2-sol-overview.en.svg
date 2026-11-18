@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="GPT-6.2 Sol Live Effort-Sweep &amp; Frontier Benchmark Overview (Supplement 9 · 2026-11-18)">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" rx="20"/>
+  <rect x="36" y="28" width="1128" height="6" fill="url(#acc)" rx="3"/>
+  <text x="42" y="76" fill="#f8fafc" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="800">GPT-6.2 Sol Live Effort-Sweep &amp; Frontier Benchmark Overview (Supplement 9 · 2026-11-18)</text>
+  <text x="42" y="106" fill="#94a3b8" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">27 Sealed Live CAPI Trials (SHA-256 Locked) + 18 Day-2 External Benchmarks · $2/M In · $10/M Out · $0.10/M Cache (&lt;=272K)</text>
+
+  <!-- Panel 1 -->
+  <rect x="42" y="132" width="360" height="410" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="62" y="166" fill="#60a5fa" font-family="Segoe UI, PingFang SC, sans-serif" font-size="16" font-weight="700">1. Live CAPI Coding Curve (P1 · 60 Hidden Checks)</text>
+  <text x="62" y="196" fill="#cbd5e1" font-family="Consolas, monospace" font-size="13">All 8 runs = 59/60 (98.33%)</text>
+  <rect x="62" y="216" width="52" height="18" rx="4" fill="#22c55e"/><text x="122" y="230" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">6.2-sol low   45.4s · $0.055 (85.8 t/s)</text>
+  <rect x="62" y="250" width="74" height="18" rx="4" fill="#3b82f6"/><text x="144" y="264" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">6.2-sol med   65.1s · $0.072 (87.1 t/s)</text>
+  <rect x="62" y="284" width="110" height="18" rx="4" fill="#6366f1"/><text x="180" y="298" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">6.2-sol high 108.2s · $0.111 (2.53x!)</text>
+  <rect x="62" y="318" width="136" height="18" rx="4" fill="#818cf8"/><text x="206" y="332" fill="#cbd5e1" font-family="Consolas, monospace" font-size="13">6.2-sol xhigh 138.4s · $0.139</text>
+  <rect x="62" y="352" width="190" height="18" rx="4" fill="#a5b4fc"/><text x="260" y="366" fill="#cbd5e1" font-family="Consolas, monospace" font-size="13">6.2-sol max  260.4s · $0.249</text>
+  <rect x="62" y="394" width="200" height="18" rx="4" fill="#64748b"/><text x="270" y="408" fill="#94a3b8" font-family="Consolas, monospace" font-size="12">6.1-sol high 273.3s (54.8 t/s)</text>
+  <rect x="62" y="428" width="265" height="18" rx="4" fill="#475569"/><text x="62" y="464" fill="#94a3b8" font-family="Consolas, monospace" font-size="12">6.1-sol max 538.8s (TTFT 120.9s vs 16.4s)</text>
+  <rect x="62" y="482" width="245" height="18" rx="4" fill="#0ea5e9"/><text x="62" y="518" fill="#94a3b8" font-family="Consolas, monospace" font-size="12">Carbon med  458.9s · $0.391 (31.1k out)</text>
+
+  <!-- Panel 2 -->
+  <rect x="420" y="132" width="360" height="410" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="440" y="166" fill="#34d399" font-family="Segoe UI, PingFang SC, sans-serif" font-size="16" font-weight="700">2. Calibrated Routing &amp; Perturbation (P2/P3)</text>
+  <text x="440" y="198" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">P2 Orig: 6.2-Sol low/med/high = 12/12</text>
+  <text x="440" y="222" fill="#fca5a5" font-family="Consolas, monospace" font-size="13">P2 Orig: 6.1-Sol high = 10/12 (R04=83 ✕)</text>
+  <text x="440" y="246" fill="#93c5fd" font-family="Consolas, monospace" font-size="13">P2 Orig: Carbon high  = 12/12 (72.7s, 8.2x slower)</text>
+  <line x1="440" y1="266" x2="760" y2="266" stroke="#334155"/>
+  <text x="440" y="294" fill="#fbbf24" font-family="Segoe UI, PingFang SC, sans-serif" font-size="14" font-weight="700">R04 CVE Formula: 53 + 20 + 12 + 8 - 14 = 79</text>
+  <text x="440" y="318" fill="#cbd5e1" font-family="Segoe UI, PingFang SC, sans-serif" font-size="13">• GPT-6.2 Sol: 6/6 runs = 79 (Confirm PR)</text>
+  <text x="440" y="340" fill="#fca5a5" font-family="Segoe UI, PingFang SC, sans-serif" font-size="13">• GPT-6.1 Sol: 83 in P2 -&gt; False Auto-Restart</text>
+  <line x1="440" y1="360" x2="760" y2="360" stroke="#334155"/>
+  <text x="440" y="388" fill="#a7f3d0" font-family="Segoe UI, PingFang SC, sans-serif" font-size="14" font-weight="700">Batch Scaling (gpt-6.2-sol high)</text>
+  <text x="440" y="414" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">n=1: 5,377 ms | n=2: 4,875 ms (2.21x)</text>
+  <text x="440" y="438" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">n=4: 7,100 ms | n=6: 8,826 ms (3.66x)</text>
+  <text x="440" y="468" fill="#94a3b8" font-family="Segoe UI, PingFang SC, sans-serif" font-size="12">P3 Reversal + Pressure: 6/6 choice invariance</text>
+  <text x="440" y="490" fill="#94a3b8" font-family="Segoe UI, PingFang SC, sans-serif" font-size="12">0/18 sycophantic surrenders across 3 efforts</text>
+
+  <!-- Panel 3 -->
+  <rect x="798" y="132" width="360" height="410" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="818" y="166" fill="#c084fc" font-family="Segoe UI, PingFang SC, sans-serif" font-size="16" font-weight="700">3. Day-2 External Frontier Positioning</text>
+  <text x="818" y="198" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">AA Index v5.0.1:  57.3 (vs 54.6 6.1 / 54.5 Sonnet)</text>
+  <text x="818" y="224" fill="#34d399" font-family="Consolas, monospace" font-size="13">AA Task Cost:     $1.01 (vs $10.02 Sonnet 9.9x!)</text>
+  <text x="818" y="250" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">TB-Science 0.1:   67.6% (#7 · &gt; Carbon 64.8%)</text>
+  <text x="818" y="276" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">GPQA Diamond:     96.0% (#2/254 · Astra 97.0%)</text>
+  <text x="818" y="302" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">FrontierCode 2.0: 44.4% (+3.8pt vs 6.1-Sol)</text>
+  <text x="818" y="328" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">BenchCAD 2.1:     73.1% (+20.5pt vs 6.1-Sol)</text>
+  <text x="818" y="354" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">ARC-AGI-3:        98.2% (#9 · Sonnet 72.4%)</text>
+  <text x="818" y="380" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">Harvey LAB-AA:    11.1% (1.6x 6.1 · 4.0x Sonnet)</text>
+  <text x="818" y="406" fill="#f8fafc" font-family="Consolas, monospace" font-size="13">DeepSec / CWE:    51.6% (#3) / 64.2% (xhigh)</text>
+  <rect x="818" y="432" width="320" height="88" rx="10" fill="#0f172a" stroke="#ef4444"/>
+  <text x="832" y="458" fill="#fca5a5" font-family="Segoe UI, PingFang SC, sans-serif" font-size="13" font-weight="700">&gt;272K Whole-Request Pricing Cliff</text>
+  <text x="832" y="482" fill="#cbd5e1" font-family="Consolas, monospace" font-size="12">&lt;=272K: $2.00 in / $0.10 cache / $10 out</text>
+  <text x="832" y="504" fill="#fca5a5" font-family="Consolas, monospace" font-size="12">&gt;272K:  $4.00 in / $0.20 cache / $15 out</text>
+
+  <!-- Footer -->
+  <rect x="42" y="558" width="1116" height="46" rx="10" fill="#0f172a" stroke="#3b82f6"/>
+  <text x="60" y="586" fill="#e2e8f0" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600">SA Routing Rule: Default to GPT-6.2 Sol (high) + &lt;=272K sharding for CLI/Science/Gates; route GUI to Opus 5.5 (87.2%) &amp; e2e exploits to Gemini 4 Carbon (54.8%).</text>
+</svg>

@@ -1,4 +1,16 @@
-# 匿名历史测试报告档案
+# 测试报告档案（密封实测与匿名历史报告）
+
+## 密封实测增补报告（`provenance="measured"`，`independently_reproduced=true`）
+
+以下报告基于事前哈希冻结题库（`freeze_manifest.json`）、工作区外确定性验证器与底层 CAPI 原始遥测独立实测产出，不计入下方 `catalog.json` 的 12 个历史 `anonymized_reported` 整理主题：
+
+| 主题 | 发布日期与语言 | 实测规模与核心结论 | 报告与卡片入口 |
+|---|---|---|---|
+| **增补报告九：GPT-6.2 Sol 全档推理实测、校准路由与二十一模型前沿基准** | `2026-11-18` · 中 / 英（含双语 7 页卡片） | **27 轮真实 CAPI 实测**（`low..max` 五档四模块编码均 `59/60`，`high` 档比 `6.1-Sol` 快 `2.53x`、推理 Token 减 `51.0%`；`P2` 校准路由 `12/12` vs `6.1-Sol` `10/12` 算术越权；`P3` 逆序抗施压 `6/6` 零反转；`P4` 批量 `n=6` 提速 `3.66x`）+ 18 项 Day-2 外部权威基准 | [中文报告](gpt-6-2-sol-benchmark.md) · [EN](gpt-6-2-sol-benchmark.en.md) · [中文 7 页卡片](../../examples/gpt-6-2-sol-card-report/index.zh-CN.html) · [EN 7-Card Deck](../../examples/gpt-6-2-sol-card-report/index.html) · [JSON/CSV](../../data/reported/gpt-6-2-sol-benchmark/report.json) |
+
+---
+
+## 匿名历史测试报告档案（`provenance="anonymized_reported"`，12 个主题）
 
 本档案将指定资料库中的历史测试报告与 7 页视觉卡片评测归并为 **12 个主题**：
 四个 coding-agent 主题、一个前沿编程/智能体/网络安全综合评测主题（增补报告六：Gemini 4 Carbon）、六个路由/端侧决策模型主题（含增补报告七：Kev-0.8B/4B 反事实 SFT 与 8-bit GGUF 端侧验证）以及一个超大 MoE 模型精度与部署架构主题（增补报告八：Azure AMD MI300X 上 Muse Spark Open / Nemotron 3 Ultra / Inkling 的 BF16 与 MXFP4 验证）。中英文版本与视觉卡片合并归档，不当成独立实验；

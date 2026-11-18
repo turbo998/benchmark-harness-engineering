@@ -1,0 +1,19 @@
+category,benchmark,source,gpt_6_2_sol,gpt_6_1_sol,delta_vs_6_1,claude_sonnet_5_5,gemini_4_carbon,gpt_6_2_astra
+Composite & Economics,AA Intelligence Index v5.0.1 (max),Artificial Analysis (2026-11-18),57.3 (#11),54.6,+2.7 pts,54.5,60.0 (#2),62.1 (#3)
+Composite & Economics,AA Index Avg Cost / Task (max),Artificial Analysis (2026-11-18),$1.01 (40k out),$1.27 (68k out),-20.5% cost / -41% tok,$10.02 (285k out),$7.76 (v5.0),— ($8/$40 tier)
+Composite & Economics,AA Output Speed & First Answer (max),Artificial Analysis (2026-11-18),85 tok/s · 68.2s TTFA,49 tok/s · 145.2s TTFA,1.73x tok/s · 2.13x TTFA,147 tok/s · 295.8s TTFA,—,—
+Composite & Economics,Vals Multimodal & Enterprise Index,Vals AI (2026-11-18),66.1 (#9),63.9,+2.2 pts,70.8,70.4,—
+Composite & Economics,LiveBench 2.0 Global,LiveBench (2026-11-18),80.3% (#8),—,New v2.0 entry,—,—,—
+Coding & Engineering,"FrontierCode 2.0 (AA, Tools)",Artificial Analysis (2026-11-18),44.4% (#9),40.6%,+3.8 pt,41.7%,—,48.95% (xhigh) / 45.38% (max)
+Coding & Engineering,LiveBench 2.0 Coding,LiveBench (2026-11-18),83.7% (#10),82.1%,+1.6 pt,77.2%,—,—
+Coding & Engineering,Terminal-Bench-Science 0.1 (AA),Artificial Analysis (2026-11-18),"67.6% (#7, high & max)",58.1%,+9.5 pt,53.3%,64.8%,— (9 pt > GPT-6 Astra)
+Coding & Engineering,Terminal-Bench 4.0 (AA / Vals),AA / Vals AI (2026-11-18),60.1% AA / 60.6% Vals,56.1% AA / 55.0% Vals,+4.0 pt / +5.6 pt,63.6% AA / 64.1% Vals,65.2% AA,—
+Coding & Engineering,BenchCAD 2.1 Core (3D Engineering),DataLearner / BenchCAD (2026-11-18),73.1% (#7),52.6%,+20.5 pt (1.39x),—,—,82.5% (#2)
+Science & Abstract Reasoning,GPQA Diamond (Thinking),DataLearner / OpenAI (2026-11-18),96.0% (#2/254),95.4%,+0.6 pt,95.6%,—,97.0% (#1/254)
+Science & Abstract Reasoning,HLE-Diamond (AA),Artificial Analysis (2026-11-18),64.0% (#9/#11),58.8%,+5.2 pt,53.3%,—,72.2% (#4)
+Science & Abstract Reasoning,ARC-AGI-1 / ARC-AGI-2 / ARC-AGI-3,ARC Prize (2026-11-18),97.5% / 85.8% / 98.2% (#9),96.5% / 94.2% / 96.2%,+1.0 / -8.4 / +2.0 pt,96.5% / 83.9% / 72.4%,—,—
+Enterprise Agents & Verticals,AutomationBench (AA),Artificial Analysis (2026-11-18),71.3%,64.9%,+6.4 pt,71.8%,53.9% (Zapier subset),—
+Enterprise Agents & Verticals,Harvey LAB-AA v1.1 / Vals HLAB v1.1,Harvey / Vals AI (2026-11-18),11.1% (#6) / 12.1%,6.9% / 6.3%,+4.2 pt (1.61x) / 1.92x,2.8% / 10.4%,—,— (>3x GPT-6 Astra)
+Enterprise Agents & Verticals,HealthBench Professional / BioMysteryBench,OpenAI / Vals AI (2026-11-18),65.9% (#8) / 77.8% (#8),64.2% / —,+1.7 pt,—,—,66.3% (#7) / —
+Cybersecurity & Guardrails,DeepSec-Bench / CWE-Bench (AA),Artificial Analysis (2026-11-18),51.6% (#3) / 64.2% (xhigh),—,#3 DeepSec-Bench,—,— / 71.0% (Collinear #1),—
+Cybersecurity & Guardrails,CyberGym End-to-End (AA),Artificial Analysis (2026-11-18),0.0% (#23),—,Exploit e2e boundary,—,54.8% ExploitGym (10h #1),—

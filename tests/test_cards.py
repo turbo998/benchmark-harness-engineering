@@ -126,3 +126,77 @@ def test_maf_multi_agent_benchmark_report_and_cards_integrity() -> None:
     assert "1 / 7" in html_content and "7 / 7" in html_content
     assert "Content-Security-Policy" in html_content
     assert "<script" not in html_content
+
+
+def test_gpt_6_2_sol_benchmark_report_and_cards_integrity(workdir: Path) -> None:
+    import json
+
+    root = Path(__file__).resolve().parents[1]
+    data_dir = root / "data" / "reported" / "gpt-6-2-sol-benchmark"
+    report_path = data_dir / "report.json"
+    zh_report_path = data_dir / "report.zh-CN.json"
+    en_html_path = root / "examples" / "gpt-6-2-sol-card-report" / "index.html"
+    zh_html_path = root / "examples" / "gpt-6-2-sol-card-report" / "index.zh-CN.html"
+    ex_readme_zh = root / "examples" / "gpt-6-2-sol-card-report" / "README.md"
+    ex_readme_en = root / "examples" / "gpt-6-2-sol-card-report" / "README.en.md"
+    doc_zh = root / "docs" / "reports" / "gpt-6-2-sol-benchmark.md"
+    doc_en = root / "docs" / "reports" / "gpt-6-2-sol-benchmark.en.md"
+    svg_zh = root / "docs" / "reports" / "assets" / "gpt-6-2-sol-overview.svg"
+    svg_en = root / "docs" / "reports" / "assets" / "gpt-6-2-sol-overview.en.svg"
+
+    expected_files = [
+        report_path,
+        zh_report_path,
+        data_dir / "freeze_manifest.json",
+        data_dir / "live_capi_telemetry.csv",
+        data_dir / "live_coding_effort_sweep.csv",
+        data_dir / "live_routing_and_perturbation.csv",
+        data_dir / "live_batch_latency.csv",
+        data_dir / "external_benchmark_matrix.csv",
+        en_html_path,
+        zh_html_path,
+        ex_readme_zh,
+        ex_readme_en,
+        doc_zh,
+        doc_en,
+        svg_zh,
+        svg_en,
+    ]
+    for path in expected_files:
+        assert path.is_file(), f"Missing expected artifact: {path}"
+
+    report_data = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report_data["schema_version"] == 1
+    assert report_data["report_id"] == "gpt-6-2-sol-benchmark"
+    assert report_data["provenance"] == "measured"
+    assert report_data["independently_reproduced"] is True
+    assert report_data["cards"][6]["dark_box"]["repo"].endswith(
+        "data/reported/gpt-6-2-sol-benchmark"
+    )
+
+    facts = report_data["facts"]
+    assert facts["live_capi_trials"] == 27
+    assert facts["coding_assertions_passed"] == 59
+    assert facts["coding_assertions_total"] == 60
+    assert facts["routing_assertions_passed_sol62"] == 12
+    assert facts["routing_assertions_passed_sol61"] == 10
+    assert facts["routing_assertions_total"] == 12
+    assert facts["choice_questions_reversal_stable"] == 6
+    assert facts["choice_questions_total"] == 6
+
+    regenerated_out = workdir / "gpt-6-2-sol-cards.html"
+    meta = generate_cards(report_path, regenerated_out)
+    assert meta["cards"] == 7
+    assert meta["provenance"] == "measured"
+    en_html = en_html_path.read_text(encoding="utf-8")
+    assert regenerated_out.read_text(encoding="utf-8") == en_html
+
+    zh_html = zh_html_path.read_text(encoding="utf-8")
+    forbidden_identifiers = ("Henry", "Qi Chen", "qichen", "notion.so", "C:\\Users")
+    for html_doc in (en_html, zh_html):
+        assert html_doc.count('class="report-card"') == 7
+        assert "1 / 7" in html_doc and "7 / 7" in html_doc
+        assert "default-src 'none'; style-src 'unsafe-inline'" in html_doc
+        assert "<script" not in html_doc.lower()
+        for ident in forbidden_identifiers:
+            assert ident not in html_doc

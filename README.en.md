@@ -15,6 +15,7 @@ An offline-first, provenance-sealed evaluation and visual report generation harn
    - Renders self-contained `900px × 1125px` (`4:5` portrait) 7-card HTML decks with `Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'` and zero external scripts or network requests.
    - Specification: [`docs/research/visual-report-card-format.md`](docs/research/visual-report-card-format.md) and [`docs/research/benchmark-report-system-prompt.md`](docs/research/benchmark-report-system-prompt.md).
    - Reference Decks:
+     - **GPT-6.2 Sol Live Effort-Sweep, Calibrated Routing & 21-Model Frontier Benchmark (`2026-11-18`, Supplement Report 9)**: [`examples/gpt-6-2-sol-card-report/index.html`](examples/gpt-6-2-sol-card-report/index.html) ([中文 7-Card](examples/gpt-6-2-sol-card-report/index.zh-CN.html) · [`report.json`](data/reported/gpt-6-2-sol-benchmark/report.json) · [ZH](docs/reports/gpt-6-2-sol-benchmark.md) · [EN](docs/reports/gpt-6-2-sol-benchmark.en.md))
      - **AIPC Edge Decision Model (Kev-0.8B / 4B) SFT, Calibration & Q8_0 GGUF (Supplement 7)**: [`examples/aipc-kev-sft-card-report/index.html`](examples/aipc-kev-sft-card-report/index.html) ([`report.json`](data/reported/routing-aipc-kev-sft/report.json) · [ZH](docs/reports/routing-aipc-kev-sft.md) · [EN](docs/reports/routing-aipc-kev-sft.en.md))
      - **Azure AMD MI300X Large MoE (Muse Spark 816B / Nemotron 3 Ultra 550B / Inkling 975B) BF16 & MXFP4 (Supplement 8)**: [`examples/moe-mi300x-card-report/index.html`](examples/moe-mi300x-card-report/index.html) ([`report.json`](data/reported/moe-mi300x-bf16-mxfp4/report.json) · [ZH](docs/reports/moe-mi300x-bf16-mxfp4.md) · [EN](docs/reports/moe-mi300x-bf16-mxfp4.en.md))
      - **Microsoft Agent Framework (MAF v1.0) vs. 6 Mainstream Frameworks**: [`examples/maf-multi-agent-card-report/index.html`](examples/maf-multi-agent-card-report/index.html) ([`report.json`](data/reported/maf-multi-agent-benchmark/report.json) · [ZH](examples/maf-multi-agent-card-report/test-report.md) · [EN](examples/maf-multi-agent-card-report/test-report.en.md))
@@ -23,12 +24,13 @@ An offline-first, provenance-sealed evaluation and visual report generation harn
 
 ---
 
-## Historical Benchmark Report Archive (12 Report Families)
+## Benchmark Reports (12 Historical Families + Sealed Measured Supplements)
 
-The [Ten-Report Index](docs/reports/README.md) and [Structured Reported Archive](data/reported/README.md) preserve anonymized, provenance-tagged transcriptions of historical benchmark evaluations (`provenance="anonymized_reported"`, `independently_reproduced=false`). Bilingual views and 7-card visual decks are indexed under [`data/reported/catalog.json`](data/reported/catalog.json) with arithmetic audits in [`data/reported/consistency.json`](data/reported/consistency.json).
+The [Report Index](docs/reports/README.md) and [Structured Reported Archive](data/reported/README.md) preserve 12 anonymized historical benchmark families (`provenance="anonymized_reported"`, `independently_reproduced=false`, indexed in [`data/reported/catalog.json`](data/reported/catalog.json) with arithmetic audits in [`data/reported/consistency.json`](data/reported/consistency.json)), alongside independently reproduced sealed evaluations (`provenance="measured"`, `independently_reproduced=true`).
 
 | Report Family | Scope | Reports & Structured Data |
 |---|---|---|
+| **GPT-6.2 Sol Live Effort-Sweep, Calibrated Routing & 21-Model Frontier Benchmark (`2026-11-18`, Supplement Report 9 — `measured`)** | 27 sealed live CAPI trials (`low..max` 4-module coding all `59/60`, `2.53x` faster & `-51.0%` reasoning tokens vs `6.1-Sol` at `high`; `12/12` vs `10/12` calibrated routing; `6/6` reversal invariance; `3.66x` `n=6` batch speedup) + 18 Day-2 external leaderboards | [ZH](docs/reports/gpt-6-2-sol-benchmark.md) · [EN](docs/reports/gpt-6-2-sol-benchmark.en.md) · [EN 7-Card Deck](examples/gpt-6-2-sol-card-report/index.html) · [ZH 7-Card Deck](examples/gpt-6-2-sol-card-report/index.zh-CN.html) · [JSON](data/reported/gpt-6-2-sol-benchmark/report.json) |
 | **5-Model Coding Benchmark** | 11 tasks, 55 scored runs | [Report (ZH)](docs/reports/coding-five.md) · [JSON](data/reported/coding-five/report.json) |
 | **10-Model Coding Supplement** | +55 runs (110 cumulative) | [Report (ZH)](docs/reports/coding-ten.md) · [JSON](data/reported/coding-ten/report.json) |
 | **17-Model Coding Supplement (Supplement 4)** | +22 runs (187 cumulative) | [Report (ZH)](docs/reports/coding-seventeen.md) · [JSON](data/reported/coding-seventeen/report.json) |
