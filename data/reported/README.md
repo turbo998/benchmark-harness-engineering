@@ -38,3 +38,9 @@ images, zipped evidence and implementation/model files are excluded. Existing
 research references elsewhere in the repository are not rewritten by this archive.
 The original summaries were AI-assisted; reported observations are not attributed
 to this project's authors as new measurements.
+
+## Standalone Supplement Datasets (Outside the 12 Historical `catalog.json` Families)
+
+- `gpt-6-2-sol-benchmark/`: Sealed live CAPI evaluation (`provenance="measured"`, `independently_reproduced=true`; see [Supplement Report 9](../../docs/reports/gpt-6-2-sol-benchmark.en.md)).
+- `maf-multi-agent-benchmark/`: Microsoft Agent Framework v1.0 multi-agent orchestration benchmark (`provenance="measured"`, `independently_reproduced=true`).
+- `terminal-bench-4-1/`: Structured aggregate synthesis of public **Terminal-Bench 4.1** telemetry (`tbench.ai` / `harbor-framework/terminal-bench@v4.1.0`, Apache-2.0, snapshot `2026-11-19T03:41:57Z`; `provenance="anonymized_reported"`, `independently_reproduced=false`; see [Supplement Report 10](../../docs/reports/terminal-bench-4-1.en.md)). Contains `leaderboard_4_1.csv` (65 runs), `pareto_frontiers_4_1.csv`, `tasks_waffle_4_1.csv` (66 tasks), `domain_matrix_4_1.csv` (7 domains), `version_evolution.csv`, `report.json`, and `report.zh-CN.json`. Zero raw task instructions, oracle solutions, or canary GUID strings are included.

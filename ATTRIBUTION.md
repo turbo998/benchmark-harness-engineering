@@ -29,3 +29,11 @@ report families (thirteen language pages / card decks). It is not a republicatio
 their complete task banks, images, attachments or code, and is not our measurement.
 Source identities/private links are deliberately omitted from this new archive;
 earlier research attribution above is retained rather than rewritten or relicensed.
+
+Supplement Report 10 ([docs/reports/terminal-bench-4-1.en.md](docs/reports/terminal-bench-4-1.en.md)
+and `data/reported/terminal-bench-4-1/`) synthesizes publicly published aggregate
+telemetry from [TERMINAL-BENCH (`tbench.ai`)](https://www.tbench.ai/) and
+[`harbor-framework/terminal-bench@v4.1.0`](https://github.com/harbor-framework/terminal-bench/releases/tag/v4.1.0)
+(Stanford / Harbor Framework / Laude Institute, Apache-2.0), explicitly marked
+`independently_reproduced=false` without redistributing task prompts, oracle
+solutions, or benchmark canary strings.

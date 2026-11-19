@@ -11,6 +11,7 @@ a built environment; task datasets and container images may have separate terms.
 | Inspect AI | [repository](https://github.com/UKGovernmentBEIS/inspect_ai) | MIT |
 | SWE-bench | [repository](https://github.com/SWE-bench/SWE-bench) | MIT |
 | Legacy Terminal-Bench | [repository](https://github.com/laude-institute/terminal-bench) | Apache-2.0 |
+| Terminal-Bench 4.1 (`harbor-framework/terminal-bench`) | [v4.1.0 release](https://github.com/harbor-framework/terminal-bench/releases/tag/v4.1.0) & [tbench.ai](https://www.tbench.ai/) | Apache-2.0 (aggregate metrics cited; zero task prompts, oracle scripts, or canary GUIDs redistributed) |
 | Azure SDK for Python | [repository](https://github.com/Azure/azure-sdk-for-python) | MIT; dependencies retain their own licenses |
 
 No license was established for redistribution of the two satomic repositories

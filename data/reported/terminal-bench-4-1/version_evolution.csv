@@ -1,0 +1,6 @@
+version,n_runs,median_accuracy_pct,max_accuracy_pct,top1_model,top1_agent,top1_cost_usd,architectural_milestone
+2.0,142,44.33,84.72,GPT-5.5,NexAU-AHE,,Initial Harbor container benchmark (89 tasks); wide open/proprietary spread
+2.1,22,78.43,87.42,GPT-6 Astra,Codex,773.5,"Saturation regime (median 78.43%, max 87.42% GPT-6 Astra + Codex)"
+3.0,12,21.08,42.7,Opus 5,mini-SWE-agent,5818.2,Hard frontier reset: SOTA dropped 44.72 pts to 42.70% (Opus 5 + mini-SWE-agent)
+4.0,57,37.27,64.85,Opus 5.5,Claude Code,4718.65,66-task 7-domain refresh with 8h flat timeout; continuous x.y.z versioning
+4.1,65,38.48,71.21,Copilot Fusion,GitHub Copilot,1987.33,Separate verifier container isolation (environment_mode='separate' + artifacts[])

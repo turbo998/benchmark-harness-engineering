@@ -1,0 +1,582 @@
+{
+  "schema_version": 1,
+  "report_id": "terminal-bench-4-1",
+  "deck_title": "Terminal-Bench 4.1 · Leaderboard, Pareto & 66-Task Architecture Audit",
+  "provenance": "anonymized_reported",
+  "independently_reproduced": false,
+  "metadata": {
+    "benchmark": "Terminal-Bench 4.1 (terminal-bench@4.1.0 / Harbor Framework)",
+    "upstream_attribution": "Stanford / Harbor Framework / Laude Institute (https://www.tbench.ai/)",
+    "license": "Apache-2.0 (harbor-framework/terminal-bench)",
+    "snapshot_utc": "2026-11-19T03:41:57Z",
+    "canary_free_verified": true,
+    "raw_tasks_redistributed": false
+  },
+  "facts": {
+    "benchmark_id": "terminal-bench@4.1.0",
+    "snapshot_utc": "2026-11-19T03:41:57Z",
+    "license": "Apache-2.0 (harbor-framework/terminal-bench)",
+    "source_urls": [
+      "https://www.tbench.ai/",
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.1.0",
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/5"
+    ],
+    "scale": {
+      "leaderboard_runs": 65,
+      "unique_model_agent_pairs": 52,
+      "tasks_total": 66,
+      "cpu_only_tasks": 63,
+      "gpu_tasks": 3,
+      "trials_per_task_per_run": 5,
+      "trials_per_run": 330,
+      "trials_per_task_across_runs": 325,
+      "total_trials": 21450,
+      "agent_timeout_sec": 28800,
+      "trial_outcomes": {
+        "pass_count": 7867,
+        "pass_pct": 36.68,
+        "fail_count": 12852,
+        "fail_pct": 59.92,
+        "timeout_count": 147,
+        "timeout_pct": 0.69,
+        "error_count": 584,
+        "error_pct": 2.72
+      }
+    },
+    "domain_summary": [
+      {
+        "domain": "Security",
+        "task_count": 5,
+        "avg_solve_pct": 52
+      },
+      {
+        "domain": "ML",
+        "task_count": 11,
+        "avg_solve_pct": 43
+      },
+      {
+        "domain": "Media",
+        "task_count": 4,
+        "avg_solve_pct": 38
+      },
+      {
+        "domain": "Hardware",
+        "task_count": 5,
+        "avg_solve_pct": 37
+      },
+      {
+        "domain": "Software",
+        "task_count": 18,
+        "avg_solve_pct": 35
+      },
+      {
+        "domain": "Science",
+        "task_count": 14,
+        "avg_solve_pct": 34
+      },
+      {
+        "domain": "Operations",
+        "task_count": 9,
+        "avg_solve_pct": 26
+      }
+    ],
+    "commercial_cost_pareto_best_effort": [
+      {
+        "rank": 63,
+        "model": "Inkling Small",
+        "agent": "mini-swe-agent",
+        "effort": "none",
+        "accuracy_pct": 0.91,
+        "pass_at_5_pct": 3.03,
+        "cost_usd": 49.55,
+        "cost_per_trial_usd": 0.1502,
+        "total_tokens": 373378039,
+        "avg_duration_sec": 141.3
+      },
+      {
+        "rank": 52,
+        "model": "GPT-6 Luna",
+        "agent": "Codex",
+        "effort": "max",
+        "accuracy_pct": 15.15,
+        "pass_at_5_pct": 28.79,
+        "cost_usd": 72.14,
+        "cost_per_trial_usd": 0.2186,
+        "total_tokens": 3909124893,
+        "avg_duration_sec": 2284.1
+      },
+      {
+        "rank": 39,
+        "model": "Muse Ember",
+        "agent": "Muse Code",
+        "effort": "xhigh",
+        "accuracy_pct": 30.61,
+        "pass_at_5_pct": 59.09,
+        "cost_usd": 157.18,
+        "cost_per_trial_usd": 0.4763,
+        "total_tokens": 8131161565,
+        "avg_duration_sec": 2288.4
+      },
+      {
+        "rank": 33,
+        "model": "DeepSeek V4.1 Flash 1017",
+        "agent": "Claude Code",
+        "effort": "max",
+        "accuracy_pct": 38.48,
+        "pass_at_5_pct": 65.15,
+        "cost_usd": 184.89,
+        "cost_per_trial_usd": 0.5603,
+        "total_tokens": 8187123046,
+        "avg_duration_sec": 148.4
+      },
+      {
+        "rank": 7,
+        "model": "GPT-6.2 Sol",
+        "agent": "Codex",
+        "effort": "max",
+        "accuracy_pct": 61.52,
+        "pass_at_5_pct": 72.73,
+        "cost_usd": 349.16,
+        "cost_per_trial_usd": 1.0581,
+        "total_tokens": 1085250438,
+        "avg_duration_sec": 1214.3
+      },
+      {
+        "rank": 4,
+        "model": "Gemini 4 Carbon",
+        "agent": "Antigravity CLI",
+        "effort": "high",
+        "accuracy_pct": 64.55,
+        "pass_at_5_pct": 78.79,
+        "cost_usd": 1358.25,
+        "cost_per_trial_usd": 4.1159,
+        "total_tokens": 3781194078,
+        "avg_duration_sec": 3495.8
+      },
+      {
+        "rank": 1,
+        "model": "Copilot Fusion",
+        "agent": "GitHub Copilot",
+        "effort": "max",
+        "accuracy_pct": 71.21,
+        "pass_at_5_pct": 83.33,
+        "cost_usd": 1987.33,
+        "cost_per_trial_usd": 6.0222,
+        "total_tokens": 3316652076,
+        "avg_duration_sec": 4233.6
+      }
+    ],
+    "zero_solve_wall_tasks": [
+      "bun-sourcemap-leak",
+      "freight-dispatch-shift",
+      "glycan-ms2-elucidation",
+      "ontology-kg-querying"
+    ],
+    "overthinking_inversions": [
+      {
+        "pair": "Fable 5.1 + Claude Code",
+        "better_effort": "xhigh",
+        "better_accuracy_pct": 57.58,
+        "better_cost_usd": 4872.04,
+        "max_accuracy_pct": 57.27,
+        "max_cost_usd": 6243.5,
+        "delta_accuracy_pts": -0.31,
+        "extra_cost_usd": 1371.46
+      },
+      {
+        "pair": "Opus 5 + Claude Code",
+        "better_effort": "xhigh",
+        "better_accuracy_pct": 53.33,
+        "better_cost_usd": 6086.22,
+        "max_accuracy_pct": 52.12,
+        "max_cost_usd": 5969.11,
+        "delta_accuracy_pts": -1.21,
+        "extra_duration_sec": 277.9
+      },
+      {
+        "pair": "GPT-6 Astra + Codex",
+        "better_effort": "high",
+        "better_accuracy_pct": 60.0,
+        "better_cost_usd": 2269.42,
+        "xhigh_accuracy_pct": 59.7,
+        "xhigh_cost_usd": 2350.51,
+        "max_accuracy_pct": 60.3,
+        "max_cost_usd": 3267.18
+      }
+    ]
+  },
+  "cards": [
+    {
+      "kind": "overview",
+      "eyebrow": "HANDS-ON · TERMINAL-BENCH 4.1 HARBOR COHORT",
+      "headline_prefix": "71.21% SOTA Across 21,450 Trials — ",
+      "headline_Gradient": "GPT-6.2 Sol Hits 61.52% at $349 (47.2x Cheaper)",
+      "subtitle": "65 leaderboard runs (52 unique model x agent pairs) x 66 Docker tasks x 5 trials (8h timeout) under Harbor v4.1.0 isolated verification.",
+      "workbench": {
+        "title": "Terminal-Bench 4.1 (tbench.ai) · Harbor v4.1.0 Synthesis Workbench",
+        "status_pill": "65 runs · 66 tasks · 21,450 trials · Apache-2.0",
+        "scenarios": [
+          "TABLE View: 65 Runs / 52 Unique Pairs (±95% CI)",
+          "PARETO Cost: 7 Commercial Points ($49.55 -> $1,987)",
+          "PARETO Tokens & Speed: 1.09B Tok & 1,214s Elbow",
+          "Domain Gap: Security 52% vs Operations 26%",
+          "Overthinking Tax: Fable 5.1 & Opus 5 xhigh > max",
+          "Premature Victory: 59.92% Fail vs 0.69% Timeout",
+          "TB 4.1 Separate Verifier: Zero Test-Script Leakage"
+        ],
+        "bands_note": "SA Routing Gates: >=60% & <=$2,000 Act automatically · High-cost (>=$4,700) or Best-of-5 Confirm · Operations <=26% / 0%-Wall Send to a human.",
+        "metrics": [
+          "#1 Copilot Fusion: 71.21% ($1,987)",
+          "#2 Tie Opus 5.5 / Fable 5.2: 65.76%",
+          "#4 Gemini 4 Carbon: 64.55% ($1,358)",
+          "#7 GPT-6.2 Sol: 61.52% ($349 · $1.06/trial)",
+          "#11 Kimi K3.1 Pro: 84.85% pass@5 (#1)",
+          "TB 2.1 -> 3.0 Reset: 87.42% -> 42.70%"
+        ],
+        "decisions": [
+          {
+            "field": "pareto_golden_elbow",
+            "question_type": "choice",
+            "question": "Which commercial cohort maximizes SWE resolution per dollar across 330 trials?",
+            "selected_answer": "GPT-6.2 Sol + Codex (max) — 61.52% at $349.16 (ties #1 in Software at 66.67%)",
+            "confidence": 0.615,
+            "action": "Act automatically",
+            "distribution_pct": {
+              "Copilot Fusion ($1,987)": 71.2,
+              "Opus 5.5 ($4,719)": 65.8,
+              "Gemini 4 Carbon ($1,358)": 64.5,
+              "GPT-6.2 Sol ($349)": 61.5
+            }
+          },
+          {
+            "field": "operations_domain_gate",
+            "question_type": "score",
+            "question": "Can frontier terminal agents run stateful enterprise Operations unguarded?",
+            "selected_answer": "26 / 100 Domain Mean -> Require Human-in-the-Loop Gate",
+            "closest_label": "Operations (26%) lags Security (52%) by 26 pts across 65 runs",
+            "confidence": 0.26,
+            "action": "Send to a human",
+            "distribution_pct": {
+              "Security (5 tasks)": 52.0,
+              "ML (11 tasks)": 43.0,
+              "Software (18 tasks)": 35.0,
+              "Operations (9 tasks)": 26.0
+            }
+          }
+        ]
+      },
+      "callouts": [
+        {
+          "lead": "Provenance & Saturation Reset (tbench.ai, snapshot 2026-11-19):",
+          "body": "Public benchmark data from Stanford / Harbor / Laude Institute (Apache-2.0, independently_reproduced=false). After TB 2.1 saturated at 87.42% (median 78.43%), TB 3.0 reset SOTA to 42.70% and TB 4.1 sealed verifier anti-tampering."
+        }
+      ]
+    },
+    {
+      "kind": "deep_dive",
+      "eyebrow": "SCENARIO: COMPILER-ORACLE LAW & PREMATURE VICTORY",
+      "headline": "70%–78% on Compiler-Oracle Tasks vs 0/325 on Four Unsolved Wall Tasks",
+      "subtitle": "21,450 trial outcomes: 36.68% pass (7,867), 59.92% voluntary wrong exit (12,852), and just 0.69% timeout (147).",
+      "quote": "\"Why do agents solve H100 FP8 CUDA kernels (65.8%) and Coq proofs (73.5%), yet record 325/325 confident wrong completions (0 timeouts) on bun-sourcemap-leak?\"",
+      "decisions": [
+        {
+          "field": "compiler_oracle_convergence",
+          "question_type": "choice",
+          "question": "Tasks with deterministic local compilers/checkers (coqc, nvcc, pytest)",
+          "selected_answer": "mp-checkpoint-consolidation 78.2% (254/325) & coq-block-bound 73.5% (239/325)",
+          "confidence": 0.782,
+          "action": "Act automatically",
+          "distribution_pct": {
+            "mp-checkpoint (254/325)": 78.2,
+            "wdm-design (243/325)": 74.8,
+            "coq-block-bound (239/325)": 73.5,
+            "fp8-rmsnorm-gemm (214/325)": 65.8
+          }
+        },
+        {
+          "field": "best_of_5_specialist_headroom",
+          "question_type": "score",
+          "question": "Multi-trial exploration ceiling (pass@5) & Operations specialist outlier",
+          "selected_answer": "Kimi K3.1 Pro + Claude Code — #1 pass@5 (84.85%) & #1 Operations (64.44%)",
+          "closest_label": "Sole solver of cargo-flight-dispatch (3/325) + 5/5 on medical-claims",
+          "confidence": 0.848,
+          "action": "Confirm",
+          "distribution_pct": {
+            "Kimi K3.1 Pro pass@5": 84.8,
+            "Copilot Fusion pass@5": 83.3,
+            "Opus 5.5 pass@5": 80.3,
+            "Kimi K3.1 Pro pass@1": 59.7
+          }
+        },
+        {
+          "field": "zero_solve_premature_victory",
+          "question_type": "noul",
+          "question": "4 Zero-Solve Wall tasks across all 65 runs (1,300 total attempts)",
+          "selected_answer": "NOUL — 0 / 1,300 Solved (1,279 confident wrong exits, only 10 timeouts)",
+          "confidence": 0.0,
+          "action": "Send to a human",
+          "distribution_pct": {
+            "bun-sourcemap-leak (0/325)": 0.0,
+            "freight-dispatch-shift (0/325)": 0.0,
+            "data-anonymization (1/325)": 0.3,
+            "cargo-flight-dispatch (3/325)": 0.9
+          }
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Premature Victory Syndrome Beats Timeout Exhaustion 87-to-1:",
+          "body": "Only 147 of 21,450 trials (0.69%) hit the 8h ceiling. On bun-sourcemap-leak (325/325 fail, 0 timeout) and freight-dispatch-shift (317/325 fail, 0 timeout), agents exit early convinced they succeeded because no local negative-invariant oracle falsifies them."
+        }
+      ]
+    },
+    {
+      "kind": "scorecard",
+      "eyebrow": "WHAT I TESTED · LEADERBOARD, PARETO & DOMAIN SCORECARD",
+      "headline": "7 Commercial Pareto Winners vs 47.2x Cost Bloat & $0 Preview Distortion",
+      "subtitle": "Scorecard uniting TABLE ranks, PARETO efficiency anchors, harness gaps, and 0% wall tasks.",
+      "rows": [
+        {
+          "scenario": "#1 SOTA · Copilot",
+          "question": "Copilot Fusion + GitHub Copilot (max) — 235/330, $1,987.33 ($6.02/trial)",
+          "decider_answer": "71.2% ± 2.9% · #1 Media 90% / Sec 88%",
+          "reported_probability_pct": 71.2,
+          "pointed_right_way": true,
+          "action": "Act automatically"
+        },
+        {
+          "scenario": "#2 Tie · Claude Code",
+          "question": "Opus 5.5 + Claude Code (max) — 217/330, $4,718.65 (#1 ML 83.6%)",
+          "decider_answer": "65.8% ± 3.1% · sole data-anon solver",
+          "reported_probability_pct": 65.8,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "#2 Cost Anomaly",
+          "question": "Fable 5.2 + Claude Code (max) — ties Opus 5.5 (217/330) at $16,492.76",
+          "decider_answer": "47.2x Sol cost ($49.98/trial · 15.7B tok)",
+          "reported_probability_pct": 65.8,
+          "pointed_right_way": false,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "#4 Pareto · Antigravity",
+          "question": "Gemini 4 Carbon + Antigravity CLI (high) — 213/330, $1,358.25",
+          "decider_answer": "64.5% ± 3.2% · #1 Tie Sci 68.6% / HW 80%",
+          "reported_probability_pct": 64.5,
+          "pointed_right_way": true,
+          "action": "Act automatically"
+        },
+        {
+          "scenario": "#7 Golden Elbow",
+          "question": "GPT-6.2 Sol + Codex (max) — 203/330, $349.16 (1.09B tok, 1,214s)",
+          "decider_answer": "61.5% ± 2.8% · ties #1 Software 66.7%",
+          "reported_probability_pct": 61.5,
+          "pointed_right_way": true,
+          "action": "Act automatically"
+        },
+        {
+          "scenario": "#11 Exploration King",
+          "question": "Kimi K3.1 Pro + Claude Code (max) — $1,086.66 (#1 Ops 64.4%)",
+          "decider_answer": "59.7% pass@1 -> 84.8% pass@5 (#1)",
+          "reported_probability_pct": 84.8,
+          "pointed_right_way": true,
+          "action": "Confirm"
+        },
+        {
+          "scenario": "Sub-$200 Pareto",
+          "question": "DeepSeek V4.1 Flash 1017 ($184.89) & GLM-5.3-Flash none ($118.74)",
+          "decider_answer": "38.5% ($0.56/tr) & 35.5% ($0.36/tr)",
+          "reported_probability_pct": 38.5,
+          "pointed_right_way": true,
+          "action": "Act automatically"
+        },
+        {
+          "scenario": "$0 Preview Distortion",
+          "question": "Muse Spark 1.3 + Muse Code (xhigh) — 9.01B tokens billed at $0.00",
+          "decider_answer": "14.8% (false $0 Pareto origin)",
+          "reported_probability_pct": 14.8,
+          "pointed_right_way": false,
+          "action": "Send to a human"
+        },
+        {
+          "scenario": "Minimal Harness Gap",
+          "question": "mini-swe-agent / mini-SWE-agent (11 runs, up to 14.16B avg tokens)",
+          "decider_answer": "27.0% ceiling · 7.6%–18.2% median",
+          "reported_probability_pct": 27.0,
+          "pointed_right_way": false,
+          "action": "Send to a human"
+        },
+        {
+          "scenario": "Zero-Solve Wall (4/66)",
+          "question": "bun-sourcemap, ontology-kg, glycan-ms2, freight-dispatch (1,300 trials)",
+          "decider_answer": "0 / 1,300 solved (0.0%)",
+          "reported_probability_pct": 0.0,
+          "pointed_right_way": false,
+          "action": "Send to a human"
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Statistical Tie Discipline (±2.3%–4.2% 95% CI):",
+          "body": "Ranks #2–#5 (65.76% to 63.94%) and #6–#12 (62.12% to 59.70%) overlap inside 95% CI bands; GPT-6.2 Sol ($349) ties #1 Copilot Fusion ($1,987) on Software (66.67%) and beats #2 Opus 5.5 (52.22%) by +14.45 pts."
+        },
+        {
+          "lead": "Model x Harness Co-Design Dominates Raw Loops:",
+          "body": "4 different first-party harnesses hold the top 4 positions (GitHub Copilot, Claude Code, Antigravity CLI, Codex), achieving 93.8%–97.0% KV-cache hit rates."
+        }
+      ]
+    },
+    {
+      "kind": "protocol",
+      "eyebrow": "UNDER THE HOOD · SEPARATE VERIFIER & SEMANTIC VERSIONING",
+      "headline": "TB 4.1 Separate Verifier Isolates Tests Outside the Agent Container",
+      "subtitle": "Harbor v4.1.0 terminates the agent container first, copies declared artifacts[] into a clean verifier image, and scores deterministically.",
+      "top_code": "# task.toml (Harbor v4.1.0 / terminal-bench@4.1.0)\nversion = \"4.1\"\n\n[agent]\ntimeout_sec = 28800.0   # Flat 8-hour ceiling across all 66 tasks\n\n[verifier]\ntimeout_sec = 600.0\nenvironment_mode = \"separate\"   # Never mount /tests inside agent rootfs!\nartifacts = [\"/app/release_bundle\", \"/workspace/output.json\"]\n\n[environment]\ncpus = 4                # 63 CPU tasks; 3 GPU tasks provision 1x H100\nmemory_mb = 16384",
+      "transition": "↓ 1. Stop agent container -> 2. Copy artifacts[] -> 3. Boot isolated tests/Dockerfile verifier",
+      "bottom_code": "# Harbor v4.1.0 Separate-Container Grading Pipeline\n$ docker stop $AGENT_CONTAINER_ID\n$ harbor artifacts copy --from $AGENT_CONTAINER_ID --paths /app/release_bundle\n$ docker run --rm --network none -v $ARTIFACTS:/artifacts:ro $VERIFIER_IMAGE /tests/test.sh\n# Deterministic reward written to /logs/verifier/reward.txt:\n<answer>reward = 1.0 (PASS) | 0.0 (FAIL) · zero /tests co-tenancy leakage</answer>\n\n# Continuous Versioning Contract: x.y.z = Rerun . Regrade . Reuse\n# 4.0 -> 4.1 minor bump regrades/isolates verifiers without invalidating valid trajectories",
+      "callouts": [
+        {
+          "lead": "Closing the Root-Shell Co-Tenancy Loophole:",
+          "body": "In single-container benchmarks, an agent with root access can inspect mounted test fixtures, environment variables, or filesystem timestamps. TB 4.1's separate verifier container ensures grading scripts and golden fixtures never exist in the agent container."
+        }
+      ]
+    },
+    {
+      "kind": "robustness",
+      "eyebrow": "ROBUSTNESS CHECK · OVERTHINKING TAX & PASS@5 SCALING",
+      "headline": "Max Effort Loses on Fable 5.1 (-0.31 pts, +$1,371) & Opus 5 (-1.21 pts)",
+      "subtitle": "Comparing reasoning-effort sweeps (lower effort vs max) and Best-of-5 verifier selection (pass@1 -> pass@5) across sealed runs.",
+      "rows": [
+        {
+          "scenario": "Fable 5.1 + Claude Code (Effort Inversion)",
+          "selected_option": "xhigh ($4,872 · 3,202s) -> max ($6,244 · 3,894s): +$1,371.46 wasted",
+          "original_pct": 57.6,
+          "reversed_pct": 57.3,
+          "change_pts": -0.3,
+          "answer_held": false
+        },
+        {
+          "scenario": "Opus 5 + Claude Code (Effort Inversion)",
+          "selected_option": "xhigh ($6,086 · 4,515s) -> max ($5,969 · 4,793s): +278s slower & lower",
+          "original_pct": 53.3,
+          "reversed_pct": 52.1,
+          "change_pts": -1.2,
+          "answer_held": false
+        },
+        {
+          "scenario": "GPT-6 Astra + Codex (High vs XHigh Dip)",
+          "selected_option": "high ($2,269) -> xhigh ($2,351) dips; max ($3,267) +$998 for +1 trial",
+          "original_pct": 60.0,
+          "reversed_pct": 59.7,
+          "change_pts": -0.3,
+          "answer_held": false
+        },
+        {
+          "scenario": "GLM-5.3-Flash + Claude Code (4-Tier Sweep)",
+          "selected_option": "none ($118.74, 35.45%) -> max ($374.72, 36.97%): 3.16x cost for +1.5 pts",
+          "original_pct": 35.5,
+          "reversed_pct": 37.0,
+          "change_pts": 1.5,
+          "answer_held": true
+        },
+        {
+          "scenario": "Kimi K3.1 Pro + Claude Code (Best-of-5)",
+          "selected_option": "pass@1 (197/330) -> pass@5 (#1 overall 56/66 tasks) at $1,086.66",
+          "original_pct": 59.7,
+          "reversed_pct": 84.8,
+          "change_pts": 25.2,
+          "answer_held": true
+        },
+        {
+          "scenario": "Copilot Fusion + GitHub Copilot (Best-of-5)",
+          "selected_option": "pass@1 (235/330) -> pass@5 (55/66 tasks) at $1,987.33",
+          "original_pct": 71.2,
+          "reversed_pct": 83.3,
+          "change_pts": 12.1,
+          "answer_held": true
+        },
+        {
+          "scenario": "GPT-6.2 Sol + Codex (5x Parallel vs Fable 5.2)",
+          "selected_option": "pass@1 ($349) -> pass@5 ($1,746 for 5 runs) beats 1x Fable 5.2 ($16,493)",
+          "original_pct": 61.5,
+          "reversed_pct": 72.7,
+          "change_pts": 11.2,
+          "answer_held": true
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Why Overthinking Degrades Shell Trajectories:",
+          "body": "Excessive max-effort deliberation inflates output tokens, triggers repeated context compaction over multi-hour bash sessions, and induces late-stage second-guessing."
+        },
+        {
+          "lead": "Parallel Best-of-N Beats Monolithic Max:",
+          "body": "5 independent GPT-6.2 Sol runs ($1,745.80 total) reach 72.73% pass@5 where verifiers exist — outperforming single-run Opus 5.5 (65.76%, $4,719) at 37% of the cost."
+        }
+      ]
+    },
+    {
+      "kind": "latency",
+      "eyebrow": "LATENCY · PARETO DURATION TIERS IN MILLISECONDS",
+      "headline": "GPT-6.2 Sol Finishes Trials in 1,214s — 3.5x Faster Than #1–#2 Peers",
+      "subtitle": "Mean trial wall-clock duration in ms (330 trials/run): Duration-Pareto path (Batched / Blue) vs heavy frontier peer (One by one* / Gray).",
+      "rows": [
+        {
+          "question_count": 1,
+          "batched_median_ms": 123200,
+          "one_by_one_estimated_ms": 123200,
+          "runs": 330
+        },
+        {
+          "question_count": 2,
+          "batched_median_ms": 1214300,
+          "one_by_one_estimated_ms": 4233600,
+          "runs": 330
+        },
+        {
+          "question_count": 3,
+          "batched_median_ms": 1349500,
+          "one_by_one_estimated_ms": 4790400,
+          "runs": 330
+        },
+        {
+          "question_count": 4,
+          "batched_median_ms": 3495800,
+          "one_by_one_estimated_ms": 7333000,
+          "runs": 330
+        }
+      ],
+      "callouts": [
+        {
+          "lead": "Exact Cohort Mapping (avg_duration_sec x 1,000 across 330 trials):",
+          "body": "1 = Kimi K3.1 Pro fast-burst Pareto anchor (123,200 ms / 2.1m). 2 = GPT-6.2 Sol Golden Elbow (1,214,300 ms / 20.2m) vs #1 Copilot Fusion (4,233,600 ms / 70.6m). 3 = GPT-6.2 Astra (1,349,500 ms / 22.5m) vs #2 Opus 5.5 (4,790,400 ms / 79.8m). 4 = #4 Gemini 4 Carbon (3,495,800 ms / 58.3m) vs #2 Fable 5.2 (7,333,000 ms / 122.2m)."
+        }
+      ]
+    },
+    {
+      "kind": "takeaways",
+      "eyebrow": "MY TAKE · SOLUTION ARCHITECT PLAYBOOK",
+      "headline": "Route by Oracle Tightness & Cost Elbow — Never by Rank-1 Headline Alone",
+      "subtitle": "Production L3/L4 harness architecture recommendations distilled from 65 runs and 21,450 Harbor trials.",
+      "good_fit": [
+        "Default SWE & CI/CD Fleet Workhorse: GPT-6.2 Sol + Codex (max) hits 61.52% overall and ties #1 in Software (66.67%) at $1.06/trial and 20.2m mean duration.",
+        "Highest-Stakes Autonomous Escalation: Copilot Fusion + GitHub Copilot (71.21%, $6.02/trial) leads Security (88.0%), Media (90.0%), and Science (68.57% tie).",
+        "ML, Science & Hardware Specialization: Route ML to Opus 5.5 + Claude Code (83.64% #1) and Science/Hardware to Gemini 4 Carbon + Antigravity CLI (68.57% / 80.0% #1 ties, $4.12/trial).",
+        "Verifier-Gated Best-of-5 Exploration: Kimi K3.1 Pro + Claude Code delivers #1 overall pass@5 (84.85%) and #1 Operations (64.44%) at $3.29/trial."
+      ],
+      "not_for": [
+        "Unguarded Enterprise Operations (26% domain avg): freight-dispatch-shift (0/325) and medical-claims (20/325) exhibit premature false completion without human gates.",
+        "Blind 'effort=max' Defaults on Multi-Hour Shells: Fable 5.1 max (+$1,371, -0.31 pts) and Opus 5 max (-1.21 pts) lose to xhigh due to overthinking drift.",
+        "Unfiltered $0-Preview Pareto Charts or CI-Blind Ranking: Exclude $0 preview entries (Muse Spark 1.3) and treat ±3% overlapping ranks as statistical ties.",
+        "Shared Agent/Verifier Containers: Enforce Harbor v4.1.0 environment_mode='separate' + negative-invariant checks (e.g., sourcemap/PII leak scanners) before exit."
+      ],
+      "dark_box": {
+        "lead": "Third-party reported benchmark synthesis (provenance: anonymized_reported, independently_reproduced=false). Snapshot: 2026-11-19 (terminal-bench@4.1.0, 65 runs, 66 tasks, 21,450 trials). Zero task prompts, oracle solutions, or canary GUIDs redistributed.",
+        "repo": "Upstream: https://www.tbench.ai/ · Apache-2.0: github.com/harbor-framework/terminal-bench"
+      }
+    }
+  ]
+}

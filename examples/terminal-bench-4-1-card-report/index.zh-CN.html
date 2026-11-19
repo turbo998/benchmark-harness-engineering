@@ -1,0 +1,603 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'"><title>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</title><style>*{box-sizing:border-box}body{margin:0;padding:2rem 1rem;background:#e2e8f0;color:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}.deck-wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:2.2rem}.report-card{background:#f8fafc;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(15,23,42,.12);border:1px solid #cbd5e1;min-height:1025px;display:flex;flex-direction:column}.card-accent-bar{height:10px;background:linear-gradient(90deg,#6366f1 0%,#4f46e5 55%,#2563eb 100%)}.card-inner{padding:2.4rem 2.8rem 1.8rem;flex:1;display:flex;flex-direction:column;justify-content:space-between}.card-eyebrow{font-size:.82rem;font-weight:700;letter-spacing:.12em;color:#4f46e5;text-transform:uppercase;margin-bottom:.55rem}.card-headline{font-size:2.35rem;line-height:1.12;font-weight:800;margin:0 0 .65rem;letter-spacing:-.02em;color:#0f172a}.grad-text{background:linear-gradient(90deg,#3b82f6,#4f46e5);-webkit-background-clip:text;background-clip:text;color:transparent}.card-subtitle{font-size:1.08rem;line-height:1.45;color:#475569;margin:0 0 1.2rem}.card-canvas{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1rem}.quote-box,.callout-box{background:#eef2f6;border-radius:12px;padding:1rem 1.25rem;font-size:.98rem;line-height:1.48;color:#1e293b}.stack-list{display:flex;flex-direction:column;gap:.85rem}.decision-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:.95rem 1.15rem}.decision-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem}.field-name{font-weight:700;font-size:1rem}.type-pill{background:#e2e8f0;color:#475569;font-size:.75rem;padding:.12rem .45rem;border-radius:6px;font-weight:600}.question-sub{font-size:.84rem;color:#64748b;margin-top:.15rem}.action-pill{font-size:.76rem;font-weight:700;padding:.22rem .6rem;border-radius:999px;white-space:nowrap}.pill-auto{background:#dcfce7;color:#15803d}.pill-confirm{background:#fef3c7;color:#b45309}.pill-human{background:#fee2e2;color:#b91c1c}.decision-main{font-size:1.18rem;margin:.45rem 0 .55rem}.conf-muted{font-size:.88rem;color:#64748b;font-weight:600}.dist-row{display:grid;grid-template-columns:170px 1fr 54px;align-items:center;gap:.6rem;font-size:.84rem;margin:.24rem 0}.dist-track{background:#e2e8f0;height:9px;border-radius:999px;overflow:hidden}.dist-fill{background:linear-gradient(90deg,#4f46e5,#6366f1);height:100%;border-radius:999px}.dist-pct{text-align:right;font-variant-numeric:tabular-nums;color:#334155}.clean-table{width:100%;border-collapse:collapse;font-size:.95rem;background:transparent}.clean-table th{font-size:.75rem;letter-spacing:.08em;color:#64748b;text-align:left;padding:.55rem .4rem;border-bottom:1px solid #cbd5e1}.clean-table td{padding:.62rem .4rem;border-bottom:1px solid #e2e8f0;vertical-align:top}.sc-col{font-weight:600;color:#1e293b}.act-col,.num-col{text-align:right;font-variant-numeric:tabular-nums}.act-auto{color:#15803d;font-weight:700}.act-confirm{color:#b45309;font-weight:700}.act-human{color:#b91c1c;font-weight:700}.miss-mark{color:#dc2626;font-weight:800}.code-dark{background:#0f172a;color:#e2e8f0;padding:1.1rem 1.3rem;border-radius:12px;font-size:.84rem;line-height:1.45;overflow-x:auto;margin:0}.code-transition{color:#4f46e5;font-weight:700;font-size:.95rem;padding:.15rem 0}.hl-answer{color:#fbbf24;font-weight:700}.rob-main{font-weight:600;color:#0f172a}.rob-sub{font-size:.8rem;color:#64748b}.lat-list{display:flex;flex-direction:column;gap:1rem}.lat-title{font-weight:700;font-size:1.02rem;margin-bottom:.35rem}.lat-row{display:flex;align-items:center;gap:.65rem;margin:.28rem 0}.lat-tag{width:95px;font-size:.85rem;color:#64748b}.lat-bar{height:22px;border-radius:6px}.lat-blue{background:#2563eb}.lat-gray{background:#cbd5e1}.lat-val{font-size:.92rem;font-variant-numeric:tabular-nums}.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}.fit-card{border-radius:14px;padding:1.25rem 1.4rem;font-size:1rem;line-height:1.6}.fit-good{background:#ecfdf5;border:1px solid #a7f3d0}.fit-bad{background:#fff1f2;border:1px solid #fecdd3}.fit-head{font-weight:800;font-size:1.12rem;margin-bottom:.5rem}.dark-footer-box{background:#0f172a;color:#f8fafc;border-radius:14px;padding:1.25rem 1.5rem;font-size:1rem;line-height:1.5}.dark-repo{color:#38bdf8;font-family:ui-monospace,Consolas,monospace;margin-bottom:0}.workbench-shell{background:#fff;border:1px solid #cbd5e1;border-radius:14px;overflow:hidden}.wb-topbar{background:linear-gradient(90deg,#3b82f6,#6366f1);color:#fff;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}.wb-sub{font-size:.76rem;opacity:.92}.wb-status{background:rgba(15,23,42,.28);font-size:.74rem;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}.wb-grid{display:grid;grid-template-columns:220px 1fr;gap:.85rem;padding:.9rem}.wb-col-title{font-size:.78rem;font-weight:700;color:#475569;text-transform:uppercase;margin-bottom:.4rem}.wb-item{font-size:.8rem;padding:.38rem .5rem;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;margin-bottom:.32rem}.wb-note{font-size:.73rem;color:#64748b;margin-top:.55rem;line-height:1.38}.wb-metrics{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.55rem}.wb-metric{font-size:.74rem;background:#f1f5f9;padding:.2rem .5rem;border-radius:6px;color:#334155;font-weight:600}.card-footer{border-top:1px solid #cbd5e1;padding-top:.9rem;margin-top:1.2rem;display:flex;justify-content:space-between;font-size:.86rem;color:#64748b}@media print{body{background:#fff;padding:0}.deck-wrap{gap:0}.report-card{box-shadow:none;page-break-after:always;border:none}}</style></head><body><main class="deck-wrap"><article class="report-card" id="card-1"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">HANDS-ON · TERMINAL-BENCH 4.1 HARBOR 基准全集</div><h2 class="card-headline">21,450 次容器实测封顶 71.21% — <span class="grad-text">GPT-6.2 Sol 以 $349 拿下 61.52%（成本低 47.2 倍）</span></h2><p class="card-subtitle">覆盖 65 组榜单运行（52 组唯一 模型×Harness 组合）× 66 个 Docker 真实任务 × 5 轮（8 小时统一超时），采用 Harbor v4.1.0 双容器隔离判分。</p></header><div class="card-canvas"><div class="workbench-shell"><div class="wb-topbar"><div><strong>Terminal-Bench 4.1 (tbench.ai) · Harbor v4.1.0 架构师决策工作台</strong><div class="wb-sub">A System One decision & benchmark view: structured state, calibrated confidence bands, zero fabricated coordinates</div></div><span class="wb-status">65 组运行 · 66 任务 · 21,450 轮实测 · Apache-2.0</span></div><div class="wb-grid"><div class="wb-col-left"><div class="wb-col-title">Scenarios</div><div class="wb-item">TABLE 排行榜：65 组运行 / 52 唯一组合 (±95% CI)</div><div class="wb-item">PARETO 成本前沿：7 个商业最优点 ($49.55 -&gt; $1,987)</div><div class="wb-item">PARETO Token 与耗时：1.09B Token 与 1,214s 黄金拐点</div><div class="wb-item">七大领域鸿沟：安全 52% vs 企业运营 26%</div><div class="wb-item">过度思考税：Fable 5.1 与 Opus 5 开 max 反降分</div><div class="wb-item">虚假提前交卷：59.92% 主动错交 vs 仅 0.69% 超时</div><div class="wb-item">TB 4.1 双容器隔离验证：彻底根除测试脚本泄露</div><div class="wb-note">架构师门控策略：&gt;=60% 且 &lt;=$2,000 自动主力路由 · 高成本 (&gt;=$4,700) 或 Best-of-5 需验证器确认 · 运营类 &lt;=26% / 零解墙任务强制转交人工。</div></div><div class="wb-col-right"><div class="wb-metrics"><span class="wb-metric">#1 Copilot Fusion: 71.21% ($1,987)</span><span class="wb-metric">#2 并列 Opus 5.5 / Fable 5.2: 65.76%</span><span class="wb-metric">#4 Gemini 4 Carbon: 64.55% ($1,358)</span><span class="wb-metric">#7 GPT-6.2 Sol: 61.52% ($349 · $1.06/轮)</span><span class="wb-metric">#11 Kimi K3.1 Pro: pass@5 84.85% (全场#1)</span><span class="wb-metric">TB 2.1 -&gt; 3.0 洗牌: 87.42% -&gt; 42.70%</span></div><div class="decision-card"><div class="decision-head"><div><span class="field-name">pareto_golden_elbow</span> <span class="type-pill">choice</span><div class="question-sub">330 轮全集下哪一组合兼具一线解决率与最优 FinOps 单位经济效益？</div></div><span class="action-pill pill-auto">Act automatically</span></div><div class="decision-main"><strong>GPT-6.2 Sol + Codex (max) — $349.16 达成 61.52%（软件工程 66.67% 并列全场第 1）</strong><span class="conf-muted"> · confidence 0.615</span></div><div class="dist-list"><div class="dist-row"><span class="dist-label">Copilot Fusion ($1,987)</span><div class="dist-track"><div class="dist-fill" style="width:71.2%"></div></div><span class="dist-pct">71.2%</span></div><div class="dist-row"><span class="dist-label">Opus 5.5 ($4,719)</span><div class="dist-track"><div class="dist-fill" style="width:65.8%"></div></div><span class="dist-pct">65.8%</span></div><div class="dist-row"><span class="dist-label">Gemini 4 Carbon ($1,358)</span><div class="dist-track"><div class="dist-fill" style="width:64.5%"></div></div><span class="dist-pct">64.5%</span></div><div class="dist-row"><span class="dist-label">GPT-6.2 Sol ($349)</span><div class="dist-track"><div class="dist-fill" style="width:61.5%"></div></div><span class="dist-pct">61.5%</span></div></div></div><div class="decision-card"><div class="decision-head"><div><span class="field-name">operations_domain_gate</span> <span class="type-pill">score</span><div class="question-sub">当前前沿终端 Agent 能否在无人工门控下独立接管多约束企业运营流？</div></div><span class="action-pill pill-human">Send to a human</span></div><div class="decision-main"><strong>26 / 100 领域均分 -&gt; 必须设置人工审批门禁 (HITL)</strong><span class="conf-muted"> · closest to "Operations 均分 (26%) 比 Security (52%) 足足低出一倍" · confidence 0.26</span></div><div class="dist-list"><div class="dist-row"><span class="dist-label">Security 安全 (5题)</span><div class="dist-track"><div class="dist-fill" style="width:52.0%"></div></div><span class="dist-pct">52.0%</span></div><div class="dist-row"><span class="dist-label">ML 机器学习 (11题)</span><div class="dist-track"><div class="dist-fill" style="width:43.0%"></div></div><span class="dist-pct">43.0%</span></div><div class="dist-row"><span class="dist-label">Software 软件 (18题)</span><div class="dist-track"><div class="dist-fill" style="width:35.0%"></div></div><span class="dist-pct">35.0%</span></div><div class="dist-row"><span class="dist-label">Operations 运营 (9题)</span><div class="dist-track"><div class="dist-fill" style="width:26.0%"></div></div><span class="dist-pct">26.0%</span></div></div></div></div></div></div><div class="callout-box"><strong>数据溯源与基准换代洗牌（tbench.ai，2026-11-19 快照）：</strong> 引自 Stanford / Harbor / Laude Institute 官方公开榜单（Apache-2.0，independently_reproduced=false）。继 TB 2.1 饱和至 87.42%（中位分 78.43%）后，TB 3.0 将榜首硬重置至 42.70%，TB 4.1 进一步引入双容器隔离判分。</div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>1 / 7</span></footer></div></article><article class="report-card" id="card-2"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">SCENARIO: 编译器神谕定律与「虚假提前交卷综合征」</div><h2 class="card-headline">强编译器反馈任务高达 70%–78%，而 4 道零解墙任务 0/325 全军覆没</h2><p class="card-subtitle">21,450 轮真实结局拆解：36.68% 通过 (7,867)、59.92% 提前错误交卷 (12,852)，真正触发 8h 超时仅占 0.69% (147)！</p></header><div class="card-canvas"><div class="quote-box">"「为什么前沿 Agent 能独立写出 H100 FP8 CUDA 算子 (65.8%) 与 Coq 形式化证明 (73.5%)，却在 bun-sourcemap-leak 上创下 325/325 零超时、100% 自信错交？」"</div><div class="stack-list"><div class="decision-card"><div class="decision-head"><div><span class="field-name">compiler_oracle_convergence</span> <span class="type-pill">choice</span><div class="question-sub">具备确定性本地验证闭环的任务（coqc、nvcc、pytest 毫秒级报错）</div></div><span class="action-pill pill-auto">Act automatically</span></div><div class="decision-main"><strong>mp-checkpoint-consolidation 78.2% (254/325) 与 coq-block-bound 73.5% (239/325)</strong><span class="conf-muted"> · confidence 0.782</span></div><div class="dist-list"><div class="dist-row"><span class="dist-label">mp-checkpoint (254/325)</span><div class="dist-track"><div class="dist-fill" style="width:78.2%"></div></div><span class="dist-pct">78.2%</span></div><div class="dist-row"><span class="dist-label">wdm-design (243/325)</span><div class="dist-track"><div class="dist-fill" style="width:74.8%"></div></div><span class="dist-pct">74.8%</span></div><div class="dist-row"><span class="dist-label">coq-block-bound (239/325)</span><div class="dist-track"><div class="dist-fill" style="width:73.5%"></div></div><span class="dist-pct">73.5%</span></div><div class="dist-row"><span class="dist-label">fp8-rmsnorm-gemm (214/325)</span><div class="dist-track"><div class="dist-fill" style="width:65.8%"></div></div><span class="dist-pct">65.8%</span></div></div></div><div class="decision-card"><div class="decision-head"><div><span class="field-name">best_of_5_specialist_headroom</span> <span class="type-pill">score</span><div class="question-sub">多轮采样探索上限 (pass@5) 与运营领域专精黑马</div></div><span class="action-pill pill-confirm">Confirm</span></div><div class="decision-main"><strong>Kimi K3.1 Pro + Claude Code — pass@5 高达 84.85% (全场#1) 且运营类 64.44% 夺冠</strong><span class="conf-muted"> · closest to "全场唯一攻克 cargo-flight-dispatch (3/325) 且医疗理赔 5/5 满分" · confidence 0.848</span></div><div class="dist-list"><div class="dist-row"><span class="dist-label">Kimi K3.1 Pro pass@5</span><div class="dist-track"><div class="dist-fill" style="width:84.8%"></div></div><span class="dist-pct">84.8%</span></div><div class="dist-row"><span class="dist-label">Copilot Fusion pass@5</span><div class="dist-track"><div class="dist-fill" style="width:83.3%"></div></div><span class="dist-pct">83.3%</span></div><div class="dist-row"><span class="dist-label">Opus 5.5 pass@5</span><div class="dist-track"><div class="dist-fill" style="width:80.3%"></div></div><span class="dist-pct">80.3%</span></div><div class="dist-row"><span class="dist-label">Kimi K3.1 Pro pass@1</span><div class="dist-track"><div class="dist-fill" style="width:59.7%"></div></div><span class="dist-pct">59.7%</span></div></div></div><div class="decision-card"><div class="decision-head"><div><span class="field-name">zero_solve_premature_victory</span> <span class="type-pill">noul</span><div class="question-sub">65 组运行合计 1,300 次尝试全部归零的 4 道「零解叹息之墙」</div></div><span class="action-pill pill-human">Send to a human</span></div><div class="decision-main"><strong>NOUL — 0 / 1,300 解决（1,279 次自信提前交卷失败，仅 10 次超时）</strong><span class="conf-muted"> · P(true) = 0.0</span></div><div class="dist-list"><div class="dist-row"><span class="dist-label">bun-sourcemap-leak (0/325)</span><div class="dist-track"><div class="dist-fill" style="width:1.5%"></div></div><span class="dist-pct">0.0%</span></div><div class="dist-row"><span class="dist-label">freight-dispatch-shift (0/325)</span><div class="dist-track"><div class="dist-fill" style="width:1.5%"></div></div><span class="dist-pct">0.0%</span></div><div class="dist-row"><span class="dist-label">data-anonymization (1/325)</span><div class="dist-track"><div class="dist-fill" style="width:1.5%"></div></div><span class="dist-pct">0.3%</span></div><div class="dist-row"><span class="dist-label">cargo-flight-dispatch (3/325)</span><div class="dist-track"><div class="dist-fill" style="width:1.5%"></div></div><span class="dist-pct">0.9%</span></div></div></div></div><div class="callout-box"><strong>核心洞察：打败 Agent 的不是时间不够（0.69% 超时），而是「盲目自信提前交卷」（87 倍于超时）：</strong> 在 bun-sourcemap-leak（325 败 / 0 超时）与 freight-dispatch-shift（317 败 / 0 超时）中，Agent 缺乏「反向泄露扫描器 / 业务不变量证伪器」，改完表面功能即宣布完成。</div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>2 / 7</span></footer></div></article><article class="report-card" id="card-3"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">WHAT I TESTED · 排行榜、帕累托与极端任务全景矩阵</div><h2 class="card-headline">7 个商业帕累托最优点 vs 47.2 倍成本虚胖与 $0 预览失真</h2><p class="card-subtitle">将 TABLE 排名、PARETO 成本拐点、Harness 代差与 0% 零解墙纳入同一门控标尺。</p></header><div class="card-canvas"><table class="clean-table"><thead><tr><th>SCENARIO</th><th>QUESTION</th><th>DECIDER'S ANSWER</th><th class="act-col">ACTION</th></tr></thead><tbody><tr><td class="sc-col">#1 榜首 · Copilot</td><td>Copilot Fusion + GitHub Copilot (max) — 235/330，$1,987.33 ($6.02/轮)</td><td><strong>71.2% ± 2.9% · Media 90% / Sec 88% #1</strong> (71.2%)</td><td class="act-col act-auto">Act automatically</td></tr><tr><td class="sc-col">#2 并列 · Claude Code</td><td>Opus 5.5 + Claude Code (max) — 217/330，$4,718.65 (ML 83.6% 全场#1)</td><td><strong>65.8% ± 3.1% · 唯一解出匿名化任务</strong> (65.8%)</td><td class="act-col act-confirm">Confirm</td></tr><tr><td class="sc-col">#2 成本反模式</td><td>Fable 5.2 + Claude Code (max) — 同为 217/330 却烧掉 $16,492.76</td><td><strong>Sol 成本的 47.2 倍 ($49.98/轮 · 15.7B tok)</strong> (65.8%) <span class="miss-mark">✕</span></td><td class="act-col act-confirm">Confirm</td></tr><tr><td class="sc-col">#4 帕累托 · Antigravity</td><td>Gemini 4 Carbon + Antigravity CLI (high) — 213/330，$1,358.25</td><td><strong>64.5% ± 3.2% · 科学 68.6% / 硬件 80% 并列#1</strong> (64.5%)</td><td class="act-col act-auto">Act automatically</td></tr><tr><td class="sc-col">#7 黄金拐点 · Codex</td><td>GPT-6.2 Sol + Codex (max) — 203/330，$349.16 (1.09B tok, 1,214s)</td><td><strong>61.5% ± 2.8% · 软件工程 66.7% 并列#1</strong> (61.5%)</td><td class="act-col act-auto">Act automatically</td></tr><tr><td class="sc-col">#11 探索之王</td><td>Kimi K3.1 Pro + Claude Code (max) — $1,086.66 (运营 64.4% 全场#1)</td><td><strong>pass@1 59.7% -&gt; pass@5 84.8% (#1)</strong> (84.8%)</td><td class="act-col act-confirm">Confirm</td></tr><tr><td class="sc-col">百元级帕累托</td><td>DeepSeek V4.1 Flash 1017 ($184.89) 与 GLM-5.3-Flash none ($118.74)</td><td><strong>38.5% ($0.56/轮) 与 35.5% ($0.36/轮)</strong> (38.5%)</td><td class="act-col act-auto">Act automatically</td></tr><tr><td class="sc-col">$0 免费预览失真</td><td>Muse Spark 1.3 + Muse Code (xhigh) — 消耗 9.01B Token 却记 $0.00</td><td><strong>14.8%（伪造 $0 帕累托原点）</strong> (14.8%) <span class="miss-mark">✕</span></td><td class="act-col act-human">Send to a human</td></tr><tr><td class="sc-col">极简 Harness 代差</td><td>mini-swe-agent / mini-SWE-agent（11 组运行，均耗高达 14.16B Token）</td><td><strong>最高仅 27.0% · 中位 7.6%–18.2%</strong> (27.0%) <span class="miss-mark">✕</span></td><td class="act-col act-human">Send to a human</td></tr><tr><td class="sc-col">零解叹息之墙 (4/66)</td><td>bun-sourcemap, ontology-kg, glycan-ms2, freight-dispatch (1,300 轮)</td><td><strong>0 / 1,300 解决 (0.0%)</strong> (0.0%) <span class="miss-mark">✕</span></td><td class="act-col act-human">Send to a human</td></tr></tbody></table><div class="callout-box"><strong>95% 置信区间统计并列铁律（±2.3%–4.2%）：</strong> 第 #2–#5 名（65.76%–63.94%）与第 #6–#12 名（62.12%–59.70%）处于统计置信重叠带；GPT-6.2 Sol ($349) 在最大题库 Software (18题) 上以 66.67% 追平榜首 Copilot Fusion，反超 #2 Opus 5.5 (52.22%) 达 +14.45 个百分点！</div><div class="callout-box"><strong>模型 × 原生 Harness 协同碾压裸 Bash 循环：</strong> 前四名分别来自四大原生重型 Harness（GitHub Copilot、Claude Code、Antigravity CLI、Codex），输入 KV 缓存命中率全部高达 93.8%–97.0%。</div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>3 / 7</span></footer></div></article><article class="report-card" id="card-4"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">UNDER THE HOOD · 双容器隔离验证与 x.y.z 语义化演进</div><h2 class="card-headline">TB 4.1 双容器物理隔离：测试脚本永不进入 Agent 文件系统</h2><p class="card-subtitle">Harbor v4.1.0 先停机 Agent 容器，仅拷贝声明的 artifacts[] 进入断网纯净验证容器执行判分。</p></header><div class="card-canvas"><pre class="code-dark"># task.toml (Harbor v4.1.0 / terminal-bench@4.1.0 任务契约)
+version = &quot;4.1&quot;
+
+[agent]
+timeout_sec = 28800.0   # 全部 66 题统一 8 小时硬上限
+
+[verifier]
+timeout_sec = 600.0
+environment_mode = &quot;separate&quot;   # 严禁在 Agent 容器内挂载 /tests！
+artifacts = [&quot;/app/release_bundle&quot;, &quot;/workspace/output.json&quot;]
+
+[environment]
+cpus = 4                # 63 道纯 CPU 题；3 道 GPU 题按需分配 1x H100
+memory_mb = 16384</pre><div class="code-transition">↓ 1. 停止 Agent 容器 -&gt; 2. 提取声明产物 artifacts[] -&gt; 3. 拉起独立 tests/Dockerfile 判分容器</div><pre class="code-dark"># Harbor v4.1.0 物理隔离判分流水线
+$ docker stop $AGENT_CONTAINER_ID
+$ harbor artifacts copy --from $AGENT_CONTAINER_ID --paths /app/release_bundle
+$ docker run --rm --network none -v $ARTIFACTS:/artifacts:ro $VERIFIER_IMAGE /tests/test.sh
+# 确定性奖励写入宿主机挂载日志 /logs/verifier/reward.txt：
+<span class="hl-answer">&lt;answer&gt;</span>reward = 1.0 (PASS) | 0.0 (FAIL) · 彻底杜绝 root 权限偷看测试集&lt;/answer&gt;
+
+# 持续基准演进契约：x.y.z = Rerun（重跑）. Regrade（重判）. Reuse（复用）
+# 4.0 -&gt; 4.1 次版本升级实现验证器隔离加固与平滑重判</pre><div class="callout-box"><strong>堵死 Root 容器同住作弊漏洞：</strong> 在传统单容器评测中，拥有 root 权限的终端 Agent 可扫描环境残留、进程表或挂载点逆向测试断言；TB 4.1 的 separate 模式确保黄金答案与判分脚本在物理上只存在于第二阶段验证镜像。</div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>4 / 7</span></footer></div></article><article class="report-card" id="card-5"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">ROBUSTNESS CHECK · 过度思考税与 PASS@5 并行扩展律</div><h2 class="card-headline">盲开 max 档反降分：Fable 5.1 多花 $1,371 跌 0.31 分，Opus 5 跌 1.21 分</h2><p class="card-subtitle">对比同模型跨推理档位扫描（xhigh/high vs max）与 5 轮独立并行探索收益（pass@1 -&gt; pass@5）。</p></header><div class="card-canvas"><table class="clean-table"><thead><tr><th>QUESTION / ANSWER</th><th class="num-col">ORIGINAL</th><th class="num-col">REVERSED</th><th class="num-col">CHANGE (PTS)</th></tr></thead><tbody><tr><td><div class="rob-main">Fable 5.1 + Claude Code（档位倒挂）</div><div class="rob-sub">xhigh ($4,872 · 3,202s) -&gt; max ($6,244 · 3,894s)：多花 $1,371 反降分</div></td><td class="num-col">57.6%</td><td class="num-col">57.3%</td><td class="num-col">-0.3</td></tr><tr><td><div class="rob-main">Opus 5 + Claude Code（档位倒挂）</div><div class="rob-sub">xhigh ($6,086 · 4,515s) -&gt; max ($5,969 · 4,793s)：慢 278 秒且降分</div></td><td class="num-col">53.3%</td><td class="num-col">52.1%</td><td class="num-col">-1.2</td></tr><tr><td><div class="rob-main">GPT-6 Astra + Codex（边际收益坍塌）</div><div class="rob-sub">high ($2,269) -&gt; xhigh ($2,351) 微跌；max ($3,267) 多花 $998 仅多 1 轮</div></td><td class="num-col">60.0%</td><td class="num-col">59.7%</td><td class="num-col">-0.3</td></tr><tr><td><div class="rob-main">GLM-5.3-Flash + Claude Code（四档全扫）</div><div class="rob-sub">none ($118.74, 35.45%) -&gt; max ($374.72, 36.97%)：成本涨 3.16 倍仅 +1.5 分</div></td><td class="num-col">35.5%</td><td class="num-col">37.0%</td><td class="num-col">+1.5</td></tr><tr><td><div class="rob-main">Kimi K3.1 Pro + Claude Code（Best-of-5）</div><div class="rob-sub">pass@1 (197/330) -&gt; pass@5 (56/66 题全场#1)，总成本仅 $1,086.66</div></td><td class="num-col">59.7%</td><td class="num-col">84.8%</td><td class="num-col">+25.2</td></tr><tr><td><div class="rob-main">Copilot Fusion + GitHub Copilot（Best-of-5）</div><div class="rob-sub">pass@1 (235/330) -&gt; pass@5 (55/66 题)，总成本 $1,987.33</div></td><td class="num-col">71.2%</td><td class="num-col">83.3%</td><td class="num-col">+12.1</td></tr><tr><td><div class="rob-main">GPT-6.2 Sol + Codex（5 路并行 vs 单路巨兽）</div><div class="rob-sub">5 轮并行总价 $1,745.80 达 72.73%，完胜单轮 Fable 5.2 ($16,493, 65.76%)</div></td><td class="num-col">61.5%</td><td class="num-col">72.7%</td><td class="num-col">+11.2</td></tr></tbody></table><div class="callout-box"><strong>为什么长程终端任务会出现「过度思考税」：</strong> 在数小时 Bash 交互中，max 档位拉长单步内省，频繁触发上下文压缩（Compaction）导致早期关键报错信息丢失，甚至推翻已通过的正确补丁。</div><div class="callout-box"><strong>架构铁律：横向 Best-of-N 并行 + 验证器筛选 &gt; 纵向盲堆单次 max：</strong> 5 轮独立 GPT-6.2 Sol 总花费仅 $1,746，在有验证器场景下可达 72.73% 解题率，以 37% 的成本反超单轮 Opus 5.5 ($4,719)。</div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>5 / 7</span></footer></div></article><article class="report-card" id="card-6"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">LATENCY · 帕累托耗时阶梯对比（毫秒）</div><h2 class="card-headline">GPT-6.2 Sol 单轮均耗 1,214 秒 — 比 #1–#2 重型对手快 3.5 倍</h2><p class="card-subtitle">330 轮实测单轮平均挂钟耗时（ms）：耗时帕累托高效组（蓝色）对比同梯队重型推理组（灰色）。</p></header><div class="card-canvas"><div class="lat-list"><div class="lat-group"><div class="lat-title">1 question</div><div class="lat-row"><span class="lat-tag">Batched</span><div class="lat-bar lat-blue" style="width:6.0%"></div><strong class="lat-val">123200 ms</strong></div></div><div class="lat-group"><div class="lat-title">2 questions</div><div class="lat-row"><span class="lat-tag">Batched</span><div class="lat-bar lat-blue" style="width:12.9%"></div><strong class="lat-val">1214300 ms</strong></div><div class="lat-row"><span class="lat-tag">One by one*</span><div class="lat-bar lat-gray" style="width:45.0%"></div><strong class="lat-val">4233600 ms</strong></div></div><div class="lat-group"><div class="lat-title">3 questions</div><div class="lat-row"><span class="lat-tag">Batched</span><div class="lat-bar lat-blue" style="width:14.4%"></div><strong class="lat-val">1349500 ms</strong></div><div class="lat-row"><span class="lat-tag">One by one*</span><div class="lat-bar lat-gray" style="width:51.0%"></div><strong class="lat-val">4790400 ms</strong></div></div><div class="lat-group"><div class="lat-title">4 questions</div><div class="lat-row"><span class="lat-tag">Batched</span><div class="lat-bar lat-blue" style="width:37.2%"></div><strong class="lat-val">3495800 ms</strong></div><div class="lat-row"><span class="lat-tag">One by one*</span><div class="lat-bar lat-gray" style="width:78.0%"></div><strong class="lat-val">7333000 ms</strong></div></div></div><div class="callout-box"><strong>四组精确映射（全部源自 330 轮密封 avg_duration_sec × 1,000）：</strong> 第 1 组 = Kimi K3.1 Pro 极速锚点 (123,200 ms / 2.1 分钟)。第 2 组 = GPT-6.2 Sol 黄金拐点 (1,214,300 ms / 20.2 分钟) vs #1 Copilot Fusion (4,233,600 ms / 70.6 分钟)。第 3 组 = GPT-6.2 Astra (1,349,500 ms) vs #2 Opus 5.5 (4,790,400 ms)。第 4 组 = #4 Gemini 4 Carbon (3,495,800 ms) vs #2 Fable 5.2 (7,333,000 ms)。</div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>6 / 7</span></footer></div></article><article class="report-card" id="card-7"><div class="card-accent-bar"></div><div class="card-inner"><header class="card-header"><div class="card-eyebrow">MY TAKE · 解决方案架构师实战选型指南</div><h2 class="card-headline">按「验证器紧密度 × 成本拐点」路由，绝不盲从单一总分榜首</h2><p class="card-subtitle">基于 65 组运行、21,450 轮 Harbor 真实容器轨迹提炼的 L3/L4 Agent Harness 落地准则。</p></header><div class="card-canvas"><div class="fit-grid"><div class="fit-card fit-good"><div class="fit-head">✅ Good fit</div><ul><li>研发流水线默认主力（Golden Elbow）：GPT-6.2 Sol + Codex (max) 仅需 $1.06/轮、20.2 分钟均耗即达 61.52%，并在软件工程大类（66.67%）追平全场第 1。</li><li>高价值核心攻坚升级通道：Copilot Fusion + GitHub Copilot (71.21%, $6.02/轮) 领跑全场及安全 (88.0%)、多媒体 (90.0%) 与科学计算 (68.57% 并列#1)。</li><li>按领域专精路由：机器学习优选 Opus 5.5 + Claude Code (83.64% #1)；科学/硬件优选 Gemini 4 Carbon + Antigravity CLI (68.57% / 80.0% 并列#1，$4.12/轮)。</li><li>带验证器的 Best-of-5 并行探索：Kimi K3.1 Pro + Claude Code 创下全场最高 pass@5 (84.85%) 与运营领域第 1 (64.44%)，单轮仅 $3.29。</li></ul></div><div class="fit-card fit-bad"><div class="fit-head">⛔ Not for</div><ul><li>无人工门控的企业级状态化运营（领域均分仅 26%）：freight-dispatch-shift (0/325) 与医疗理赔 (20/325) 极易发生「虚假提前交卷」，必须引入人工复核。</li><li>长程终端无脑全局开启 effort=&#x27;max&#x27;：Fable 5.1 max (+$1,371 反跌 0.31 分) 与 Opus 5 max (-1.21 分) 证明过度内省会损害长链路稳定性。</li><li>未剔除 $0 预览模型的失真帕累托图与无视置信区间的采购：需过滤 Muse Spark 1.3 ($0.00) 并将 ±3% 重叠名次视为统计同级。</li><li>测试脚本与 Agent 同容器裸奔：企业自建评测与生产沙箱应全面对齐 Harbor v4.1.0 environment_mode=&#x27;separate&#x27; + 提交前反向安全门禁（Sourcemap/PII 扫描）。</li></ul></div></div><div class="dark-footer-box"><p>第三方公开权威基准结构化研究（provenance: anonymized_reported, independently_reproduced=false）。快照时间：2026-11-19（terminal-bench@4.1.0，65 组运行，66 任务，21,450 轮实测）。严格遵守防污染规范：未分发任何原始题目文本、Oracle 解法或 Canary GUID。</p><p class="dark-repo">数据上游：https://www.tbench.ai/ · Apache-2.0: github.com/harbor-framework/terminal-bench</p></div></div><footer class="card-footer"><span><strong>Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计</strong> · anonymized_reported</span><span>7 / 7</span></footer></div></article><details><summary>Exact card deck data</summary><pre>{
+  &quot;cards&quot;: [
+    {
+      &quot;callouts&quot;: [
+        {
+          &quot;body&quot;: &quot;引自 Stanford / Harbor / Laude Institute 官方公开榜单（Apache-2.0，independently_reproduced=false）。继 TB 2.1 饱和至 87.42%（中位分 78.43%）后，TB 3.0 将榜首硬重置至 42.70%，TB 4.1 进一步引入双容器隔离判分。&quot;,
+          &quot;lead&quot;: &quot;数据溯源与基准换代洗牌（tbench.ai，2026-11-19 快照）：&quot;
+        }
+      ],
+      &quot;eyebrow&quot;: &quot;HANDS-ON · TERMINAL-BENCH 4.1 HARBOR 基准全集&quot;,
+      &quot;headline_Gradient&quot;: &quot;GPT-6.2 Sol 以 $349 拿下 61.52%（成本低 47.2 倍）&quot;,
+      &quot;headline_prefix&quot;: &quot;21,450 次容器实测封顶 71.21% — &quot;,
+      &quot;kind&quot;: &quot;overview&quot;,
+      &quot;subtitle&quot;: &quot;覆盖 65 组榜单运行（52 组唯一 模型×Harness 组合）× 66 个 Docker 真实任务 × 5 轮（8 小时统一超时），采用 Harbor v4.1.0 双容器隔离判分。&quot;,
+      &quot;workbench&quot;: {
+        &quot;bands_note&quot;: &quot;架构师门控策略：&gt;=60% 且 &lt;=$2,000 自动主力路由 · 高成本 (&gt;=$4,700) 或 Best-of-5 需验证器确认 · 运营类 &lt;=26% / 零解墙任务强制转交人工。&quot;,
+        &quot;decisions&quot;: [
+          {
+            &quot;action&quot;: &quot;Act automatically&quot;,
+            &quot;confidence&quot;: 0.615,
+            &quot;distribution_pct&quot;: {
+              &quot;Copilot Fusion ($1,987)&quot;: 71.2,
+              &quot;GPT-6.2 Sol ($349)&quot;: 61.5,
+              &quot;Gemini 4 Carbon ($1,358)&quot;: 64.5,
+              &quot;Opus 5.5 ($4,719)&quot;: 65.8
+            },
+            &quot;field&quot;: &quot;pareto_golden_elbow&quot;,
+            &quot;question&quot;: &quot;330 轮全集下哪一组合兼具一线解决率与最优 FinOps 单位经济效益？&quot;,
+            &quot;question_type&quot;: &quot;choice&quot;,
+            &quot;selected_answer&quot;: &quot;GPT-6.2 Sol + Codex (max) — $349.16 达成 61.52%（软件工程 66.67% 并列全场第 1）&quot;
+          },
+          {
+            &quot;action&quot;: &quot;Send to a human&quot;,
+            &quot;closest_label&quot;: &quot;Operations 均分 (26%) 比 Security (52%) 足足低出一倍&quot;,
+            &quot;confidence&quot;: 0.26,
+            &quot;distribution_pct&quot;: {
+              &quot;ML 机器学习 (11题)&quot;: 43.0,
+              &quot;Operations 运营 (9题)&quot;: 26.0,
+              &quot;Security 安全 (5题)&quot;: 52.0,
+              &quot;Software 软件 (18题)&quot;: 35.0
+            },
+            &quot;field&quot;: &quot;operations_domain_gate&quot;,
+            &quot;question&quot;: &quot;当前前沿终端 Agent 能否在无人工门控下独立接管多约束企业运营流？&quot;,
+            &quot;question_type&quot;: &quot;score&quot;,
+            &quot;selected_answer&quot;: &quot;26 / 100 领域均分 -&gt; 必须设置人工审批门禁 (HITL)&quot;
+          }
+        ],
+        &quot;metrics&quot;: [
+          &quot;#1 Copilot Fusion: 71.21% ($1,987)&quot;,
+          &quot;#2 并列 Opus 5.5 / Fable 5.2: 65.76%&quot;,
+          &quot;#4 Gemini 4 Carbon: 64.55% ($1,358)&quot;,
+          &quot;#7 GPT-6.2 Sol: 61.52% ($349 · $1.06/轮)&quot;,
+          &quot;#11 Kimi K3.1 Pro: pass@5 84.85% (全场#1)&quot;,
+          &quot;TB 2.1 -&gt; 3.0 洗牌: 87.42% -&gt; 42.70%&quot;
+        ],
+        &quot;scenarios&quot;: [
+          &quot;TABLE 排行榜：65 组运行 / 52 唯一组合 (±95% CI)&quot;,
+          &quot;PARETO 成本前沿：7 个商业最优点 ($49.55 -&gt; $1,987)&quot;,
+          &quot;PARETO Token 与耗时：1.09B Token 与 1,214s 黄金拐点&quot;,
+          &quot;七大领域鸿沟：安全 52% vs 企业运营 26%&quot;,
+          &quot;过度思考税：Fable 5.1 与 Opus 5 开 max 反降分&quot;,
+          &quot;虚假提前交卷：59.92% 主动错交 vs 仅 0.69% 超时&quot;,
+          &quot;TB 4.1 双容器隔离验证：彻底根除测试脚本泄露&quot;
+        ],
+        &quot;status_pill&quot;: &quot;65 组运行 · 66 任务 · 21,450 轮实测 · Apache-2.0&quot;,
+        &quot;title&quot;: &quot;Terminal-Bench 4.1 (tbench.ai) · Harbor v4.1.0 架构师决策工作台&quot;
+      }
+    },
+    {
+      &quot;callouts&quot;: [
+        {
+          &quot;body&quot;: &quot;在 bun-sourcemap-leak（325 败 / 0 超时）与 freight-dispatch-shift（317 败 / 0 超时）中，Agent 缺乏「反向泄露扫描器 / 业务不变量证伪器」，改完表面功能即宣布完成。&quot;,
+          &quot;lead&quot;: &quot;核心洞察：打败 Agent 的不是时间不够（0.69% 超时），而是「盲目自信提前交卷」（87 倍于超时）：&quot;
+        }
+      ],
+      &quot;decisions&quot;: [
+        {
+          &quot;action&quot;: &quot;Act automatically&quot;,
+          &quot;confidence&quot;: 0.782,
+          &quot;distribution_pct&quot;: {
+            &quot;coq-block-bound (239/325)&quot;: 73.5,
+            &quot;fp8-rmsnorm-gemm (214/325)&quot;: 65.8,
+            &quot;mp-checkpoint (254/325)&quot;: 78.2,
+            &quot;wdm-design (243/325)&quot;: 74.8
+          },
+          &quot;field&quot;: &quot;compiler_oracle_convergence&quot;,
+          &quot;question&quot;: &quot;具备确定性本地验证闭环的任务（coqc、nvcc、pytest 毫秒级报错）&quot;,
+          &quot;question_type&quot;: &quot;choice&quot;,
+          &quot;selected_answer&quot;: &quot;mp-checkpoint-consolidation 78.2% (254/325) 与 coq-block-bound 73.5% (239/325)&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Confirm&quot;,
+          &quot;closest_label&quot;: &quot;全场唯一攻克 cargo-flight-dispatch (3/325) 且医疗理赔 5/5 满分&quot;,
+          &quot;confidence&quot;: 0.848,
+          &quot;distribution_pct&quot;: {
+            &quot;Copilot Fusion pass@5&quot;: 83.3,
+            &quot;Kimi K3.1 Pro pass@1&quot;: 59.7,
+            &quot;Kimi K3.1 Pro pass@5&quot;: 84.8,
+            &quot;Opus 5.5 pass@5&quot;: 80.3
+          },
+          &quot;field&quot;: &quot;best_of_5_specialist_headroom&quot;,
+          &quot;question&quot;: &quot;多轮采样探索上限 (pass@5) 与运营领域专精黑马&quot;,
+          &quot;question_type&quot;: &quot;score&quot;,
+          &quot;selected_answer&quot;: &quot;Kimi K3.1 Pro + Claude Code — pass@5 高达 84.85% (全场#1) 且运营类 64.44% 夺冠&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Send to a human&quot;,
+          &quot;confidence&quot;: 0.0,
+          &quot;distribution_pct&quot;: {
+            &quot;bun-sourcemap-leak (0/325)&quot;: 0.0,
+            &quot;cargo-flight-dispatch (3/325)&quot;: 0.9,
+            &quot;data-anonymization (1/325)&quot;: 0.3,
+            &quot;freight-dispatch-shift (0/325)&quot;: 0.0
+          },
+          &quot;field&quot;: &quot;zero_solve_premature_victory&quot;,
+          &quot;question&quot;: &quot;65 组运行合计 1,300 次尝试全部归零的 4 道「零解叹息之墙」&quot;,
+          &quot;question_type&quot;: &quot;noul&quot;,
+          &quot;selected_answer&quot;: &quot;NOUL — 0 / 1,300 解决（1,279 次自信提前交卷失败，仅 10 次超时）&quot;
+        }
+      ],
+      &quot;eyebrow&quot;: &quot;SCENARIO: 编译器神谕定律与「虚假提前交卷综合征」&quot;,
+      &quot;headline&quot;: &quot;强编译器反馈任务高达 70%–78%，而 4 道零解墙任务 0/325 全军覆没&quot;,
+      &quot;kind&quot;: &quot;deep_dive&quot;,
+      &quot;quote&quot;: &quot;「为什么前沿 Agent 能独立写出 H100 FP8 CUDA 算子 (65.8%) 与 Coq 形式化证明 (73.5%)，却在 bun-sourcemap-leak 上创下 325/325 零超时、100% 自信错交？」&quot;,
+      &quot;subtitle&quot;: &quot;21,450 轮真实结局拆解：36.68% 通过 (7,867)、59.92% 提前错误交卷 (12,852)，真正触发 8h 超时仅占 0.69% (147)！&quot;
+    },
+    {
+      &quot;callouts&quot;: [
+        {
+          &quot;body&quot;: &quot;第 #2–#5 名（65.76%–63.94%）与第 #6–#12 名（62.12%–59.70%）处于统计置信重叠带；GPT-6.2 Sol ($349) 在最大题库 Software (18题) 上以 66.67% 追平榜首 Copilot Fusion，反超 #2 Opus 5.5 (52.22%) 达 +14.45 个百分点！&quot;,
+          &quot;lead&quot;: &quot;95% 置信区间统计并列铁律（±2.3%–4.2%）：&quot;
+        },
+        {
+          &quot;body&quot;: &quot;前四名分别来自四大原生重型 Harness（GitHub Copilot、Claude Code、Antigravity CLI、Codex），输入 KV 缓存命中率全部高达 93.8%–97.0%。&quot;,
+          &quot;lead&quot;: &quot;模型 × 原生 Harness 协同碾压裸 Bash 循环：&quot;
+        }
+      ],
+      &quot;eyebrow&quot;: &quot;WHAT I TESTED · 排行榜、帕累托与极端任务全景矩阵&quot;,
+      &quot;headline&quot;: &quot;7 个商业帕累托最优点 vs 47.2 倍成本虚胖与 $0 预览失真&quot;,
+      &quot;kind&quot;: &quot;scorecard&quot;,
+      &quot;rows&quot;: [
+        {
+          &quot;action&quot;: &quot;Act automatically&quot;,
+          &quot;decider_answer&quot;: &quot;71.2% ± 2.9% · Media 90% / Sec 88% #1&quot;,
+          &quot;pointed_right_way&quot;: true,
+          &quot;question&quot;: &quot;Copilot Fusion + GitHub Copilot (max) — 235/330，$1,987.33 ($6.02/轮)&quot;,
+          &quot;reported_probability_pct&quot;: 71.2,
+          &quot;scenario&quot;: &quot;#1 榜首 · Copilot&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Confirm&quot;,
+          &quot;decider_answer&quot;: &quot;65.8% ± 3.1% · 唯一解出匿名化任务&quot;,
+          &quot;pointed_right_way&quot;: true,
+          &quot;question&quot;: &quot;Opus 5.5 + Claude Code (max) — 217/330，$4,718.65 (ML 83.6% 全场#1)&quot;,
+          &quot;reported_probability_pct&quot;: 65.8,
+          &quot;scenario&quot;: &quot;#2 并列 · Claude Code&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Confirm&quot;,
+          &quot;decider_answer&quot;: &quot;Sol 成本的 47.2 倍 ($49.98/轮 · 15.7B tok)&quot;,
+          &quot;pointed_right_way&quot;: false,
+          &quot;question&quot;: &quot;Fable 5.2 + Claude Code (max) — 同为 217/330 却烧掉 $16,492.76&quot;,
+          &quot;reported_probability_pct&quot;: 65.8,
+          &quot;scenario&quot;: &quot;#2 成本反模式&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Act automatically&quot;,
+          &quot;decider_answer&quot;: &quot;64.5% ± 3.2% · 科学 68.6% / 硬件 80% 并列#1&quot;,
+          &quot;pointed_right_way&quot;: true,
+          &quot;question&quot;: &quot;Gemini 4 Carbon + Antigravity CLI (high) — 213/330，$1,358.25&quot;,
+          &quot;reported_probability_pct&quot;: 64.5,
+          &quot;scenario&quot;: &quot;#4 帕累托 · Antigravity&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Act automatically&quot;,
+          &quot;decider_answer&quot;: &quot;61.5% ± 2.8% · 软件工程 66.7% 并列#1&quot;,
+          &quot;pointed_right_way&quot;: true,
+          &quot;question&quot;: &quot;GPT-6.2 Sol + Codex (max) — 203/330，$349.16 (1.09B tok, 1,214s)&quot;,
+          &quot;reported_probability_pct&quot;: 61.5,
+          &quot;scenario&quot;: &quot;#7 黄金拐点 · Codex&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Confirm&quot;,
+          &quot;decider_answer&quot;: &quot;pass@1 59.7% -&gt; pass@5 84.8% (#1)&quot;,
+          &quot;pointed_right_way&quot;: true,
+          &quot;question&quot;: &quot;Kimi K3.1 Pro + Claude Code (max) — $1,086.66 (运营 64.4% 全场#1)&quot;,
+          &quot;reported_probability_pct&quot;: 84.8,
+          &quot;scenario&quot;: &quot;#11 探索之王&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Act automatically&quot;,
+          &quot;decider_answer&quot;: &quot;38.5% ($0.56/轮) 与 35.5% ($0.36/轮)&quot;,
+          &quot;pointed_right_way&quot;: true,
+          &quot;question&quot;: &quot;DeepSeek V4.1 Flash 1017 ($184.89) 与 GLM-5.3-Flash none ($118.74)&quot;,
+          &quot;reported_probability_pct&quot;: 38.5,
+          &quot;scenario&quot;: &quot;百元级帕累托&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Send to a human&quot;,
+          &quot;decider_answer&quot;: &quot;14.8%（伪造 $0 帕累托原点）&quot;,
+          &quot;pointed_right_way&quot;: false,
+          &quot;question&quot;: &quot;Muse Spark 1.3 + Muse Code (xhigh) — 消耗 9.01B Token 却记 $0.00&quot;,
+          &quot;reported_probability_pct&quot;: 14.8,
+          &quot;scenario&quot;: &quot;$0 免费预览失真&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Send to a human&quot;,
+          &quot;decider_answer&quot;: &quot;最高仅 27.0% · 中位 7.6%–18.2%&quot;,
+          &quot;pointed_right_way&quot;: false,
+          &quot;question&quot;: &quot;mini-swe-agent / mini-SWE-agent（11 组运行，均耗高达 14.16B Token）&quot;,
+          &quot;reported_probability_pct&quot;: 27.0,
+          &quot;scenario&quot;: &quot;极简 Harness 代差&quot;
+        },
+        {
+          &quot;action&quot;: &quot;Send to a human&quot;,
+          &quot;decider_answer&quot;: &quot;0 / 1,300 解决 (0.0%)&quot;,
+          &quot;pointed_right_way&quot;: false,
+          &quot;question&quot;: &quot;bun-sourcemap, ontology-kg, glycan-ms2, freight-dispatch (1,300 轮)&quot;,
+          &quot;reported_probability_pct&quot;: 0.0,
+          &quot;scenario&quot;: &quot;零解叹息之墙 (4/66)&quot;
+        }
+      ],
+      &quot;subtitle&quot;: &quot;将 TABLE 排名、PARETO 成本拐点、Harness 代差与 0% 零解墙纳入同一门控标尺。&quot;
+    },
+    {
+      &quot;bottom_code&quot;: &quot;# Harbor v4.1.0 物理隔离判分流水线\n$ docker stop $AGENT_CONTAINER_ID\n$ harbor artifacts copy --from $AGENT_CONTAINER_ID --paths /app/release_bundle\n$ docker run --rm --network none -v $ARTIFACTS:/artifacts:ro $VERIFIER_IMAGE /tests/test.sh\n# 确定性奖励写入宿主机挂载日志 /logs/verifier/reward.txt：\n&lt;answer&gt;reward = 1.0 (PASS) | 0.0 (FAIL) · 彻底杜绝 root 权限偷看测试集&lt;/answer&gt;\n\n# 持续基准演进契约：x.y.z = Rerun（重跑）. Regrade（重判）. Reuse（复用）\n# 4.0 -&gt; 4.1 次版本升级实现验证器隔离加固与平滑重判&quot;,
+      &quot;callouts&quot;: [
+        {
+          &quot;body&quot;: &quot;在传统单容器评测中，拥有 root 权限的终端 Agent 可扫描环境残留、进程表或挂载点逆向测试断言；TB 4.1 的 separate 模式确保黄金答案与判分脚本在物理上只存在于第二阶段验证镜像。&quot;,
+          &quot;lead&quot;: &quot;堵死 Root 容器同住作弊漏洞：&quot;
+        }
+      ],
+      &quot;eyebrow&quot;: &quot;UNDER THE HOOD · 双容器隔离验证与 x.y.z 语义化演进&quot;,
+      &quot;headline&quot;: &quot;TB 4.1 双容器物理隔离：测试脚本永不进入 Agent 文件系统&quot;,
+      &quot;kind&quot;: &quot;protocol&quot;,
+      &quot;subtitle&quot;: &quot;Harbor v4.1.0 先停机 Agent 容器，仅拷贝声明的 artifacts[] 进入断网纯净验证容器执行判分。&quot;,
+      &quot;top_code&quot;: &quot;# task.toml (Harbor v4.1.0 / terminal-bench@4.1.0 任务契约)\nversion = \&quot;4.1\&quot;\n\n[agent]\ntimeout_sec = 28800.0   # 全部 66 题统一 8 小时硬上限\n\n[verifier]\ntimeout_sec = 600.0\nenvironment_mode = \&quot;separate\&quot;   # 严禁在 Agent 容器内挂载 /tests！\nartifacts = [\&quot;/app/release_bundle\&quot;, \&quot;/workspace/output.json\&quot;]\n\n[environment]\ncpus = 4                # 63 道纯 CPU 题；3 道 GPU 题按需分配 1x H100\nmemory_mb = 16384&quot;,
+      &quot;transition&quot;: &quot;↓ 1. 停止 Agent 容器 -&gt; 2. 提取声明产物 artifacts[] -&gt; 3. 拉起独立 tests/Dockerfile 判分容器&quot;
+    },
+    {
+      &quot;callouts&quot;: [
+        {
+          &quot;body&quot;: &quot;在数小时 Bash 交互中，max 档位拉长单步内省，频繁触发上下文压缩（Compaction）导致早期关键报错信息丢失，甚至推翻已通过的正确补丁。&quot;,
+          &quot;lead&quot;: &quot;为什么长程终端任务会出现「过度思考税」：&quot;
+        },
+        {
+          &quot;body&quot;: &quot;5 轮独立 GPT-6.2 Sol 总花费仅 $1,746，在有验证器场景下可达 72.73% 解题率，以 37% 的成本反超单轮 Opus 5.5 ($4,719)。&quot;,
+          &quot;lead&quot;: &quot;架构铁律：横向 Best-of-N 并行 + 验证器筛选 &gt; 纵向盲堆单次 max：&quot;
+        }
+      ],
+      &quot;eyebrow&quot;: &quot;ROBUSTNESS CHECK · 过度思考税与 PASS@5 并行扩展律&quot;,
+      &quot;headline&quot;: &quot;盲开 max 档反降分：Fable 5.1 多花 $1,371 跌 0.31 分，Opus 5 跌 1.21 分&quot;,
+      &quot;kind&quot;: &quot;robustness&quot;,
+      &quot;rows&quot;: [
+        {
+          &quot;answer_held&quot;: false,
+          &quot;change_pts&quot;: -0.3,
+          &quot;original_pct&quot;: 57.6,
+          &quot;reversed_pct&quot;: 57.3,
+          &quot;scenario&quot;: &quot;Fable 5.1 + Claude Code（档位倒挂）&quot;,
+          &quot;selected_option&quot;: &quot;xhigh ($4,872 · 3,202s) -&gt; max ($6,244 · 3,894s)：多花 $1,371 反降分&quot;
+        },
+        {
+          &quot;answer_held&quot;: false,
+          &quot;change_pts&quot;: -1.2,
+          &quot;original_pct&quot;: 53.3,
+          &quot;reversed_pct&quot;: 52.1,
+          &quot;scenario&quot;: &quot;Opus 5 + Claude Code（档位倒挂）&quot;,
+          &quot;selected_option&quot;: &quot;xhigh ($6,086 · 4,515s) -&gt; max ($5,969 · 4,793s)：慢 278 秒且降分&quot;
+        },
+        {
+          &quot;answer_held&quot;: false,
+          &quot;change_pts&quot;: -0.3,
+          &quot;original_pct&quot;: 60.0,
+          &quot;reversed_pct&quot;: 59.7,
+          &quot;scenario&quot;: &quot;GPT-6 Astra + Codex（边际收益坍塌）&quot;,
+          &quot;selected_option&quot;: &quot;high ($2,269) -&gt; xhigh ($2,351) 微跌；max ($3,267) 多花 $998 仅多 1 轮&quot;
+        },
+        {
+          &quot;answer_held&quot;: true,
+          &quot;change_pts&quot;: 1.5,
+          &quot;original_pct&quot;: 35.5,
+          &quot;reversed_pct&quot;: 37.0,
+          &quot;scenario&quot;: &quot;GLM-5.3-Flash + Claude Code（四档全扫）&quot;,
+          &quot;selected_option&quot;: &quot;none ($118.74, 35.45%) -&gt; max ($374.72, 36.97%)：成本涨 3.16 倍仅 +1.5 分&quot;
+        },
+        {
+          &quot;answer_held&quot;: true,
+          &quot;change_pts&quot;: 25.2,
+          &quot;original_pct&quot;: 59.7,
+          &quot;reversed_pct&quot;: 84.8,
+          &quot;scenario&quot;: &quot;Kimi K3.1 Pro + Claude Code（Best-of-5）&quot;,
+          &quot;selected_option&quot;: &quot;pass@1 (197/330) -&gt; pass@5 (56/66 题全场#1)，总成本仅 $1,086.66&quot;
+        },
+        {
+          &quot;answer_held&quot;: true,
+          &quot;change_pts&quot;: 12.1,
+          &quot;original_pct&quot;: 71.2,
+          &quot;reversed_pct&quot;: 83.3,
+          &quot;scenario&quot;: &quot;Copilot Fusion + GitHub Copilot（Best-of-5）&quot;,
+          &quot;selected_option&quot;: &quot;pass@1 (235/330) -&gt; pass@5 (55/66 题)，总成本 $1,987.33&quot;
+        },
+        {
+          &quot;answer_held&quot;: true,
+          &quot;change_pts&quot;: 11.2,
+          &quot;original_pct&quot;: 61.5,
+          &quot;reversed_pct&quot;: 72.7,
+          &quot;scenario&quot;: &quot;GPT-6.2 Sol + Codex（5 路并行 vs 单路巨兽）&quot;,
+          &quot;selected_option&quot;: &quot;5 轮并行总价 $1,745.80 达 72.73%，完胜单轮 Fable 5.2 ($16,493, 65.76%)&quot;
+        }
+      ],
+      &quot;subtitle&quot;: &quot;对比同模型跨推理档位扫描（xhigh/high vs max）与 5 轮独立并行探索收益（pass@1 -&gt; pass@5）。&quot;
+    },
+    {
+      &quot;callouts&quot;: [
+        {
+          &quot;body&quot;: &quot;第 1 组 = Kimi K3.1 Pro 极速锚点 (123,200 ms / 2.1 分钟)。第 2 组 = GPT-6.2 Sol 黄金拐点 (1,214,300 ms / 20.2 分钟) vs #1 Copilot Fusion (4,233,600 ms / 70.6 分钟)。第 3 组 = GPT-6.2 Astra (1,349,500 ms) vs #2 Opus 5.5 (4,790,400 ms)。第 4 组 = #4 Gemini 4 Carbon (3,495,800 ms) vs #2 Fable 5.2 (7,333,000 ms)。&quot;,
+          &quot;lead&quot;: &quot;四组精确映射（全部源自 330 轮密封 avg_duration_sec × 1,000）：&quot;
+        }
+      ],
+      &quot;eyebrow&quot;: &quot;LATENCY · 帕累托耗时阶梯对比（毫秒）&quot;,
+      &quot;headline&quot;: &quot;GPT-6.2 Sol 单轮均耗 1,214 秒 — 比 #1–#2 重型对手快 3.5 倍&quot;,
+      &quot;kind&quot;: &quot;latency&quot;,
+      &quot;rows&quot;: [
+        {
+          &quot;batched_median_ms&quot;: 123200,
+          &quot;one_by_one_estimated_ms&quot;: 123200,
+          &quot;question_count&quot;: 1,
+          &quot;runs&quot;: 330
+        },
+        {
+          &quot;batched_median_ms&quot;: 1214300,
+          &quot;one_by_one_estimated_ms&quot;: 4233600,
+          &quot;question_count&quot;: 2,
+          &quot;runs&quot;: 330
+        },
+        {
+          &quot;batched_median_ms&quot;: 1349500,
+          &quot;one_by_one_estimated_ms&quot;: 4790400,
+          &quot;question_count&quot;: 3,
+          &quot;runs&quot;: 330
+        },
+        {
+          &quot;batched_median_ms&quot;: 3495800,
+          &quot;one_by_one_estimated_ms&quot;: 7333000,
+          &quot;question_count&quot;: 4,
+          &quot;runs&quot;: 330
+        }
+      ],
+      &quot;subtitle&quot;: &quot;330 轮实测单轮平均挂钟耗时（ms）：耗时帕累托高效组（蓝色）对比同梯队重型推理组（灰色）。&quot;
+    },
+    {
+      &quot;dark_box&quot;: {
+        &quot;lead&quot;: &quot;第三方公开权威基准结构化研究（provenance: anonymized_reported, independently_reproduced=false）。快照时间：2026-11-19（terminal-bench@4.1.0，65 组运行，66 任务，21,450 轮实测）。严格遵守防污染规范：未分发任何原始题目文本、Oracle 解法或 Canary GUID。&quot;,
+        &quot;repo&quot;: &quot;数据上游：https://www.tbench.ai/ · Apache-2.0: github.com/harbor-framework/terminal-bench&quot;
+      },
+      &quot;eyebrow&quot;: &quot;MY TAKE · 解决方案架构师实战选型指南&quot;,
+      &quot;good_fit&quot;: [
+        &quot;研发流水线默认主力（Golden Elbow）：GPT-6.2 Sol + Codex (max) 仅需 $1.06/轮、20.2 分钟均耗即达 61.52%，并在软件工程大类（66.67%）追平全场第 1。&quot;,
+        &quot;高价值核心攻坚升级通道：Copilot Fusion + GitHub Copilot (71.21%, $6.02/轮) 领跑全场及安全 (88.0%)、多媒体 (90.0%) 与科学计算 (68.57% 并列#1)。&quot;,
+        &quot;按领域专精路由：机器学习优选 Opus 5.5 + Claude Code (83.64% #1)；科学/硬件优选 Gemini 4 Carbon + Antigravity CLI (68.57% / 80.0% 并列#1，$4.12/轮)。&quot;,
+        &quot;带验证器的 Best-of-5 并行探索：Kimi K3.1 Pro + Claude Code 创下全场最高 pass@5 (84.85%) 与运营领域第 1 (64.44%)，单轮仅 $3.29。&quot;
+      ],
+      &quot;headline&quot;: &quot;按「验证器紧密度 × 成本拐点」路由，绝不盲从单一总分榜首&quot;,
+      &quot;kind&quot;: &quot;takeaways&quot;,
+      &quot;not_for&quot;: [
+        &quot;无人工门控的企业级状态化运营（领域均分仅 26%）：freight-dispatch-shift (0/325) 与医疗理赔 (20/325) 极易发生「虚假提前交卷」，必须引入人工复核。&quot;,
+        &quot;长程终端无脑全局开启 effort=&#x27;max&#x27;：Fable 5.1 max (+$1,371 反跌 0.31 分) 与 Opus 5 max (-1.21 分) 证明过度内省会损害长链路稳定性。&quot;,
+        &quot;未剔除 $0 预览模型的失真帕累托图与无视置信区间的采购：需过滤 Muse Spark 1.3 ($0.00) 并将 ±3% 重叠名次视为统计同级。&quot;,
+        &quot;测试脚本与 Agent 同容器裸奔：企业自建评测与生产沙箱应全面对齐 Harbor v4.1.0 environment_mode=&#x27;separate&#x27; + 提交前反向安全门禁（Sourcemap/PII 扫描）。&quot;
+      ],
+      &quot;subtitle&quot;: &quot;基于 65 组运行、21,450 轮 Harbor 真实容器轨迹提炼的 L3/L4 Agent Harness 落地准则。&quot;
+    }
+  ],
+  &quot;deck_title&quot;: &quot;Terminal-Bench 4.1 深度评测：排行榜、帕累托前沿与 66 任务验证器架构审计&quot;,
+  &quot;facts&quot;: {
+    &quot;benchmark_id&quot;: &quot;terminal-bench@4.1.0&quot;,
+    &quot;commercial_cost_pareto_best_effort&quot;: [
+      {
+        &quot;accuracy_pct&quot;: 0.91,
+        &quot;agent&quot;: &quot;mini-swe-agent&quot;,
+        &quot;avg_duration_sec&quot;: 141.3,
+        &quot;cost_per_trial_usd&quot;: 0.1502,
+        &quot;cost_usd&quot;: 49.55,
+        &quot;effort&quot;: &quot;none&quot;,
+        &quot;model&quot;: &quot;Inkling Small&quot;,
+        &quot;pass_at_5_pct&quot;: 3.03,
+        &quot;rank&quot;: 63,
+        &quot;total_tokens&quot;: 373378039
+      },
+      {
+        &quot;accuracy_pct&quot;: 15.15,
+        &quot;agent&quot;: &quot;Codex&quot;,
+        &quot;avg_duration_sec&quot;: 2284.1,
+        &quot;cost_per_trial_usd&quot;: 0.2186,
+        &quot;cost_usd&quot;: 72.14,
+        &quot;effort&quot;: &quot;max&quot;,
+        &quot;model&quot;: &quot;GPT-6 Luna&quot;,
+        &quot;pass_at_5_pct&quot;: 28.79,
+        &quot;rank&quot;: 52,
+        &quot;total_tokens&quot;: 3909124893
+      },
+      {
+        &quot;accuracy_pct&quot;: 30.61,
+        &quot;agent&quot;: &quot;Muse Code&quot;,
+        &quot;avg_duration_sec&quot;: 2288.4,
+        &quot;cost_per_trial_usd&quot;: 0.4763,
+        &quot;cost_usd&quot;: 157.18,
+        &quot;effort&quot;: &quot;xhigh&quot;,
+        &quot;model&quot;: &quot;Muse Ember&quot;,
+        &quot;pass_at_5_pct&quot;: 59.09,
+        &quot;rank&quot;: 39,
+        &quot;total_tokens&quot;: 8131161565
+      },
+      {
+        &quot;accuracy_pct&quot;: 38.48,
+        &quot;agent&quot;: &quot;Claude Code&quot;,
+        &quot;avg_duration_sec&quot;: 148.4,
+        &quot;cost_per_trial_usd&quot;: 0.5603,
+        &quot;cost_usd&quot;: 184.89,
+        &quot;effort&quot;: &quot;max&quot;,
+        &quot;model&quot;: &quot;DeepSeek V4.1 Flash 1017&quot;,
+        &quot;pass_at_5_pct&quot;: 65.15,
+        &quot;rank&quot;: 33,
+        &quot;total_tokens&quot;: 8187123046
+      },
+      {
+        &quot;accuracy_pct&quot;: 61.52,
+        &quot;agent&quot;: &quot;Codex&quot;,
+        &quot;avg_duration_sec&quot;: 1214.3,
+        &quot;cost_per_trial_usd&quot;: 1.0581,
+        &quot;cost_usd&quot;: 349.16,
+        &quot;effort&quot;: &quot;max&quot;,
+        &quot;model&quot;: &quot;GPT-6.2 Sol&quot;,
+        &quot;pass_at_5_pct&quot;: 72.73,
+        &quot;rank&quot;: 7,
+        &quot;total_tokens&quot;: 1085250438
+      },
+      {
+        &quot;accuracy_pct&quot;: 64.55,
+        &quot;agent&quot;: &quot;Antigravity CLI&quot;,
+        &quot;avg_duration_sec&quot;: 3495.8,
+        &quot;cost_per_trial_usd&quot;: 4.1159,
+        &quot;cost_usd&quot;: 1358.25,
+        &quot;effort&quot;: &quot;high&quot;,
+        &quot;model&quot;: &quot;Gemini 4 Carbon&quot;,
+        &quot;pass_at_5_pct&quot;: 78.79,
+        &quot;rank&quot;: 4,
+        &quot;total_tokens&quot;: 3781194078
+      },
+      {
+        &quot;accuracy_pct&quot;: 71.21,
+        &quot;agent&quot;: &quot;GitHub Copilot&quot;,
+        &quot;avg_duration_sec&quot;: 4233.6,
+        &quot;cost_per_trial_usd&quot;: 6.0222,
+        &quot;cost_usd&quot;: 1987.33,
+        &quot;effort&quot;: &quot;max&quot;,
+        &quot;model&quot;: &quot;Copilot Fusion&quot;,
+        &quot;pass_at_5_pct&quot;: 83.33,
+        &quot;rank&quot;: 1,
+        &quot;total_tokens&quot;: 3316652076
+      }
+    ],
+    &quot;domain_summary&quot;: [
+      {
+        &quot;avg_solve_pct&quot;: 52,
+        &quot;domain&quot;: &quot;Security&quot;,
+        &quot;task_count&quot;: 5
+      },
+      {
+        &quot;avg_solve_pct&quot;: 43,
+        &quot;domain&quot;: &quot;ML&quot;,
+        &quot;task_count&quot;: 11
+      },
+      {
+        &quot;avg_solve_pct&quot;: 38,
+        &quot;domain&quot;: &quot;Media&quot;,
+        &quot;task_count&quot;: 4
+      },
+      {
+        &quot;avg_solve_pct&quot;: 37,
+        &quot;domain&quot;: &quot;Hardware&quot;,
+        &quot;task_count&quot;: 5
+      },
+      {
+        &quot;avg_solve_pct&quot;: 35,
+        &quot;domain&quot;: &quot;Software&quot;,
+        &quot;task_count&quot;: 18
+      },
+      {
+        &quot;avg_solve_pct&quot;: 34,
+        &quot;domain&quot;: &quot;Science&quot;,
+        &quot;task_count&quot;: 14
+      },
+      {
+        &quot;avg_solve_pct&quot;: 26,
+        &quot;domain&quot;: &quot;Operations&quot;,
+        &quot;task_count&quot;: 9
+      }
+    ],
+    &quot;license&quot;: &quot;Apache-2.0 (harbor-framework/terminal-bench)&quot;,
+    &quot;overthinking_inversions&quot;: [
+      {
+        &quot;better_accuracy_pct&quot;: 57.58,
+        &quot;better_cost_usd&quot;: 4872.04,
+        &quot;better_effort&quot;: &quot;xhigh&quot;,
+        &quot;delta_accuracy_pts&quot;: -0.31,
+        &quot;extra_cost_usd&quot;: 1371.46,
+        &quot;max_accuracy_pct&quot;: 57.27,
+        &quot;max_cost_usd&quot;: 6243.5,
+        &quot;pair&quot;: &quot;Fable 5.1 + Claude Code&quot;
+      },
+      {
+        &quot;better_accuracy_pct&quot;: 53.33,
+        &quot;better_cost_usd&quot;: 6086.22,
+        &quot;better_effort&quot;: &quot;xhigh&quot;,
+        &quot;delta_accuracy_pts&quot;: -1.21,
+        &quot;extra_duration_sec&quot;: 277.9,
+        &quot;max_accuracy_pct&quot;: 52.12,
+        &quot;max_cost_usd&quot;: 5969.11,
+        &quot;pair&quot;: &quot;Opus 5 + Claude Code&quot;
+      },
+      {
+        &quot;better_accuracy_pct&quot;: 60.0,
+        &quot;better_cost_usd&quot;: 2269.42,
+        &quot;better_effort&quot;: &quot;high&quot;,
+        &quot;max_accuracy_pct&quot;: 60.3,
+        &quot;max_cost_usd&quot;: 3267.18,
+        &quot;pair&quot;: &quot;GPT-6 Astra + Codex&quot;,
+        &quot;xhigh_accuracy_pct&quot;: 59.7,
+        &quot;xhigh_cost_usd&quot;: 2350.51
+      }
+    ],
+    &quot;scale&quot;: {
+      &quot;agent_timeout_sec&quot;: 28800,
+      &quot;cpu_only_tasks&quot;: 63,
+      &quot;gpu_tasks&quot;: 3,
+      &quot;leaderboard_runs&quot;: 65,
+      &quot;tasks_total&quot;: 66,
+      &quot;total_trials&quot;: 21450,
+      &quot;trial_outcomes&quot;: {
+        &quot;error_count&quot;: 584,
+        &quot;error_pct&quot;: 2.72,
+        &quot;fail_count&quot;: 12852,
+        &quot;fail_pct&quot;: 59.92,
+        &quot;pass_count&quot;: 7867,
+        &quot;pass_pct&quot;: 36.68,
+        &quot;timeout_count&quot;: 147,
+        &quot;timeout_pct&quot;: 0.69
+      },
+      &quot;trials_per_run&quot;: 330,
+      &quot;trials_per_task_across_runs&quot;: 325,
+      &quot;trials_per_task_per_run&quot;: 5,
+      &quot;unique_model_agent_pairs&quot;: 52
+    },
+    &quot;snapshot_utc&quot;: &quot;2026-11-19T03:41:57Z&quot;,
+    &quot;source_urls&quot;: [
+      &quot;https://www.tbench.ai/&quot;,
+      &quot;https://www.tbench.ai/news/terminal-bench-4-0&quot;,
+      &quot;https://github.com/harbor-framework/terminal-bench/releases/tag/v4.1.0&quot;,
+      &quot;https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/5&quot;
+    ],
+    &quot;zero_solve_wall_tasks&quot;: [
+      &quot;bun-sourcemap-leak&quot;,
+      &quot;freight-dispatch-shift&quot;,
+      &quot;glycan-ms2-elucidation&quot;,
+      &quot;ontology-kg-querying&quot;
+    ]
+  },
+  &quot;independently_reproduced&quot;: false,
+  &quot;metadata&quot;: {
+    &quot;benchmark&quot;: &quot;Terminal-Bench 4.1 (terminal-bench@4.1.0 / Harbor Framework)&quot;,
+    &quot;canary_free_verified&quot;: true,
+    &quot;license&quot;: &quot;Apache-2.0 (harbor-framework/terminal-bench)&quot;,
+    &quot;raw_tasks_redistributed&quot;: false,
+    &quot;snapshot_utc&quot;: &quot;2026-11-19T03:41:57Z&quot;,
+    &quot;upstream_attribution&quot;: &quot;Stanford / Harbor Framework / Laude Institute (https://www.tbench.ai/)&quot;
+  },
+  &quot;provenance&quot;: &quot;anonymized_reported&quot;,
+  &quot;report_id&quot;: &quot;terminal-bench-4-1&quot;,
+  &quot;schema_version&quot;: 1
+}</pre></details></main></body></html>

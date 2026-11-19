@@ -10,6 +10,16 @@
 
 ---
 
+## 公开权威基准深度审计增补（`provenance="anonymized_reported"`，`independently_reproduced=false`）
+
+以下增补报告基于公开 Apache-2.0 权威基准聚合遥测数据独立开展数学审计、帕累托前沿建模与架构师选型拆解（严格零原始题面、零 Oracle 解法、零 Canary GUID 分发，不计入下方 `catalog.json` 的 12 个历史迁移主题）：
+
+| 主题 | 发布日期与语言 | 审计规模与核心洞察 | 报告与卡片入口 |
+|---|---|---|---|
+| **增补报告十：Terminal-Bench 4.1 深度拆解与架构师洞察（排行榜、帕累托散点图与 66 任务验证器审计）** | `2026-11-19` · 中 / 英（含双语 7 页卡片与全景 SVG） | **65 组运行（52 组唯一 `Model×Agent`）× 66 题 × 7 领域 = 21,450 轮密封试验**（`#1 Copilot Fusion 71.21%`；`$349.16 GPT-6.2 Sol` 黄金拐点追平 Software 榜首 `66.67%` 且同级成本差达 `47.2x`；`Fable 5.1 / Opus 5` `max` 档过度思考税倒挂；`Kimi K3.1 Pro` `pass@5 = 84.85%` 全场第 1；揭示 `59.92%` 虚假提前交卷 vs `0.69%` 超时的「编译器神谕定律」及 `environment_mode="separate"` 双容器判分） | [中文报告](terminal-bench-4-1.md) · [EN](terminal-bench-4-1.en.md) · [中文 7 页卡片](../../examples/terminal-bench-4-1-card-report/index.zh-CN.html) · [EN 7-Card Deck](../../examples/terminal-bench-4-1-card-report/index.html) · [JSON/CSV](../../data/reported/terminal-bench-4-1/report.json) |
+
+---
+
 ## 匿名历史测试报告档案（`provenance="anonymized_reported"`，12 个主题）
 
 本档案将指定资料库中的历史测试报告与 7 页视觉卡片评测归并为 **12 个主题**：
