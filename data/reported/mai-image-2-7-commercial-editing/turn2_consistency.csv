@@ -1,0 +1,10 @@
+workflow_id,label,two_turn_total_cost_usd,two_turn_total_latency_ms,turn2_brf,turn2_veq,turn2_cns,turn2_accept,turn0_to_turn2_canister_ssim,turn1_to_turn2_scene_ssim
+mai-image-2-7,MAI-Image-2.7,0.07,56668,3,4,2,False,0.4745,0.7517
+mai-image-2-7-flash,MAI-Image-2.7-Flash,0.02,46450,4,4,3,False,0.5033,0.7197
+mai-image-2-6,MAI-Image-2.6,0.07,57735,4,4,3,False,0.6291,0.8005
+flux-2-pro,FLUX.2-pro,0.0929,25264,4,4,2,False,0.5134,0.7354
+flux-2-flex,FLUX.2-flex,0.2097,29411,2,4,1,False,0.3259,0.7302
+gpt-image-2,gpt-image-2,0.1225,87542,4,4,2,False,0.3292,0.6727
+gpt-image-2-5-sunburst,gpt-image-2.5-sunburst,0.1226,90085,4,4,3,False,0.507,0.8551
+gpt-image-2-5-flare,gpt-image-2.5-flare,0.1226,62879,4,4,3,False,0.7282,0.8181
+mai-flash-to-2-7-hybrid,MAI Flash -> 2.7 Two-Tier,0.045,52127,4,4,2,False,0.4895,0.7244

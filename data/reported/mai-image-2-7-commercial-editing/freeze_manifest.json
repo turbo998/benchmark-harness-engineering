@@ -1,0 +1,104 @@
+{
+  "benchmark": "MAI-Image-2.7 Commercial Image Editing Benchmark (ServImage / Editable Extended)",
+  "generated_at_utc": "2026-11-19T05:46:49Z",
+  "resolution": "1024x1024",
+  "reference_count": 12,
+  "references": [
+    {
+      "scene_id": "portrait-retouch",
+      "file": "references/portrait-retouch.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1432494,
+      "sha256": "0b17fc66bbc411223071a004cbe2a7d57f6ffc6f4067a1d3402c19f6a672be54"
+    },
+    {
+      "scene_id": "id-photo",
+      "file": "references/id-photo.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1390579,
+      "sha256": "fbdf2353221c557367190eb2d51b7f5c43b8d3e8578cd7446fb8165aa00a1984"
+    },
+    {
+      "scene_id": "profile-color",
+      "file": "references/profile-color.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1426527,
+      "sha256": "9de72845660d0fcf5ddaabe5c8257664abf99be3db1a345f20c84ab0c29d5770"
+    },
+    {
+      "scene_id": "product-background",
+      "file": "references/product-background.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1154332,
+      "sha256": "be21fdf1b4646b41a6a74e47f5274332ac7dd446cedafcd0e90442a4c880f63e"
+    },
+    {
+      "scene_id": "packaging-label",
+      "file": "references/packaging-label.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 43867,
+      "sha256": "48fb45d9f1bf22e29b8b1c4b52c2de69cf19c4e3f62c6eebcfffe0600cde1107"
+    },
+    {
+      "scene_id": "product-seasonal",
+      "file": "references/product-seasonal.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 761870,
+      "sha256": "91e2e9dc06e24b07955139ee474df323f9040299f0ed031c9ed0963882b5fcff"
+    },
+    {
+      "scene_id": "web-banner",
+      "file": "references/web-banner.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 46888,
+      "sha256": "a7a3eef5419475917926729274304e25dd6c7a153ee39ba5e09f5a077495b8dd"
+    },
+    {
+      "scene_id": "app-screen",
+      "file": "references/app-screen.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 39612,
+      "sha256": "e92ac87f75d0a83c3f7adbe289805f96d4bf21c57857e4233604d797147a73ea"
+    },
+    {
+      "scene_id": "character-style",
+      "file": "references/character-style.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 771318,
+      "sha256": "52791c4acd7257ba12b75dd5337775c4c0e65a5e7f4560b0c63fb23e26d0b8b0"
+    },
+    {
+      "scene_id": "logo-cleanup",
+      "file": "references/logo-cleanup.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 227461,
+      "sha256": "61f4a766ffc0a5bee8d29383043680e0d1d51cca0170a56e0b2c31306ebee90e"
+    },
+    {
+      "scene_id": "native-transparent-cutout",
+      "file": "references/native-transparent-cutout.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1363049,
+      "sha256": "32d2fed450beac2b92e06449756dda3b2fc78ac35babb8de4ec65facf44c31c4"
+    },
+    {
+      "scene_id": "multi-turn-brand-consistency",
+      "file": "references/multi-turn-brand-consistency.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1007361,
+      "sha256": "12b986e8e26c40bfcde5a67995bab44b56702d2f15a097450caf3bc73f24aa75"
+    }
+  ]
+}

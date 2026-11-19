@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "report_families": 12,
-  "source_pages": 21,
+  "report_families": 13,
+  "source_pages": 23,
   "publication_mode": "original anonymous factual summaries, not full-text republication",
   "rights_and_exclusions": "Full-text, complete task-bank, original-image and attachment republication rights were not verified; these materials are excluded.",
   "privacy_boundary": "Do not publish author names, roles, contacts, employer-team identifiers, internal slides or URLs, private Notion URLs/IDs, usernames, keys, endpoints, original screenshots, raw traces or source attachments. Vendor/model names, public technical versions and generic test-environment specifications are retained only as historical reported facts.",
@@ -246,6 +246,30 @@
       ],
       "provenance": "anonymized_reported",
       "independently_reproduced": false
+    },
+    {
+      "report_id": "mai-image-2-7-commercial-editing",
+      "track": "multimodal-image-editing",
+      "source_languages": [
+        "zh",
+        "en"
+      ],
+      "source_page_count": 2,
+      "report_document": "../../docs/reports/mai-image-2-7-commercial-editing-benchmark.md",
+      "report_document_en": "../../docs/reports/mai-image-2-7-commercial-editing-benchmark.en.md",
+      "card_report_html": "../../examples/mai-image-2-7-card-report/index.html",
+      "card_report_html_zh": "../../examples/mai-image-2-7-card-report/index.zh-CN.html",
+      "json": "mai-image-2-7-commercial-editing/report.json",
+      "summary_json": "mai-image-2-7-commercial-editing/summary.json",
+      "freeze_manifest": "mai-image-2-7-commercial-editing/freeze_manifest.json",
+      "csv_files": [
+        "mai-image-2-7-commercial-editing/model_leaderboard.csv",
+        "mai-image-2-7-commercial-editing/scenario_matrix_96.csv",
+        "mai-image-2-7-commercial-editing/turn2_consistency.csv",
+        "mai-image-2-7-commercial-editing/perturbation_zh_vs_en.csv"
+      ],
+      "provenance": "measured",
+      "independently_reproduced": true
     }
   ]
 }

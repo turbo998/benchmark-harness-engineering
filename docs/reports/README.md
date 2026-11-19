@@ -2,10 +2,11 @@
 
 ## 密封实测增补报告（`provenance="measured"`，`independently_reproduced=true`）
 
-以下报告基于事前哈希冻结题库（`freeze_manifest.json`）、工作区外确定性验证器与底层 CAPI 原始遥测独立实测产出，不计入下方 `catalog.json` 的 12 个历史 `anonymized_reported` 整理主题：
+以下报告基于事前哈希冻结题库（`freeze_manifest.json`）、确定性验证器与真实云端/底层 API 遥测独立实测产出（其中增补报告十一已同步注册至 `catalog.json` 的 `multimodal-image-editing` 轨道）：
 
 | 主题 | 发布日期与语言 | 实测规模与核心结论 | 报告与卡片入口 |
 |---|---|---|---|
+| **增补报告十一：MAI-Image-2.7 与 MAI-Image-2.7-Flash 商业图像编辑基准深度实测（ServImage / Editable 复现扩展）** | `2026-11-19` · 中 / 英（含双语 7 页卡片与全景 WebP） | **121 轮真实 Microsoft Foundry API 实测**（`8 模型 × 12 商业场景 = 96 轮` + `9 轮` 双轮锁字 + `16 轮` 中英双语扰动，`$6.041` 实测账单）：MAI 双模型简报执行 **`BRF = 4.17/5.00` 并列 `#1`**；`MAI-2.7-Flash`（`$0.010` 固定单价）每美元产出 **`41.67` 张零返工成片**（`Sunburst` 的 `3.8x`、`FLUX.2-flex` 的 `8.7x`）；`S11` 单次直出 **`100.0%` 边缘纯净原生 4 通道 `RGBA`**（对比 `FLUX.2` 假 RGB 棋盘格与前代 `MAI-2.6` HTTP 400）；UI/包装局部换色 `4/4` `100%` 满分且 `SSIM 0.977–0.998`；中英双语 `100%` 零损耗（对比 `FLUX.2-pro` 中文人像暴跌 `-66.6 pts`） | [中文报告](mai-image-2-7-commercial-editing-benchmark.md) · [EN](mai-image-2-7-commercial-editing-benchmark.en.md) · [中文 7 页卡片](../../examples/mai-image-2-7-card-report/index.zh-CN.html) · [EN 7-Card Deck](../../examples/mai-image-2-7-card-report/index.html) · [JSON/CSV](../../data/reported/mai-image-2-7-commercial-editing/) · [交互对比 Studio](https://turbo998.github.io/workshops/benchmarks/mai-image-2-7-commercial-edit-bench.html) |
 | **增补报告九：GPT-6.2 Sol 全档推理实测、校准路由与二十一模型前沿基准** | `2026-11-18` · 中 / 英（含双语 7 页卡片） | **27 轮真实 CAPI 实测**（`low..max` 五档四模块编码均 `59/60`，`high` 档比 `6.1-Sol` 快 `2.53x`、推理 Token 减 `51.0%`；`P2` 校准路由 `12/12` vs `6.1-Sol` `10/12` 算术越权；`P3` 逆序抗施压 `6/6` 零反转；`P4` 批量 `n=6` 提速 `3.66x`）+ 18 项 Day-2 外部权威基准 | [中文报告](gpt-6-2-sol-benchmark.md) · [EN](gpt-6-2-sol-benchmark.en.md) · [中文 7 页卡片](../../examples/gpt-6-2-sol-card-report/index.zh-CN.html) · [EN 7-Card Deck](../../examples/gpt-6-2-sol-card-report/index.html) · [JSON/CSV](../../data/reported/gpt-6-2-sol-benchmark/report.json) |
 
 ---

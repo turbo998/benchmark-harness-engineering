@@ -37,3 +37,15 @@ telemetry from [TERMINAL-BENCH (`tbench.ai`)](https://www.tbench.ai/) and
 (Stanford / Harbor Framework / Laude Institute, Apache-2.0), explicitly marked
 `independently_reproduced=false` without redistributing task prompts, oracle
 solutions, or benchmark canary strings.
+
+Supplement Report 11 ([docs/reports/mai-image-2-7-commercial-editing-benchmark.en.md](docs/reports/mai-image-2-7-commercial-editing-benchmark.en.md)
+and `data/reported/mai-image-2-7-commercial-editing/`) is an original, independently
+reproduced commercial image editing evaluation (`provenance="measured"`,
+`independently_reproduced=true`) inspired by the academic `ServImage` benchmark
+taxonomy (`arXiv:2604.24023v2`) and `Editable` vertical structure, using newly
+generated synthetic reference assets frozen via SHA-256 (`freeze_manifest.json`)
+and live Microsoft Foundry API runs (`MAI-Image-2.7`, `MAI-Image-2.7-Flash`,
+`MAI-Image-2.6`, `FLUX.2`, and OpenAI `gpt-image-2` / `2.5` families). External
+blind-arena standings cited for context ([Artificial Analysis Image Editing Arena v2.1](https://artificialanalysis.ai/image/leaderboard/editing)
+and [LMArena](https://lmarena.ai/)) are isolated and explicitly labelled
+`provenance="reported"`.

@@ -12,6 +12,9 @@ a built environment; task datasets and container images may have separate terms.
 | SWE-bench | [repository](https://github.com/SWE-bench/SWE-bench) | MIT |
 | Legacy Terminal-Bench | [repository](https://github.com/laude-institute/terminal-bench) | Apache-2.0 |
 | Terminal-Bench 4.1 (`harbor-framework/terminal-bench`) | [v4.1.0 release](https://github.com/harbor-framework/terminal-bench/releases/tag/v4.1.0) & [tbench.ai](https://www.tbench.ai/) | Apache-2.0 (aggregate metrics cited; zero task prompts, oracle scripts, or canary GUIDs redistributed) |
+| ServImage / Editable Commercial Image Editing Taxonomy | [`arXiv:2604.24023v2`](https://arxiv.org/abs/2604.24023) | Academic paper reference (`BRF/VEQ/CNS` rubric methodology cited; all 12 reference PNGs and 121 outputs in Supplement 11 are newly generated synthetic benchmark assets) |
+| Microsoft AI MAI-Image-2.7 & MAI-Image-2.7-Flash | [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/) | Commercial API service (evaluated live under `provenance="measured"`; sanitized endpoint metadata only) |
+| Artificial Analysis Image Editing v2.1 & LMArena | [Artificial Analysis](https://artificialanalysis.ai/image/leaderboard/editing) & [LMArena](https://lmarena.ai/) | Public leaderboard citations (`provenance="reported"`, cited for external blind-arena context only) |
 | Azure SDK for Python | [repository](https://github.com/Azure/azure-sdk-for-python) | MIT; dependencies retain their own licenses |
 
 No license was established for redistribution of the two satomic repositories

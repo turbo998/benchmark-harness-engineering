@@ -1,0 +1,9 @@
+model_id,label,provider,pricing_model,run_count,mean_brf,mean_veq,mean_cns,mean_profile_score,accepted_count_12,accept_rate_12,core10_accepted_count,core10_accept_rate,mean_non_edit_ssim,median_latency_ms,mean_cost_usd,total_12_suite_cost_usd,accepted_deliverables_per_dollar,supports_native_transparent_alpha
+mai-image-2-7,MAI-Image-2.7,Microsoft MAI,flat_per_image,12,4.17,4.25,3.83,4.08,5,0.4167,5,0.5,0.7732,28266,0.035,0.42,11.91,True
+mai-image-2-7-flash,MAI-Image-2.7-Flash,Microsoft MAI,flat_per_image,12,4.17,4.25,3.75,4.06,5,0.4167,5,0.5,0.784,20686,0.01,0.12,41.67,True
+mai-image-2-6,MAI-Image-2.6,Microsoft MAI (Prior Gen),flat_per_image,12,4,4.33,4,4.11,7,0.5833,7,0.7,0.7711,28010,0.035,0.42,16.67,False
+flux-2-pro,FLUX.2-pro,Black Forest Labs,per_megapixel,12,3.75,4.25,3.5,3.83,5,0.4167,4,0.4,0.7986,12862,0.04646,0.5575,8.97,False
+flux-2-flex,FLUX.2-flex,Black Forest Labs,per_megapixel,12,3.67,4.08,3.75,3.83,6,0.5,6,0.6,0.7674,18886,0.10486,1.2583,4.77,False
+gpt-image-2,gpt-image-2,OpenAI,token_variable,12,4,4.17,3.83,4.0,7,0.5833,6,0.6,0.7978,44062,0.06119,0.7343,9.53,True
+gpt-image-2-5-sunburst,gpt-image-2.5-sunburst,OpenAI,token_variable,12,4.08,4.25,3.83,4.06,8,0.6667,7,0.7,0.7365,42201,0.06124,0.7349,10.89,True
+gpt-image-2-5-flare,gpt-image-2.5-flare,OpenAI,token_variable,12,3.92,4.25,3.67,3.94,6,0.5,5,0.5,0.7866,31920,0.06124,0.7349,8.16,True

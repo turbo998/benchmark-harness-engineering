@@ -1,0 +1,17 @@
+scene_id,model_id,model_label,en_score_100,zh_score_100,score_delta_pts,en_non_edit_ssim_pct,zh_non_edit_ssim_pct,ssim_delta_pts,en_accept,zh_accept
+app-screen,flux-2-pro,FLUX.2-pro,100.0,100.0,0.0,99.0,99.1,0.1,True,True
+app-screen,gpt-image-2-5-sunburst,gpt-image-2.5-sunburst,100.0,100.0,0.0,99.7,99.4,-0.3,True,True
+app-screen,mai-image-2-7,MAI-Image-2.7,100.0,100.0,0.0,99.7,99.8,0.1,True,True
+app-screen,mai-image-2-7-flash,MAI-Image-2.7-Flash,100.0,100.0,0.0,99.8,99.1,-0.7,True,True
+packaging-label,flux-2-pro,FLUX.2-pro,100.0,100.0,0.0,99.4,99.5,0.1,True,True
+packaging-label,gpt-image-2-5-sunburst,gpt-image-2.5-sunburst,100.0,100.0,0.0,99.5,99.6,0.1,True,True
+packaging-label,mai-image-2-7,MAI-Image-2.7,100.0,100.0,0.0,99.4,99.2,-0.2,True,True
+packaging-label,mai-image-2-7-flash,MAI-Image-2.7-Flash,100.0,100.0,0.0,99.7,99.8,0.1,True,True
+portrait-retouch,flux-2-pro,FLUX.2-pro,100.0,33.4,-66.6,97.7,94.8,-2.8,True,False
+portrait-retouch,gpt-image-2-5-sunburst,gpt-image-2.5-sunburst,80.0,80.0,0.0,88.1,88.2,0.1,True,True
+portrait-retouch,mai-image-2-7,MAI-Image-2.7,80.0,80.0,0.0,83.6,82.0,-1.7,True,True
+portrait-retouch,mai-image-2-7-flash,MAI-Image-2.7-Flash,80.0,80.0,0.0,83.3,84.0,0.6,True,True
+web-banner,flux-2-pro,FLUX.2-pro,100.0,100.0,0.0,98.8,98.8,0.1,True,True
+web-banner,gpt-image-2-5-sunburst,gpt-image-2.5-sunburst,100.0,93.4,-6.6,99.1,98.8,-0.3,True,True
+web-banner,mai-image-2-7,MAI-Image-2.7,93.4,100.0,6.6,98.5,98.0,-0.5,True,True
+web-banner,mai-image-2-7-flash,MAI-Image-2.7-Flash,93.4,93.4,0.0,98.2,97.9,-0.3,True,True

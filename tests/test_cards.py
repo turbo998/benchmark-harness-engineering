@@ -56,13 +56,14 @@ def test_gemini_4_carbon_reported_cards_and_catalog_integrity(workdir: Path) -> 
     assert "<script" not in content
 
     catalog = json.loads((root / "data" / "reported" / "catalog.json").read_bytes())
-    assert catalog["report_families"] == 12
-    assert catalog["source_pages"] == 21
+    assert catalog["report_families"] == 13
+    assert catalog["source_pages"] == 23
     report_ids = [r["report_id"] for r in catalog["reports"]]
     assert "coding-nineteen" in report_ids
     assert "gemini-4-carbon" in report_ids
     assert "routing-aipc-kev-sft" in report_ids
     assert "moe-mi300x-bf16-mxfp4" in report_ids
+    assert "mai-image-2-7-commercial-editing" in report_ids
 
 
 def test_aipc_kev_sft_and_moe_mi300x_reported_cards_and_bilingual_docs(
@@ -324,3 +325,127 @@ def test_terminal_bench_4_1_report_and_cards_integrity(workdir: Path) -> None:
         text = artifact.read_text(encoding="utf-8")
         for ident in forbidden_identifiers:
             assert ident not in text, f"Forbidden string {ident!r} found in {artifact}"
+
+
+def test_mai_image_2_7_commercial_editing_report_and_cards_integrity() -> None:
+    import csv
+    import json
+    import re
+
+    root = Path(__file__).resolve().parents[1]
+    reported_root = root / "data" / "reported"
+    data_dir = reported_root / "mai-image-2-7-commercial-editing"
+
+    report_path = data_dir / "report.json"
+    summary_path = data_dir / "summary.json"
+    freeze_path = data_dir / "freeze_manifest.json"
+    leaderboard_csv = data_dir / "model_leaderboard.csv"
+    scenario_csv = data_dir / "scenario_matrix_96.csv"
+    turn2_csv = data_dir / "turn2_consistency.csv"
+    perturbation_csv = data_dir / "perturbation_zh_vs_en.csv"
+
+    en_html_path = root / "examples" / "mai-image-2-7-card-report" / "index.html"
+    zh_html_path = root / "examples" / "mai-image-2-7-card-report" / "index.zh-CN.html"
+    ex_readme_zh = root / "examples" / "mai-image-2-7-card-report" / "README.md"
+    ex_readme_en = root / "examples" / "mai-image-2-7-card-report" / "README.en.md"
+
+    doc_zh = root / "docs" / "reports" / "mai-image-2-7-commercial-editing-benchmark.md"
+    doc_en = root / "docs" / "reports" / "mai-image-2-7-commercial-editing-benchmark.en.md"
+    webp_zh = root / "docs" / "reports" / "assets" / "mai-image-2-7" / "summary-overview.zh-CN.webp"
+    webp_en = root / "docs" / "reports" / "assets" / "mai-image-2-7" / "summary-overview.en.webp"
+
+    text_artifacts = [
+        report_path,
+        summary_path,
+        freeze_path,
+        leaderboard_csv,
+        scenario_csv,
+        turn2_csv,
+        perturbation_csv,
+        en_html_path,
+        zh_html_path,
+        ex_readme_zh,
+        ex_readme_en,
+        doc_zh,
+        doc_en,
+    ]
+    for path in [*text_artifacts, webp_zh, webp_en]:
+        assert path.is_file(), f"Missing expected artifact: {path}"
+    assert webp_zh.stat().st_size > 20_000
+    assert webp_en.stat().st_size > 20_000
+
+    catalog = json.loads((reported_root / "catalog.json").read_text(encoding="utf-8"))
+    entry = next(
+        r for r in catalog["reports"] if r["report_id"] == "mai-image-2-7-commercial-editing"
+    )
+    assert entry["track"] == "multimodal-image-editing"
+    assert entry["provenance"] == "measured"
+    assert entry["independently_reproduced"] is True
+    assert (reported_root / entry["report_document"]).resolve() == doc_zh.resolve()
+    assert (reported_root / entry["report_document_en"]).resolve() == doc_en.resolve()
+    assert (reported_root / entry["card_report_html"]).resolve() == en_html_path.resolve()
+    assert (reported_root / entry["card_report_html_zh"]).resolve() == zh_html_path.resolve()
+    assert (reported_root / entry["json"]).resolve() == report_path.resolve()
+    for csv_rel in entry["csv_files"]:
+        assert (reported_root / csv_rel).is_file()
+
+    report_data = json.loads(report_path.read_text(encoding="utf-8"))
+    summary_data = json.loads(summary_path.read_text(encoding="utf-8"))
+    freeze_data = json.loads(freeze_path.read_text(encoding="utf-8"))
+    assert report_data["schema_version"] == 1
+    assert report_data["report_id"] == "mai-image-2-7-commercial-editing"
+    assert report_data["provenance"] == "measured"
+    assert report_data["independently_reproduced"] is True
+    assert report_data["environment"]["total_live_api_runs"] == 121
+    assert report_data["environment"]["total_measured_spend_usd"] == 6.041
+    assert report_data["environment"]["reference_dataset_sha256_count"] == 12
+    assert len(report_data["models"]) == 8
+    assert len(summary_data["models"]) == 8
+    assert freeze_data["reference_count"] == 12
+    assert len(freeze_data["references"]) == 12
+
+    with leaderboard_csv.open(encoding="utf-8", newline="") as fh:
+        lb_rows = list(csv.DictReader(fh))
+    assert len(lb_rows) == 8
+
+    with scenario_csv.open(encoding="utf-8", newline="") as fh:
+        sc_rows = list(csv.DictReader(fh))
+    assert len(sc_rows) == 96
+
+    with turn2_csv.open(encoding="utf-8", newline="") as fh:
+        t2_rows = list(csv.DictReader(fh))
+    assert len(t2_rows) == 9
+
+    with perturbation_csv.open(encoding="utf-8", newline="") as fh:
+        pt_rows = list(csv.DictReader(fh))
+    assert len(pt_rows) == 16
+
+    for html_path in (en_html_path, zh_html_path):
+        html_doc = html_path.read_text(encoding="utf-8")
+        assert html_doc.count('class="report-card"') == 7
+        for card_num in range(1, 8):
+            assert f'id="card-{card_num}"' in html_doc
+            assert f"{card_num} / 7" in html_doc
+        assert "default-src 'none'; style-src 'unsafe-inline'" in html_doc
+        assert "<script" not in html_doc.lower()
+        assert not re.search(r"<(?:img|link|iframe)\b[^>]+https?://", html_doc, re.IGNORECASE)
+        assert not re.search(r"url\(\s*['\"]?https?://", html_doc, re.IGNORECASE)
+
+    forbidden_identifiers = (
+        "Henry",
+        "Qi Chen",
+        "qichen",
+        "notion.so",
+        "C:\\Users",
+    )
+    azure_host_re = re.compile(
+        r"([a-z0-9-]+)\.(?:services\.ai\.azure\.com|openai\.azure\.com)", re.IGNORECASE
+    )
+    for artifact in text_artifacts:
+        text = artifact.read_text(encoding="utf-8")
+        for ident in forbidden_identifiers:
+            assert ident not in text, f"Forbidden string {ident!r} found in {artifact}"
+        for match in azure_host_re.finditer(text):
+            assert match.group(1) in {"foundry-resource"}, (
+                f"Unsanitized Azure resource hostname {match.group(0)!r} found in {artifact}"
+            )
